@@ -1,0 +1,86 @@
+import 'imports.dart';
+import 'package:flutter/cupertino.dart';
+
+class SelectTypeOfContact extends StatefulWidget {
+  final bool firstContact;
+  final UserData userData;
+  final Speaker speaker;
+  final String? speakerID;
+  final String? speakerPSSWD;
+
+  const SelectTypeOfContact({
+    super.key,
+    required this.firstContact,
+    required this.userData,
+    required this.speaker,
+    this.speakerID,
+    this.speakerPSSWD,
+  });
+
+  @override
+  State<SelectTypeOfContact> createState() => _SelectTypeOfContactState();
+}
+
+class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
+  String licenseId = "";
+  @override
+  void initState() {
+    super.initState();
+    DatabaseLicense.loadLicenseId.then((id) => setState(() => licenseId = id));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: Text(
+        'Vuoi spostare lo spekaer in contattati?',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Style.textColor(context),
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              'Annulla',
+              style: TextStyle(color: CupertinoColors.destructiveRed),
+            )),
+        TextButton(
+          onPressed: () async {
+            if (widget.firstContact) {
+              await DatabaseSpeaker(id: widget.speaker.id, licenseId: licenseId)
+                  .updateManagementStep(step: 1);
+
+              await DatabaseSpeaker(id: widget.speaker.id, licenseId: licenseId)
+                  .updateProgress(progress: Progress.contacted)
+                  .then((_) {
+                EasyLoading.showToast('Speaker segnato com contattato',
+                    duration: Duration(milliseconds: kDurationToast),
+                    dismissOnTap: true,
+                    toastPosition: EasyLoadingToastPosition.bottom);
+              });
+            } else {
+              Clipboard.setData(new ClipboardData(
+                      text:
+                          'Speaker ID: ${widget.speakerID!.substring(0, 5)} | Codice: ${widget.speakerPSSWD}'))
+                  .then((_) {
+                EasyLoading.showToast('Credenziali copiate',
+                    duration: Duration(seconds: 2),
+                    dismissOnTap: true,
+                    toastPosition: EasyLoadingToastPosition.bottom);
+              });
+            }
+            Navigator.of(context).pop();
+          },
+          child: Text(
+            'Conferma',
+            style: TextStyle(color: CupertinoColors.activeGreen, fontSize: 15),
+          ),
+        ),
+      ],
+    );
+  }
+}
