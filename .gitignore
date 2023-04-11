@@ -48,3 +48,4 @@ app.*.map.json
 /ios/Runner/GoogleService-Info.plist
 /android/app/google-services.json
 /lib/services/firebase_options.dart
+/deploy_android.sh
