@@ -44,53 +44,54 @@ export 'package:macos_ui/macos_ui.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:siri_wave/siri_wave.dart';
 
-export 'package:tedxcommunity/interface/pages/team/confirmed.dart';
-export 'package:tedxcommunity/interface/pages/team/elaboration.dart';
-export 'package:tedxcommunity/interface/pages/team/long_list.dart';
-export 'package:tedxcommunity/interface/screen/authenticate.dart';
+export '../interface/pages/team/confirmed.dart';
+export '../interface/pages/team/elaboration.dart';
+export '../interface/pages/team/long_list.dart';
+export '../interface/screen/authenticate.dart';
 
-export 'package:tedxcommunity/services/database_speaker.dart';
-export 'package:tedxcommunity/services/step_service.dart';
+export '../services/database_speaker.dart';
+export '../services/step_service.dart';
 //export 'package:sendgrid_mailer/sendgrid_mailer.dart';
-export 'package:tedxcommunity/services/dialog_contact.dart';
-export 'package:tedxcommunity/services/auth_service.dart';
-export 'package:tedxcommunity/services/database_user.dart';
-export 'package:tedxcommunity/services/style.dart';
-export 'package:tedxcommunity/services/text_labels.dart';
+export '../services/dialog_contact.dart';
+export '../services/auth_service.dart';
+export '../services/database_user.dart';
+export '../services/style.dart';
+export '../services/text_labels.dart';
 
-export 'package:tedxcommunity/interface/screen/menu_team.dart';
-export 'package:tedxcommunity/app.dart';
-export 'package:tedxcommunity/services/database_license.dart';
-export 'package:tedxcommunity/constants.dart';
-export 'package:tedxcommunity/interface/pages/speaker/management.dart';
-export 'package:tedxcommunity/interface/pages/speaker/coaching.dart';
-export 'package:tedxcommunity/interface/widget/top_bar_team.dart';
-export 'package:tedxcommunity/interface/screen/menu_speaker.dart';
-export 'package:tedxcommunity/services/database_warehouse.dart';
+export '../interface/screen/menu_team.dart';
+export '../app.dart';
+export '../services/database_license.dart';
+export '../constants.dart';
+export '../interface/pages/speaker/management.dart';
+export '../interface/pages/speaker/coaching.dart';
+export '../interface/widget/top_bar_team.dart';
+export '../interface/screen/menu_speaker.dart';
+export '../services/database_warehouse.dart';
 export '../../../services/vocal_assistant.dart';
 
 ///Screen
-export 'package:tedxcommunity/interface/screen/loading_or_error.dart';
-export 'package:tedxcommunity/interface/screen/confirmed_team.dart';
-export 'package:tedxcommunity/interface/screen/info_app_team.dart';
-export 'package:tedxcommunity/interface/screen/info_app_speaker.dart';
-export 'package:tedxcommunity/interface/pages/team/bags.dart';
+export '../interface/screen/loading_or_error.dart';
+export '../interface/screen/confirmed_team.dart';
+export '../interface/screen/info_app_team.dart';
+export '../interface/screen/info_app_speaker.dart';
+export '../interface/pages/team/bags.dart';
 
 ///Widget
-export 'package:tedxcommunity/interface/widget/add_coach.dart';
-export 'package:tedxcommunity/interface/widget/add_speaker.dart';
+export '../interface/widget/add_coach.dart';
+export '../interface/widget/add_speaker.dart';
 export '../interface/widget/add_bag.dart';
-export 'package:tedxcommunity/interface/widget/speaker_item.dart';
-export 'package:tedxcommunity/interface/widget/speaker_profile.dart';
-export 'package:tedxcommunity/interface/widget/input_field.dart';
-export 'package:tedxcommunity/interface/widget/confirmed_elements.dart';
-export 'package:tedxcommunity/interface/widget/datetimepicker_modal.dart';
-export 'package:tedxcommunity/interface/widget/edit_speaker.dart';
-export 'package:tedxcommunity/interface/widget/top_bar_speaker.dart';
+export '../interface/widget/add_license.dart';
+export '../interface/widget/speaker_item.dart';
+export '../interface/widget/speaker_profile.dart';
+export '../interface/widget/input_field.dart';
+export '../interface/widget/confirmed_elements.dart';
+export '../interface/widget/datetimepicker_modal.dart';
+export '../interface/widget/edit_speaker.dart';
+export '../interface/widget/top_bar_speaker.dart';
 
 ///Models
-export 'package:tedxcommunity/models/styles.dart';
-export 'package:tedxcommunity/models/license.dart';
-export 'package:tedxcommunity/models/user.dart';
-export 'package:tedxcommunity/models/speaker.dart';
-export 'package:tedxcommunity/models/warehouse.dart';
+export '../models/styles.dart';
+export '../models/license.dart';
+export '../models/user.dart';
+export '../models/speaker.dart';
+export '../models/warehouse.dart';

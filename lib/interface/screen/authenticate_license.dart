@@ -22,7 +22,6 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
 
   ///Create license
   String licenseId = const Uuid().v1().substring(0, 5).toUpperCase();
-  TextEditingController licenseNameController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -235,91 +234,11 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                           context: context,
                                           barrierDismissible: false,
                                           builder: (context) {
-                                            return CupertinoAlertDialog(
-                                              title: const Text('Crea licenza'),
-                                              content: Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Expanded(
-                                                        flex: 4,
-                                                        child: Text(
-                                                            'LicenseId: $licenseId'),
-                                                      ),
-                                                      Expanded(
-                                                          flex: 1,
-                                                          child: IconButton(
-                                                            icon: const Icon(
-                                                              CupertinoIcons
-                                                                  .doc_on_clipboard,
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            onPressed: () {
-                                                              EasyLoading
-                                                                  .showToast(
-                                                                      'Copiato');
-                                                              Clipboard.setData(
-                                                                  ClipboardData(
-                                                                      text:
-                                                                          licenseId));
-                                                            },
-                                                          ))
-                                                    ],
-                                                  ),
-                                                  CupertinoTextFormFieldRow(
-                                                    decoration: BoxDecoration(
-                                                      color: Style
-                                                          .inputTextFieldColor(
-                                                              context),
-                                                      borderRadius: BorderRadius
-                                                          .all(Radius.circular(Style
-                                                              .inputTextFieldRadius)),
-                                                    ),
-                                                    enableSuggestions: true,
-                                                    controller:
-                                                        licenseNameController,
-                                                    textCapitalization:
-                                                        TextCapitalization
-                                                            .words,
-                                                    placeholder:
-                                                        'Nome (es. TEDxCortina)',
-                                                    keyboardType:
-                                                        TextInputType.name,
-                                                  ),
-                                                  const SizedBox(height: 10),
-                                                ],
-                                              ),
-                                              actions: <Widget>[
-                                                TextButton(
-                                                    onPressed: () async {
-                                                      EasyLoading.show();
-                                                      await DatabaseLicense(
-                                                              licenseId)
-                                                          .create(
-                                                              adminUid:
-                                                                  adminUid,
-                                                              licenseName:
-                                                                  licenseNameController
-                                                                      .text)
-                                                          .whenComplete(() {
-                                                        EasyLoading.dismiss();
-
-                                                        widget
-                                                            .onLogin(licenseId);
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        EasyLoading.showSuccess(
-                                                            'Licenza attivata con successo!');
-                                                      });
-                                                    },
-                                                    child: const Text(
-                                                      'Attiva',
-                                                      style: TextStyle(
-                                                          color: CupertinoColors
-                                                              .activeBlue),
-                                                    )),
-                                              ],
+                                            return AddLicense(
+                                              licenseId: licenseId,
+                                              adminUid: adminUid,
+                                              onLogin: () =>
+                                                  widget.onLogin(licenseId),
                                             );
                                           },
                                         );

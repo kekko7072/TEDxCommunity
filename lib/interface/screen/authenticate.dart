@@ -27,6 +27,8 @@ class AuthenticateState extends State<Authenticate> {
 
   @override
   Widget build(BuildContext context) {
+    final license = Provider.of<License?>(context);
+
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -42,7 +44,7 @@ class AuthenticateState extends State<Authenticate> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          TextLabels.kAppName,
+                          license?.licenseName ?? TextLabels.kAppName,
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .navLargeTitleTextStyle,
@@ -62,7 +64,7 @@ class AuthenticateState extends State<Authenticate> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          TextLabels.kAppName,
+                          license?.licenseName ?? TextLabels.kAppName,
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .navLargeTitleTextStyle,
@@ -202,9 +204,7 @@ class AuthenticateState extends State<Authenticate> {
                           color: Style.primaryColor,
                           child: const Text('Accedi'),
                           onPressed: () async {
-                            setState(() {
-                              loading = true;
-                            });
+                            setState(() => loading = true);
                             if (isTeam) {
                               dynamic result = await _auth
                                   .signInWithEmailAndPassword(email, password);

@@ -4,8 +4,8 @@ import 'package:tedxcommunity/services/imports.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class InfoAppTeam extends StatefulWidget {
-  final License? license;
-  final UserData? userData;
+  final License license;
+  final UserData userData;
 
   const InfoAppTeam({super.key, required this.license, required this.userData});
 
@@ -14,8 +14,6 @@ class InfoAppTeam extends StatefulWidget {
 }
 
 class InfoAppTeamState extends State<InfoAppTeam> {
-  String licenseId = "NO_ID";
-
   ///Software version
   String version = '';
 
@@ -40,11 +38,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
     super.initState();
     loadVersion();
     setState(() {
-      nameController.text = widget.userData?.name ?? '';
-      surnameController.text = widget.userData?.surname ?? '';
-      if (widget.license != null) {
-        licenseId = widget.license!.id;
-      }
+      nameController.text = widget.userData.name;
+      surnameController.text = widget.userData.surname;
     });
   }
 
@@ -71,12 +66,14 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                 });
                 if (name.isNotEmpty) {
                   await DatabaseUser(
-                          licenseId: licenseId, uid: widget.userData?.uid)
+                          licenseId: widget.license.id,
+                          uid: widget.userData.uid)
                       .updateUserSinglePersonalData(field: 'name', value: name);
                 }
                 if (surname.isNotEmpty) {
                   await DatabaseUser(
-                          licenseId: licenseId, uid: widget.userData?.uid)
+                          licenseId: widget.license.id,
+                          uid: widget.userData.uid)
                       .updateUserSinglePersonalData(
                           field: 'surname', value: surname);
                 }
@@ -84,12 +81,12 @@ class InfoAppTeamState extends State<InfoAppTeam> {
             },
             child: CupertinoPageScaffold(
               resizeToAvoidBottomInset: false,
-              navigationBar: CupertinoNavigationBar(
+              navigationBar: const CupertinoNavigationBar(
                 automaticallyImplyLeading: false,
                 middle: Text('Impostazioni'),
               ),
               child: StreamBuilder<License>(
-                  stream: DatabaseLicense(licenseId).stream,
+                  stream: DatabaseLicense(widget.license.id).stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       License appSettings = snapshot.data!;
@@ -108,17 +105,49 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               version,
                               style: kSettingsDescriptionStyle,
                             ),
+                            addPaddingToBorder: false,
                           ),
-                          if (widget.userData?.role == Role.admin) ...[
+                          CSDescription(
+                              'This is an open-source software and free to use.'),
+                          const CSHeader('LICENZA'),
+                          CSControl(
+                            nameWidget: const Text('Id'),
+                            contentWidget: Text(
+                              widget.license.id,
+                              style: kSettingsDescriptionStyle,
+                            ),
+                          ),
+                          CSControl(
+                            nameWidget: const Text('Nome'),
+                            contentWidget: Text(
+                              widget.license.licenseName,
+                              style: kSettingsDescriptionStyle,
+                            ),
+                          ),
+                          CSControl(
+                            nameWidget: const Text('Admin'),
+                            contentWidget: StreamBuilder<UserData?>(
+                                stream: DatabaseUser(
+                                        licenseId: widget.license.id,
+                                        uid: widget.license.adminUid)
+                                    .userData,
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    '${snapshot.data?.name} ${snapshot.data?.surname}',
+                                    style: kSettingsDescriptionStyle,
+                                  );
+                                }),
+                          ),
+                          if (widget.userData.role == Role.admin) ...[
                             CSControl(
-                              nameWidget: Text('Registrazione'),
+                              nameWidget: const Text('Registrazione'),
                               contentWidget: CupertinoSwitch(
                                 value: registration,
                                 onChanged: (bool value) async {
                                   setState(() {
                                     registration = !registration;
                                   });
-                                  await DatabaseLicense(licenseId)
+                                  await DatabaseLicense(widget.license.id)
                                       .editRegistration(
                                           registration: registration);
                                 },
@@ -127,33 +156,28 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             CSButton(
                                 CSButtonType.DEFAULT,
                                 "Ripristina lista",
-                                () => DatabaseSpeaker(licenseId: licenseId)
+                                () => DatabaseSpeaker(
+                                        licenseId: widget.license.id)
                                     .enableAllForThisEvent()
                                     .whenComplete(
                                         () => Navigator.of(context).pop())),
-                            CSHeader('Evento'),
+                            const CSHeader('Evento'),
                             CSControl(
-                              nameWidget: Text('Bags'),
+                              nameWidget: const Text('Bags'),
                               contentWidget: CupertinoSwitch(
                                 value: bags,
                                 onChanged: (bool value) async {
                                   setState(() {
                                     bags = !bags;
                                   });
-                                  await DatabaseLicense(licenseId)
+                                  await DatabaseLicense(widget.license.id)
                                       .editBags(bags: bags);
                                 },
                               ),
                             ),
                             CSControl(
-                              nameWidget: Text('Data'),
+                              nameWidget: const Text('Data'),
                               contentWidget: TextButton(
-                                child: Text(
-                                  eventDate,
-                                  style: CupertinoTheme.of(context)
-                                      .textTheme
-                                      .actionTextStyle,
-                                ),
                                 style: TextButton.styleFrom(
                                     //backgroundColor: Colors.red,
                                     padding: EdgeInsets.all(0),
@@ -171,20 +195,33 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                         });
                                       },
                                       onPressed: () async {
-                                        await DatabaseLicense(licenseId)
+                                        await DatabaseLicense(widget.license.id)
                                             .editEventDate(date: eventDate);
                                         Navigator.of(context).pop();
                                       },
                                     ),
                                   );
                                 },
+                                child: Text(
+                                  eventDate,
+                                  style: CupertinoTheme.of(context)
+                                      .textTheme
+                                      .actionTextStyle,
+                                ),
                               ),
                               addPaddingToBorder: false,
                             ),
                           ],
-                          const CSHeader('Account'),
+                          const CSHeader('ACCOUNT'),
                           CSControl(
-                            nameWidget: Text('Nome'),
+                            nameWidget: const Text('Ruolo'),
+                            contentWidget: Text(
+                              widget.userData.role.toString(),
+                              style: kSettingsDescriptionStyle,
+                            ),
+                          ),
+                          CSControl(
+                            nameWidget: const Text('Nome'),
                             contentWidget: Expanded(
                               child: CupertinoTextFormFieldRow(
                                 padding: EdgeInsets.zero,
@@ -215,8 +252,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                 onEditingComplete: () async {
                                   if (name.isNotEmpty) {
                                     await DatabaseUser(
-                                            licenseId: licenseId,
-                                            uid: widget.userData?.uid)
+                                            licenseId: widget.license.id,
+                                            uid: widget.userData.uid)
                                         .updateUserSinglePersonalData(
                                             field: 'name', value: name);
                                   }
@@ -225,7 +262,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: Text('Cognome'),
+                            nameWidget: const Text('Cognome'),
                             contentWidget: Expanded(
                               child: CupertinoTextFormFieldRow(
                                 controller: surnameController,
@@ -257,8 +294,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   print('EDITING COMPLETE');
                                   if (surname.isNotEmpty) {
                                     await DatabaseUser(
-                                            licenseId: licenseId,
-                                            uid: widget.userData?.uid)
+                                            licenseId: widget.license.id,
+                                            uid: widget.userData.uid)
                                         .updateUserSinglePersonalData(
                                             field: 'surname', value: surname);
                                   }
@@ -267,14 +304,77 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: Text('Email'),
+                            nameWidget: const Text('Email'),
                             contentWidget: Text(
-                              widget.userData?.email ?? '',
+                              widget.userData.email,
                               style: kSettingsDescriptionStyle,
                             ),
                             addPaddingToBorder: false,
                           ),
                           const CSHeader(''),
+                          CSButton(
+                            CSButtonType.DEFAULT_CENTER,
+                            "Crea nuova licenza",
+                            () async {
+                              ///1. Create new licenseId
+                              String newLicenseId = const Uuid()
+                                  .v1()
+                                  .substring(0, 5)
+                                  .toUpperCase();
+
+                              await DatabaseLicense(newLicenseId)
+                                  .checkExistence
+                                  .then((alreadyExist) {
+                                if (alreadyExist) {
+                                  //Set new ID
+                                  newLicenseId = const Uuid()
+                                      .v1()
+                                      .substring(0, 5)
+                                      .toUpperCase();
+                                }
+                              }).whenComplete(() {
+                                ///2. Create a license
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (context) {
+                                    return AddLicense(
+                                      licenseId: newLicenseId,
+                                      adminUid: widget.userData.uid,
+                                      onLogin: () async {
+                                        ///1. Create admin inside new license
+                                        await DatabaseUser(
+                                                licenseId: newLicenseId,
+                                                uid: widget.userData.uid)
+                                            .createAdmin(
+                                          nameController.text,
+                                          surnameController.text,
+                                          widget.userData.email,
+                                        );
+
+                                        ///2. Clear license from session
+
+                                        await SharedPreferences.getInstance()
+                                            .then((prefs) {
+                                          prefs.setString(
+                                              kLicenseIdKey, newLicenseId);
+
+                                          //3. Logout
+                                          Navigator.of(context).pop();
+
+                                          ///4. Show success
+                                          EasyLoading.showSuccess(
+                                              'Ora sei dentro la nuova licenza!',
+                                              duration:
+                                                  const Duration(seconds: 4));
+                                        });
+                                      },
+                                    );
+                                  },
+                                );
+                              });
+                            },
+                          ),
                           CSButton(
                             CSButtonType.DESTRUCTIVE,
                             "Disconnetti",

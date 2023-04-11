@@ -19,8 +19,9 @@ class _MenuTeamState extends State<MenuTeam> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = Provider.of<UserData?>(context);
     final license = Provider.of<License?>(context);
+
+    final userData = Provider.of<UserData?>(context);
 
     ///DESKTOP
     late List<Widget> pages = [
@@ -235,13 +236,16 @@ class _MenuTeamState extends State<MenuTeam> {
                     ],
                   ),
                 ),
-                onTap: () => showCupertinoDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (context) {
-                    return InfoAppTeam(license: license, userData: userData);
-                  },
-                ),
+                onTap: () => userData != null && license != null
+                    ? showCupertinoDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (context) {
+                          return InfoAppTeam(
+                              license: license, userData: userData);
+                        },
+                      )
+                    : {},
               ),
               builder: (context, controller) {
                 return SidebarItems(
