@@ -14,14 +14,7 @@ To use the TEDxCommunity app, follow these configuration steps:
 
 2. `Create an admin account`: After downloading the app, create an admin account by signing up with your email address and password.
 
-3. `License TEDx profiles`: As an admin, you can create and manage license TEDx profiles within the app. These profiles represent the authorized users who can access and use the app. There are four types of users with different capabilities: 
-   1. **Admin**: Can perform all actions within the app, including managing license TEDx profiles, speaker selection, contact tracking, coaching, and event preparation.
-   2. *Master**: Has similar capabilities as the admin, but cannot manage license TEDx profiles. Can assign speakers to volunteers for speaker selection.
-   3. **Coach**: Dedicated to speaker coaching. Can access a smaller version of the app focused on coaching and preparing speakers for the event.
-   4. **Volunteer**: Can add speakers to the app and can be assigned as a speaker by the admin or master. Can change the status of speakers within the app during various stages of speaker selection and preparation.
-
-3. `Share LicenseId code`: Once you have created license TEDx profiles, you can share the LicenseId code with other users whom you want to grant access to the app. They can use this code during the account creation process to enable their account and start using the app.
-
+3. `Create License TEDx profile`: As an admin, you can create and manage license TEDx profiles within the app. These profiles represent the authorized users who can access and use the app.
 ## Functionality
 
 The app has this capabilities:
@@ -35,6 +28,14 @@ The app has this capabilities:
 4. `Coaching`: Utilize the app to assist with coaching sessions for selected speakers, providing them with valuable feedback and guidance.
 
 5. `Bag Preparation`: The app includes a section dedicated to preparing bags for the TEDx event, ensuring smooth logistics and organization.
+
+There are four types of users with different capabilities:
+1. **Admin**: Can perform all actions within the app, including managing license TEDx profiles, speaker selection, contact tracking, coaching, and event preparation.
+2. **Master**: Has similar capabilities as the admin, but cannot manage license TEDx profiles. Can assign speakers to volunteers for speaker selection.
+3. **Coach**: Dedicated to speaker coaching. Can access a smaller version of the app focused on coaching and preparing speakers for the event.
+4. **Volunteer**: Can add speakers to the app and can be assigned as a speaker by the admin or master. Can change the status of speakers within the app during various stages of speaker selection and preparation.
+
+3. `Share LicenseId code`: Once you have created license TEDx profiles, you can share the LicenseId code with other users whom you want to grant access to the app. They can use this code during the account creation process to enable their account and start using the app.
 
 ## Credits
 
