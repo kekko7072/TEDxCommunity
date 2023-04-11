@@ -37,11 +37,11 @@ class StepService {
       case 0:
         return 'Inizio';
       case 1:
-        return 'Primo incontro con lo speaker coach e il team di TEDxCortina.';
+        return 'Primo incontro con lo speaker coach e il team di TEDx';
       case 2:
-        return 'Secondo Incontro con lo speaker coach e il team di TEDxCortina.';
+        return 'Secondo Incontro con lo speaker coach e il team di TEDx';
       case 3:
-        return 'Incontro di revisione finale con lo speaker coach e il team di TEDxCortina.';
+        return 'Incontro di revisione finale con lo speaker coach e il team di TEDx';
     }
     return 'Nessuna operazione esistente';
   }

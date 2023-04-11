@@ -102,7 +102,8 @@ class AuthService {
     try {
       UserCredential userCredential = await FirebaseAuth.instanceFor(app: app)
           .createUserWithEmailAndPassword(
-              email: '$accessID@tedxcortina.org', password: accessPassword);
+              email: '$accessID@$kTEDxCommunityCustomSpeakerDomain',
+              password: accessPassword);
       await DatabaseSpeaker(licenseId: licenseId, id: userCredential.user!.uid)
           .createSpeakerCredential(
         newId: userCredential.user!.uid,
@@ -151,7 +152,7 @@ class AuthService {
 
   static const _chars =
       'AaBbCcDdEeFfGgHhJjKkLMmNnPpQqRrTtXxYyZz123456789'; //REMOVED I i l O o 0 S s V v U u W w
-  Random _rnd = Random();
+  final Random _rnd = Random();
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));

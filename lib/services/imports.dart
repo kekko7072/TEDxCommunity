@@ -67,7 +67,7 @@ export '../interface/pages/speaker/coaching.dart';
 export '../interface/widget/top_bar_team.dart';
 export '../interface/screen/menu_speaker.dart';
 export '../services/database_warehouse.dart';
-export '../../../services/vocal_assistant.dart';
+export '../services/vocal_assistant.dart';
 
 ///Screen
 export '../interface/screen/loading_or_error.dart';

@@ -25,11 +25,9 @@ class InfoAppTeamState extends State<InfoAppTeam> {
   }
 
   ///Edit UserData
-  late String name;
   bool editingName = false;
   TextEditingController nameController = TextEditingController();
 
-  late String surname;
   bool editingSurname = false;
   TextEditingController surnameController = TextEditingController();
 
@@ -64,18 +62,19 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                   editingName = false;
                   editingSurname = false;
                 });
-                if (name.isNotEmpty) {
-                  await DatabaseUser(
-                          licenseId: widget.license.id,
-                          uid: widget.userData.uid)
-                      .updateUserSinglePersonalData(field: 'name', value: name);
-                }
-                if (surname.isNotEmpty) {
+                if (nameController.text.isNotEmpty) {
                   await DatabaseUser(
                           licenseId: widget.license.id,
                           uid: widget.userData.uid)
                       .updateUserSinglePersonalData(
-                          field: 'surname', value: surname);
+                          field: 'name', value: nameController.text);
+                }
+                if (surnameController.text.isNotEmpty) {
+                  await DatabaseUser(
+                          licenseId: widget.license.id,
+                          uid: widget.userData.uid)
+                      .updateUserSinglePersonalData(
+                          field: 'surname', value: surnameController.text);
                 }
               }
             },
@@ -92,8 +91,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                       License appSettings = snapshot.data!;
                       bool registration = appSettings.registration;
 
-                      //TODO FIXARE EVENT DATE
-                      String eventDate = 'dd-MM-yyyy';
+                      DateTime eventDate = appSettings.eventDate;
                       bool bags = appSettings.bags;
 
                       return CupertinoSettings(
@@ -149,13 +147,13 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               ),
                             ),
                             CSButton(
-                                CSButtonType.DEFAULT, "Modifica ruoli utenti",
+                                CSButtonType.DEFAULT, "Modifica ruoli team",
                                 () {
                               showCupertinoModalBottomSheet(
                                 backgroundColor: Style.backgroundColor(context),
                                 context: context,
                                 builder: (context) {
-                                  return EditTeamRole();
+                                  return const EditTeamRole();
                                 },
                               );
                             }),
@@ -177,20 +175,22 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                     builder: (_) => DateTimePickerModal(
                                       pickerType: CupertinoDatePickerMode.date,
                                       onDateTimeChanged: (val) {
-                                        setState(() {
-                                          eventDate = val.toIso8601String();
-                                        });
+                                        setState(() => eventDate = val);
                                       },
                                       onPressed: () async {
+                                        EasyLoading.show();
                                         await DatabaseLicense(widget.license.id)
-                                            .editEventDate(date: eventDate);
-                                        Navigator.of(context).pop();
+                                            .editEventDate(date: eventDate)
+                                            .whenComplete(() {
+                                          EasyLoading.dismiss();
+                                          Navigator.of(context).pop();
+                                        });
                                       },
                                     ),
                                   );
                                 },
                                 child: Text(
-                                  eventDate,
+                                  DateFormat('dd-MM-yyyy').format(eventDate),
                                   style: CupertinoTheme.of(context)
                                       .textTheme
                                       .actionTextStyle,
@@ -243,26 +243,16 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                             : kColorGrey),
                                 controller: nameController,
                                 keyboardType: TextInputType.name,
-                                onChanged: (value) {
-                                  setState(() {
-                                    name = value;
-                                  });
-                                },
-                                onSaved: (val) {
-                                  print('SAVED $val');
-                                },
-                                onTap: () {
-                                  setState(() {
-                                    editingName = !editingName;
-                                  });
-                                },
+                                onTap: () =>
+                                    setState(() => editingName = !editingName),
                                 onEditingComplete: () async {
-                                  if (name.isNotEmpty) {
+                                  if (nameController.text.isNotEmpty) {
                                     await DatabaseUser(
                                             licenseId: widget.license.id,
                                             uid: widget.userData.uid)
                                         .updateUserSinglePersonalData(
-                                            field: 'name', value: name);
+                                            field: 'name',
+                                            value: nameController.text);
                                   }
                                 },
                               ),
@@ -284,27 +274,16 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                             ? kColorAccent
                                             : kColorGrey),
                                 keyboardType: TextInputType.name,
-                                onChanged: (value) {
-                                  setState(() {
-                                    surname = value;
-                                  });
-                                },
-                                onSaved: (val) {
-                                  print('SAVED $val');
-                                },
-                                onTap: () {
-                                  setState(() {
-                                    editingSurname = !editingSurname;
-                                  });
-                                },
+                                onTap: () => setState(
+                                    () => editingSurname = !editingSurname),
                                 onEditingComplete: () async {
-                                  print('EDITING COMPLETE');
-                                  if (surname.isNotEmpty) {
+                                  if (surnameController.text.isNotEmpty) {
                                     await DatabaseUser(
                                             licenseId: widget.license.id,
                                             uid: widget.userData.uid)
                                         .updateUserSinglePersonalData(
-                                            field: 'surname', value: surname);
+                                            field: 'surname',
+                                            value: surnameController.text);
                                   }
                                 },
                               ),
@@ -382,7 +361,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                           ),
                           CSButton(
                             CSButtonType.DESTRUCTIVE,
-                            "Disconnetti",
+                            "Esci",
                             () async {
                               await AuthService().signOut().whenComplete(
                                   () => Navigator.of(context).pop());
@@ -391,7 +370,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                         ],
                       );
                     } else {
-                      return Center(child: CupertinoActivityIndicator());
+                      return const Center(child: CupertinoActivityIndicator());
                     }
                   }),
             ),

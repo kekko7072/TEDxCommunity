@@ -15,7 +15,7 @@ class License {
   final String adminUid;
   final String licenseName;
   final bool registration;
-  final String eventDate;
+  final DateTime eventDate;
   final bool bags;
   final String urlReleaseForm;
 }

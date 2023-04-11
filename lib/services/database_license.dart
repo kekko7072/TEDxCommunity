@@ -17,7 +17,7 @@ class DatabaseLicense {
       'adminUid': adminUid,
       'licenseName': licenseName,
       'registration': true,
-      'eventDate': '',
+      'eventDate': DateTime.now(),
       'bags': true,
       'urlReleaseForm': '',
     });
@@ -29,9 +29,9 @@ class DatabaseLicense {
     });
   }
 
-  Future editEventDate({required String date}) async {
+  Future editEventDate({required DateTime date}) async {
     return await collectionReference.doc(id).update({
-      'eventDate': date,
+      'eventDate': Timestamp.fromDate(date),
     });
   }
 
@@ -58,8 +58,10 @@ class DatabaseLicense {
       adminUid: snapshot.data()?['adminUid'] ?? '',
       licenseName: snapshot.data()?['licenseName'] ?? '',
       registration: snapshot.data()!['registration'] ?? false,
-      eventDate: snapshot.data()!['eventDate'] ?? '',
-      bags: snapshot.data()!['bags'] ?? false,
+      eventDate: snapshot.data()?['eventDate'] != null
+          ? snapshot.data()!['eventDate'].toDate()
+          : DateTime.now(),
+      bags: snapshot.data()?['bags'] ?? false,
       urlReleaseForm: snapshot.data()!['urlReleaseForm'] ?? '',
     );
   }

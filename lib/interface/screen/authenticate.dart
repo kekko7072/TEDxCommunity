@@ -119,11 +119,8 @@ class AuthenticateState extends State<Authenticate> {
                                       controller: emailController,
                                       placeholder: 'Email',
                                       keyboardType: TextInputType.emailAddress,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          email = value;
-                                        });
-                                      },
+                                      onChanged: (value) =>
+                                          setState(() => email = value),
                                     ),
                                     CupertinoTextFormFieldRow(
                                       decoration: BoxDecoration(
@@ -158,23 +155,20 @@ class AuthenticateState extends State<Authenticate> {
                                 child: Column(
                                   children: [
                                     CupertinoTextFormFieldRow(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            Style.inputTextFieldColor(context),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(
-                                                Style.inputTextFieldRadius)),
-                                      ),
-                                      controller: emailController,
-                                      placeholder: 'Speaker ID',
-                                      keyboardType: TextInputType.emailAddress,
-                                      maxLength: 5,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          email = '$value@tedxcortina.org';
-                                        });
-                                      },
-                                    ),
+                                        decoration: BoxDecoration(
+                                          color: Style.inputTextFieldColor(
+                                              context),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(
+                                                  Style.inputTextFieldRadius)),
+                                        ),
+                                        controller: emailController,
+                                        placeholder: 'Speaker ID',
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        maxLength: 5,
+                                        onChanged: (value) => setState(() => email =
+                                            '$value@$kTEDxCommunityCustomSpeakerDomain')),
                                     CupertinoTextFormFieldRow(
                                       decoration: BoxDecoration(
                                         color:
@@ -190,11 +184,8 @@ class AuthenticateState extends State<Authenticate> {
                                           TextInputType.visiblePassword,
                                       placeholder: 'Codice',
                                       maxLength: 8,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          password = value;
-                                        });
-                                      },
+                                      onChanged: (value) =>
+                                          setState(() => password = value),
                                     ),
                                   ],
                                 ),
