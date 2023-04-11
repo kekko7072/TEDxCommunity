@@ -35,8 +35,6 @@ There are four types of users with different capabilities:
 3. **Coach**: Dedicated to speaker coaching. Can access a smaller version of the app focused on coaching and preparing speakers for the event.
 4. **Volunteer**: Can add speakers to the app and can be assigned as a speaker by the admin or master. Can change the status of speakers within the app during various stages of speaker selection and preparation.
 
-3. `Share LicenseId code`: Once you have created license TEDx profiles, you can share the LicenseId code with other users whom you want to grant access to the app. They can use this code during the account creation process to enable their account and start using the app.
-
 ## Credits
 
 The TEDxCommunity was developed by [Francesco Vezzani](https://it.linkedin.com/in/francesco-vezzani-24425019a), a member of TEDxCortina, with special thanks to [Giovanni Concini](https://www.linkedin.com/in/giovanniconcini/) for creating some of the powerful functionalities and being the first supporter of the app. Additional credits go to [Elisa Andrenacci](https://www.linkedin.com/in/elisa-andrenacci-35bb67190/), [Edonella Bresci](https://www.linkedin.com/in/edonella-bresci-ba1a9527/), [Manuela Marangoni](https://www.linkedin.com/in/manuela-marangoni-726a4714/) and [Jacopo Pertile](https://www.linkedin.com/in/jacopopertile/) for their valuable feedback and support. Thanks to the entire [TEDxCortina](https://www.linkedin.com/company/tedxcortina/) team for continuously pushing the app further.
