@@ -10,11 +10,12 @@ To use the TEDxCommunity app, follow these configuration steps:
 1. `Download the app`: You can download the TEDxCommunity app on the following platforms:
    1. iOS: [Download from TestFlight]()
    2. Android: [Download from Firebase App Distribution](https://appdistribution.firebase.dev/i/2fc5e2c16cf723bf)
-   3. Web: [Access the app online](https://www.tedxcommunity-app.com/)
+   3. Web: [Access the app online](https://tedxcommunity.web.app/#/)
 
 2. `Create an admin account`: After downloading the app, create an admin account by signing up with your email address and password.
 
 3. `Create License TEDx profile`: As an admin, you can create and manage license TEDx profiles within the app. These profiles represent the authorized users who can access and use the app.
+
 ## Functionality
 
 The app has this capabilities:
