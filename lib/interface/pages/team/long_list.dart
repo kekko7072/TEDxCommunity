@@ -136,8 +136,8 @@ class LongListState extends State<LongList> {
                                             icon: CupertinoIcons
                                                 .person_crop_circle_badge_plus,
                                             label: 'Assegna speaker',
-                                            onPressed: (context) async =>
-                                                await showCupertinoDialog(
+                                            onPressed: (context) =>
+                                                showCupertinoDialog(
                                               barrierDismissible: true,
                                               context: context,
                                               builder: (context) {
@@ -167,7 +167,7 @@ class LongListState extends State<LongList> {
                                                     .then((_) {
                                               EasyLoading.showToast(
                                                   'Speaker approvato',
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),
                                                   dismissOnTap: true,

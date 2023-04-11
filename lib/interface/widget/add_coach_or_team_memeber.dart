@@ -5,16 +5,17 @@ class AddCoachOrTeamMember extends StatefulWidget {
   final bool isSelectCoach;
   final Speaker speakerData;
 
-  AddCoachOrTeamMember({
+  const AddCoachOrTeamMember({
+    super.key,
     required this.isSelectCoach,
     required this.speakerData,
   });
 
   @override
-  _AddCoachOrTeamMemberState createState() => _AddCoachOrTeamMemberState();
+  AddCoachOrTeamMemberState createState() => AddCoachOrTeamMemberState();
 }
 
-class _AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
+class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
   int selectedValue = 0;
   String licenseId = "";
   @override
@@ -25,29 +26,23 @@ class _AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+    return StreamBuilder<List<UserData>?>(
         stream: widget.isSelectCoach
-            ? FirebaseFirestore.instance
-                .collection('users')
-                .where('role', isEqualTo: 'Role.coach')
-                .snapshots()
-            : FirebaseFirestore.instance.collection('users').snapshots(),
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            ? DatabaseUser(licenseId: licenseId).streamAllCoach
+            : DatabaseUser(licenseId: licenseId).streamAllUsers,
+        builder:
+            (BuildContext context, AsyncSnapshot<List<UserData>?> snapshot) {
           if (snapshot.hasData) {
-            List<UserData> coachList = DatabaseUser(licenseId: licenseId)
-                .userListFromSnapshot(snapshot.data!);
+            List<UserData> coachList = snapshot.data!;
             return CupertinoAlertDialog(
               title: Text(
                 widget.isSelectCoach ? 'Assegna coach' : 'Assegna membro team',
               ),
-              content: Container(
+              content: SizedBox(
                 height: 100,
                 child: CupertinoPicker(
                   onSelectedItemChanged: (value) {
-                    setState(() {
-                      selectedValue = value - 1;
-                    });
+                    setState(() => selectedValue = value - 1);
                   },
                   itemExtent: 32.0,
                   magnification: 1,
@@ -69,7 +64,7 @@ class _AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       'Annulla',
                       style: TextStyle(color: CupertinoColors.destructiveRed),
                     )),

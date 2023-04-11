@@ -77,7 +77,7 @@ export '../interface/screen/info_app_speaker.dart';
 export '../interface/pages/team/bags.dart';
 
 ///Widget
-export '../interface/widget/add_coach.dart';
+export '../interface/widget/add_coach_or_team_memeber.dart';
 export '../interface/widget/add_speaker.dart';
 export '../interface/widget/add_bag.dart';
 export '../interface/widget/add_license.dart';
@@ -87,6 +87,7 @@ export '../interface/widget/input_field.dart';
 export '../interface/widget/confirmed_elements.dart';
 export '../interface/widget/datetimepicker_modal.dart';
 export '../interface/widget/edit_speaker.dart';
+export '../interface/widget/edit_team_role.dart';
 export '../interface/widget/top_bar_speaker.dart';
 
 ///Models

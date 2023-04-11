@@ -107,11 +107,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                             addPaddingToBorder: false,
                           ),
-                          CSDescription(
-                              'This is an open-source software and free to use.'),
-                          const CSHeader('LICENZA'),
                           CSControl(
-                            nameWidget: const Text('Id'),
+                            nameWidget: const Text('Id licenza'),
                             contentWidget: Text(
                               widget.license.id,
                               style: kSettingsDescriptionStyle,
@@ -140,13 +137,11 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                           ),
                           if (widget.userData.role == Role.admin) ...[
                             CSControl(
-                              nameWidget: const Text('Registrazione'),
+                              nameWidget: const Text('Registrazione utenti'),
                               contentWidget: CupertinoSwitch(
                                 value: registration,
                                 onChanged: (bool value) async {
-                                  setState(() {
-                                    registration = !registration;
-                                  });
+                                  setState(() => registration = !registration);
                                   await DatabaseLicense(widget.license.id)
                                       .editRegistration(
                                           registration: registration);
@@ -154,33 +149,25 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               ),
                             ),
                             CSButton(
-                                CSButtonType.DEFAULT,
-                                "Ripristina lista",
-                                () => DatabaseSpeaker(
-                                        licenseId: widget.license.id)
-                                    .enableAllForThisEvent()
-                                    .whenComplete(
-                                        () => Navigator.of(context).pop())),
-                            const CSHeader('Evento'),
-                            CSControl(
-                              nameWidget: const Text('Bags'),
-                              contentWidget: CupertinoSwitch(
-                                value: bags,
-                                onChanged: (bool value) async {
-                                  setState(() {
-                                    bags = !bags;
-                                  });
-                                  await DatabaseLicense(widget.license.id)
-                                      .editBags(bags: bags);
+                                CSButtonType.DEFAULT, "Modifica ruoli utenti",
+                                () {
+                              showCupertinoModalBottomSheet(
+                                backgroundColor: Style.backgroundColor(context),
+                                context: context,
+                                builder: (context) {
+                                  return EditTeamRole();
                                 },
-                              ),
-                            ),
+                              );
+                            }),
+                          ],
+                          if (widget.userData.role == Role.admin) ...[
+                            const CSHeader('IMPOSTAZIONI'),
                             CSControl(
-                              nameWidget: const Text('Data'),
+                              nameWidget: const Text('Data evento'),
                               contentWidget: TextButton(
                                 style: TextButton.styleFrom(
                                     //backgroundColor: Colors.red,
-                                    padding: EdgeInsets.all(0),
+                                    padding: const EdgeInsets.all(0),
                                     tapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap),
                                 onPressed: () {
@@ -209,8 +196,28 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                       .actionTextStyle,
                                 ),
                               ),
-                              addPaddingToBorder: false,
                             ),
+                            CSControl(
+                              nameWidget: const Text('Bags'),
+                              contentWidget: CupertinoSwitch(
+                                value: bags,
+                                onChanged: (bool value) async {
+                                  setState(() {
+                                    bags = !bags;
+                                  });
+                                  await DatabaseLicense(widget.license.id)
+                                      .editBags(bags: bags);
+                                },
+                              ),
+                            ),
+                            CSButton(
+                                CSButtonType.DEFAULT,
+                                "Ripristina lista",
+                                () => DatabaseSpeaker(
+                                        licenseId: widget.license.id)
+                                    .enableAllForThisEvent()
+                                    .whenComplete(
+                                        () => Navigator.of(context).pop())),
                           ],
                           const CSHeader('ACCOUNT'),
                           CSControl(
@@ -364,9 +371,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
 
                                           ///4. Show success
                                           EasyLoading.showSuccess(
-                                              'Ora sei dentro la nuova licenza!',
-                                              duration:
-                                                  const Duration(seconds: 4));
+                                              'Ora sei dentro la nuova licenza!');
                                         });
                                       },
                                     );

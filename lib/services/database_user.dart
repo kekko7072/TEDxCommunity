@@ -90,15 +90,21 @@ class DatabaseUser {
   }
 
   ///ALL USER
-  Stream<QuerySnapshot<Map<String, dynamic>>> get allUserQuery {
-    return userCollection.where('email', isNotEqualTo: email).snapshots();
+  Stream<List<UserData>> get streamAllUsers {
+    return userCollection
+        .where('email', isNotEqualTo: email)
+        .snapshots()
+        .map(userListFromSnapshot);
   }
 
   ///COACH
 
   ///Stream coach
-  Stream<QuerySnapshot<Map<String, dynamic>>> get coachQuery {
-    return userCollection.where('role', isEqualTo: 'Role.coach').snapshots();
+  Stream<List<UserData>> get streamAllCoach {
+    return userCollection
+        .where('role', isEqualTo: 'Role.coach')
+        .snapshots()
+        .map(userListFromSnapshot);
   }
 
   ///Coach list from snapshot

@@ -84,7 +84,7 @@ Step buildManagementStep({
 class ManagementData extends StatelessWidget {
   final Speaker speaker;
 
-  const ManagementData({required this.speaker});
+  const ManagementData({super.key, required this.speaker});
 
   @override
   Widget build(BuildContext context) {

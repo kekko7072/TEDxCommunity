@@ -49,6 +49,21 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.1
+  flutter_launcher_icons: ^0.13.0
+
+# Run using flutter pub run flutter_launcher_icons:main
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/icon.jpg
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/icon.jpg
+  web:
+    generate: true
+    image_path: assets/icon.jpg
+    background_color: "#FFFFFF"
+    theme_color: "#FF0000."
+
 
 flutter:
 
@@ -56,7 +71,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  assets:
+    - assets/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

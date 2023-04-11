@@ -21,7 +21,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
   TextEditingController surnameController = TextEditingController();
 
   ///Create license
-  String licenseId = const Uuid().v1().substring(0, 5).toUpperCase();
+  String newLicenseId = const Uuid().v1().substring(0, 5).toUpperCase();
   @override
   void initState() {
     super.initState();
@@ -29,11 +29,11 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
   }
 
   void regenerateLicenseIfExist() async =>
-      await DatabaseLicense(licenseId).checkExistence.then((alreadyExist) {
+      await DatabaseLicense(newLicenseId).checkExistence.then((alreadyExist) {
         if (alreadyExist) {
           //Set new ID
           setState(() =>
-              licenseId = const Uuid().v1().substring(0, 5).toUpperCase());
+              newLicenseId = const Uuid().v1().substring(0, 5).toUpperCase());
           //Check again
           regenerateLicenseIfExist();
         }
@@ -75,9 +75,19 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                               Radius.circular(Style.inputTextFieldRadius)),
                         ),
                         controller: licenseIdController,
-                        placeholder: 'LicenseId (Es. AXY-A32A)',
+                        placeholder: 'LicenseId (Es. AXYA3)',
                         keyboardType: TextInputType.text,
                         textCapitalization: TextCapitalization.characters,
+                        maxLength: 5,
+                        onChanged: (value) {
+                          // Convert the text to uppercase and update the text value
+                          licenseIdController.value =
+                              licenseIdController.value.copyWith(
+                            text: value.toUpperCase(),
+                            selection:
+                                TextSelection.collapsed(offset: value.length),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -86,7 +96,14 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                     color: Style.primaryColor,
                     child: const Text('Accedi'),
                     onPressed: () async {
-                      await widget.onLogin(licenseIdController.text);
+                      if (licenseIdController.text.isNotEmpty &&
+                          await DatabaseLicense(licenseIdController.text)
+                              .checkExistence) {
+                        await widget.onLogin(licenseIdController.text);
+                      } else {
+                        EasyLoading.showError(
+                            'Non esiste nessuna licenza con il licneseId inserito.');
+                      }
                     },
                   ),
                 ],
@@ -194,7 +211,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                     EasyLoading.show();
                                     await _auth
                                         .registerAdminWithEmailAndPassword(
-                                            licenseId,
+                                            newLicenseId,
                                             nameController.text,
                                             surnameController.text,
                                             emailController.text,
@@ -235,10 +252,10 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                           barrierDismissible: false,
                                           builder: (context) {
                                             return AddLicense(
-                                              licenseId: licenseId,
+                                              licenseId: newLicenseId,
                                               adminUid: adminUid,
                                               onLogin: () =>
-                                                  widget.onLogin(licenseId),
+                                                  widget.onLogin(newLicenseId),
                                             );
                                           },
                                         );

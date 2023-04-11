@@ -109,230 +109,228 @@ class _SpeakerItemState extends State<SpeakerItem> {
     } else {
       bio = '\n';
     }
-    final row = Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(widget.speaker.name,
-                          style: kSpeakerTitleStyle.copyWith(
-                              color: CupertinoDynamicColor.resolve(
-                                  CupertinoDynamicColor.withBrightness(
-                                    color: widget.userData.role == Role.coach &&
-                                            widget.userData.uid !=
-                                                widget.speaker.coach
-                                        ? kColorDivider
-                                        : kColorBlack,
-                                    darkColor:
-                                        widget.userData.role == Role.coach &&
-                                                widget.userData.uid !=
-                                                    widget.speaker.coach
-                                            ? kColorGrey
-                                            : kColorWhite,
-                                  ),
-                                  context))),
-                      const Padding(padding: EdgeInsets.only(top: 8)),
-                      StreamBuilder<UserData>(
-                          stream: DatabaseUser(
-                                  licenseId: licenseId,
-                                  uid: widget.speaker.uidCreator.isNotEmpty
-                                      ? widget.speaker.uidCreator
-                                      : 'unk')
-                              .userData,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<UserData> snapshot) {
-                            if (snapshot.hasData) {
-                              UserData userData = snapshot.data!;
-                              return RichText(
-                                text: TextSpan(
-                                  style: kSpeakerDescriptionStyle.copyWith(
-                                      color: Color(0xFF8E8E93)),
-                                  children: <TextSpan>[
-                                    if (widget.currentProgress ==
-                                        Progress.backlog) ...[
-                                      TextSpan(
-                                          text: 'Segnalato da: ',
-                                          style: new TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                    ] else if (widget.currentProgress ==
-                                            Progress.selected ||
-                                        widget.currentProgress ==
-                                            Progress.confirmed) ...[
-                                      TextSpan(
-                                          text: 'Affidato a: ',
-                                          style: new TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                    ] else if (widget.currentProgress ==
-                                        Progress.contacted) ...[
-                                      TextSpan(
-                                          text: 'Contattato da: ',
-                                          style: new TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                    TextSpan(
-                                      text:
-                                          '${userData.name} ${userData.surname}',
-                                    ),
-                                  ],
+    final row = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(widget.speaker.name,
+                        style: kSpeakerTitleStyle.copyWith(
+                            color: CupertinoDynamicColor.resolve(
+                                CupertinoDynamicColor.withBrightness(
+                                  color: widget.userData.role == Role.coach &&
+                                          widget.userData.uid !=
+                                              widget.speaker.coach
+                                      ? kColorDivider
+                                      : kColorBlack,
+                                  darkColor:
+                                      widget.userData.role == Role.coach &&
+                                              widget.userData.uid !=
+                                                  widget.speaker.coach
+                                          ? kColorGrey
+                                          : kColorWhite,
                                 ),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          }),
-                      SizedBox(height: 2),
-                      if (widget.currentProgress == Progress.confirmed) ...[
-                        RichText(
-                          text: TextSpan(
-                            style: kSpeakerDescriptionStyle.copyWith(
-                                color: Color(0xFF8E8E93)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Coaching: ',
-                                  style: new TextStyle(
-                                      fontWeight: FontWeight.bold)),
-                              TextSpan(
-                                text:
-                                    '${StepService.loadStepCoachingTitle(widget.speaker.coachingStep)}',
+                                context))),
+                    const Padding(padding: EdgeInsets.only(top: 8)),
+                    StreamBuilder<UserData>(
+                        stream: DatabaseUser(
+                                licenseId: licenseId,
+                                uid: widget.speaker.uidCreator.isNotEmpty
+                                    ? widget.speaker.uidCreator
+                                    : 'unk')
+                            .userData,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<UserData> snapshot) {
+                          if (snapshot.hasData) {
+                            UserData userData = snapshot.data!;
+                            return RichText(
+                              text: TextSpan(
+                                style: kSpeakerDescriptionStyle.copyWith(
+                                    color: Color(0xFF8E8E93)),
+                                children: <TextSpan>[
+                                  if (widget.currentProgress ==
+                                      Progress.backlog) ...[
+                                    TextSpan(
+                                        text: 'Segnalato da: ',
+                                        style: new TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ] else if (widget.currentProgress ==
+                                          Progress.selected ||
+                                      widget.currentProgress ==
+                                          Progress.confirmed) ...[
+                                    TextSpan(
+                                        text: 'Affidato a: ',
+                                        style: new TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ] else if (widget.currentProgress ==
+                                      Progress.contacted) ...[
+                                    TextSpan(
+                                        text: 'Contattato da: ',
+                                        style: new TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                  TextSpan(
+                                    text:
+                                        '${userData.name} ${userData.surname}',
+                                  ),
+                                ],
                               ),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }),
+                    SizedBox(height: 2),
+                    if (widget.currentProgress == Progress.confirmed) ...[
+                      RichText(
+                        text: TextSpan(
+                          style: kSpeakerDescriptionStyle.copyWith(
+                              color: Color(0xFF8E8E93)),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Coaching: ',
+                                style:
+                                    new TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text:
+                                  '${StepService.loadStepCoachingTitle(widget.speaker.coachingStep)}',
+                            ),
+                            TextSpan(
+                                text: '\nGestione: ',
+                                style:
+                                    new TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text:
+                                  '${StepService.loadStepManagementText(widget.speaker.managementStep)}',
+                            ),
+                          ],
+                        ),
+                      )
+                    ] else if (widget.currentProgress ==
+                        Progress.contacted) ...[
+                      RichText(
+                        text: TextSpan(
+                          style: kSpeakerDescriptionStyle.copyWith(
+                              color: Color(0xFF8E8E93)),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Contattato: ',
+                                style:
+                                    new TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text:
+                                  '${widget.speaker.managementStepDate.substring(0, 10)}',
+                            ),
+                          ],
+                        ),
+                      )
+                    ] else ...[
+                      RichText(
+                        text: TextSpan(
+                          style: kSpeakerDescriptionStyle.copyWith(
+                              color: Color(0xFF8E8E93)),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: TextLabels.kAddSpeaker0,
+                                style:
+                                    new TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: profession),
+                            TextSpan(
+                                text: TextLabels.kAddSpeaker1,
+                                style:
+                                    new TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: topic),
+                            if (widget.currentProgress !=
+                                Progress.selected) ...[
                               TextSpan(
-                                  text: '\nGestione: ',
+                                  text: TextLabels.kAddSpeaker2,
                                   style: new TextStyle(
                                       fontWeight: FontWeight.bold)),
+                              TextSpan(text: ratePublicSpeaking),
                               TextSpan(
-                                text:
-                                    '${StepService.loadStepManagementText(widget.speaker.managementStep)}',
-                              ),
-                            ],
-                          ),
-                        )
-                      ] else if (widget.currentProgress ==
-                          Progress.contacted) ...[
-                        RichText(
-                          text: TextSpan(
-                            style: kSpeakerDescriptionStyle.copyWith(
-                                color: Color(0xFF8E8E93)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Contattato: ',
+                                  text: TextLabels.kAddSpeaker3,
                                   style: new TextStyle(
                                       fontWeight: FontWeight.bold)),
+                              TextSpan(text: justTEDx),
                               TextSpan(
-                                text:
-                                    '${widget.speaker.managementStepDate.substring(0, 10)}',
-                              ),
-                            ],
-                          ),
-                        )
-                      ] else ...[
-                        RichText(
-                          text: TextSpan(
-                            style: kSpeakerDescriptionStyle.copyWith(
-                                color: Color(0xFF8E8E93)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: TextLabels.kAddSpeaker0,
+                                  text: TextLabels.kAddSpeaker4,
                                   style: new TextStyle(
                                       fontWeight: FontWeight.bold)),
-                              TextSpan(text: profession),
-                              TextSpan(
-                                  text: TextLabels.kAddSpeaker1,
-                                  style: new TextStyle(
-                                      fontWeight: FontWeight.bold)),
-                              TextSpan(text: topic),
-                              if (widget.currentProgress !=
-                                  Progress.selected) ...[
-                                TextSpan(
-                                    text: TextLabels.kAddSpeaker2,
-                                    style: new TextStyle(
-                                        fontWeight: FontWeight.bold)),
-                                TextSpan(text: ratePublicSpeaking),
-                                TextSpan(
-                                    text: TextLabels.kAddSpeaker3,
-                                    style: new TextStyle(
-                                        fontWeight: FontWeight.bold)),
-                                TextSpan(text: justTEDx),
-                                TextSpan(
-                                    text: TextLabels.kAddSpeaker4,
-                                    style: new TextStyle(
-                                        fontWeight: FontWeight.bold)),
-                                TextSpan(text: bio),
-                              ]
-                            ],
-                          ),
-                        )
-                      ]
-                    ],
-                  ),
+                              TextSpan(text: bio),
+                            ]
+                          ],
+                        ),
+                      )
+                    ]
+                  ],
                 ),
               ),
-              CupertinoButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  showCupertinoModalPopup(
-                    context: context,
-                    builder: (BuildContext context) => EditSpeaker(
-                        speaker: widget.speaker,
-                        canDelete: widget.userData.role == Role.master ||
-                                widget.userData.role == Role.admin ||
-                                widget.userData.role == Role.coach ||
-                                widget.userData.uid == widget.speaker.uidCreator
-                            ? true
-                            : false,
-                        progress: widget.currentProgress),
-                  );
-                },
-                child: Icon(
-                  CupertinoIcons.ellipsis_vertical,
-                  semanticLabel: 'Modifica',
-                  color: Color(0xFF8E8E93),
-                ),
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (BuildContext context) => EditSpeaker(
+                      speaker: widget.speaker,
+                      canDelete: widget.userData.role == Role.master ||
+                              widget.userData.role == Role.admin ||
+                              widget.userData.role == Role.coach ||
+                              widget.userData.uid == widget.speaker.uidCreator
+                          ? true
+                          : false,
+                      progress: widget.currentProgress),
+                );
+              },
+              child: Icon(
+                CupertinoIcons.ellipsis_vertical,
+                semanticLabel: 'Modifica',
+                color: Color(0xFF8E8E93),
               ),
-            ],
-          ),
-          onTap: () {
-            if (widget.currentProgress == Progress.confirmed) {
-              showCupertinoModalBottomSheet(
-                backgroundColor: Style.backgroundColor(context),
-                context: context,
-                isDismissible: true,
-                builder: (context) => ConfirmedTeam(
-                    userData: widget.userData, speaker: widget.speaker),
-              );
-            } else {
-              showCupertinoDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (context) {
-                  return SpeakerProfile(widget.speaker);
-                },
-              );
-            }
-          },
-          onLongPress: () {
-            showCupertinoModalPopup(
-              context: context,
-              builder: (BuildContext context) => EditSpeaker(
-                  speaker: widget.speaker,
-                  canDelete: widget.userData.role == Role.master ||
-                          widget.userData.role == Role.admin ||
-                          widget.userData.role == Role.coach ||
-                          widget.userData.uid == widget.speaker.uidCreator
-                      ? true
-                      : false,
-                  progress: widget.currentProgress),
-            );
-          },
+            ),
+          ],
         ),
+        onTap: () {
+          if (widget.currentProgress == Progress.confirmed) {
+            showCupertinoModalBottomSheet(
+              backgroundColor: Style.backgroundColor(context),
+              context: context,
+              isDismissible: true,
+              builder: (context) => ConfirmedTeam(
+                  userData: widget.userData, speaker: widget.speaker),
+            );
+          } else {
+            showCupertinoDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (context) {
+                return SpeakerProfile(widget.speaker);
+              },
+            );
+          }
+        },
+        onLongPress: () {
+          showCupertinoModalPopup(
+            context: context,
+            builder: (BuildContext context) => EditSpeaker(
+                speaker: widget.speaker,
+                canDelete: widget.userData.role == Role.master ||
+                        widget.userData.role == Role.admin ||
+                        widget.userData.role == Role.coach ||
+                        widget.userData.uid == widget.speaker.uidCreator
+                    ? true
+                    : false,
+                progress: widget.currentProgress),
+          );
+        },
       ),
     );
 
