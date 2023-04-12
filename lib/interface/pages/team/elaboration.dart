@@ -12,6 +12,7 @@ class Elaboration extends StatefulWidget {
 }
 
 class _ElaborationState extends State<Elaboration> {
+  final AuthService auth = AuthService();
   String licenseId = "NO_ID";
   @override
   void initState() {
@@ -59,7 +60,6 @@ class _ElaborationState extends State<Elaboration> {
       }
     }
 
-    final AuthService _auth = AuthService();
     return SafeArea(
       top: false,
       child: userData != null && license != null
@@ -122,7 +122,7 @@ class _ElaborationState extends State<Elaboration> {
                                                   progress: Progress.backlog)
                                               .then((_) {
                                         EasyLoading.showToast('Speaker rimosso',
-                                            duration: Duration(
+                                            duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
                                             toastPosition:
@@ -252,7 +252,7 @@ class _ElaborationState extends State<Elaboration> {
                                               .then((_) {
                                         EasyLoading.showToast(
                                             'Speaker rifiutato',
-                                            duration: Duration(
+                                            duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
                                             toastPosition:
@@ -293,7 +293,7 @@ class _ElaborationState extends State<Elaboration> {
                                         icon: CupertinoIcons.check_mark,
                                         label: 'Confermato',
                                         onPressed: (context) async {
-                                          dynamic result = await _auth
+                                          dynamic result = await auth
                                               .registerSpeakerWithEmailAndPassword(
                                                   licenseId: licenseId,
                                                   uidCreator:
@@ -326,7 +326,7 @@ class _ElaborationState extends State<Elaboration> {
                                                     children: [
                                                       Text(
                                                           'Errore nella creazione del profilo dello Speaker'),
-                                                      Text(_auth.error),
+                                                      Text(auth.error),
                                                     ],
                                                   ),
                                                   actions: <Widget>[
@@ -439,7 +439,7 @@ class _ElaborationState extends State<Elaboration> {
                                               .removeFromThisEvent()
                                               .then((_) {
                                         EasyLoading.showToast('Speaker rimosso',
-                                            duration: Duration(
+                                            duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
                                             toastPosition:
@@ -468,7 +468,7 @@ class _ElaborationState extends State<Elaboration> {
                                               .then((_) {
                                         EasyLoading.showToast(
                                             'Speaker recuperato',
-                                            duration: Duration(
+                                            duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
                                             toastPosition:
@@ -503,7 +503,7 @@ class _ElaborationState extends State<Elaboration> {
                 ],
               ),
             ])
-          : Center(child: CupertinoActivityIndicator()),
+          : const Center(child: CupertinoActivityIndicator()),
     );
   }
 }

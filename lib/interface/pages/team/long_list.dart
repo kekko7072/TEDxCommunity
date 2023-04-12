@@ -16,6 +16,7 @@ class LongList extends StatefulWidget {
 
 class LongListState extends State<LongList> {
   String licenseId = "NO_ID";
+
   @override
   void initState() {
     super.initState();

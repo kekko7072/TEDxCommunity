@@ -40,14 +40,10 @@ class _AddSpeakerState extends State<AddSpeaker> {
         stream: DatabaseSpeaker(licenseId: licenseId).allQuery,
         builder: (context, snapshot) {
           return CupertinoAlertDialog(
-            title: Text(
-              'Aggiungi speaker',
-            ),
+            title: const Text('Aggiungi speaker'),
             content: Column(
               children: [
-                Text(
-                  'Inserisci dati dello speaker',
-                ),
+                const Text('Inserisci dati dello speaker'),
                 Row(
                   children: [
                     Expanded(
@@ -61,7 +57,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                         flex: 1,
                         child: IconButton(
-                          icon: Icon(CupertinoIcons.mic),
+                          icon: const Icon(CupertinoIcons.mic),
                           onPressed: () => showCupertinoDialog(
                               context: context,
                               builder: (_) => VocalAssistant(
@@ -103,7 +99,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                         flex: 1,
                         child: IconButton(
-                            icon: Icon(CupertinoIcons.doc_on_clipboard),
+                            icon: const Icon(CupertinoIcons.doc_on_clipboard),
                             onPressed: () =>
                                 Clipboard.getData(Clipboard.kTextPlain).then(
                                     (value) => setState(() => linkController
@@ -123,7 +119,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                         flex: 1,
                         child: IconButton(
-                          icon: Icon(CupertinoIcons.mic),
+                          icon: const Icon(CupertinoIcons.mic),
                           onPressed: () => showCupertinoDialog(
                               context: context,
                               builder: (_) => VocalAssistant(
@@ -145,7 +141,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                         flex: 1,
                         child: IconButton(
-                          icon: Icon(CupertinoIcons.mic),
+                          icon: const Icon(CupertinoIcons.mic),
                           onPressed: () => showCupertinoDialog(
                               context: context,
                               builder: (_) => VocalAssistant(

@@ -302,63 +302,117 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             CSButtonType.DEFAULT_CENTER,
                             "Crea nuova licenza",
                             () async {
-                              ///1. Create new licenseId
-                              String newLicenseId = const Uuid()
-                                  .v1()
-                                  .substring(0, 5)
-                                  .toUpperCase();
-
-                              await DatabaseLicense(newLicenseId)
-                                  .checkExistence
-                                  .then((alreadyExist) {
-                                if (alreadyExist) {
-                                  //Set new ID
-                                  newLicenseId = const Uuid()
-                                      .v1()
-                                      .substring(0, 5)
-                                      .toUpperCase();
-                                }
-                              }).whenComplete(() {
-                                ///2. Create a license
-                                showCupertinoDialog(
+                              showCupertinoDialog(
                                   context: context,
-                                  barrierDismissible: false,
-                                  builder: (context) {
-                                    return AddLicense(
-                                      licenseId: newLicenseId,
-                                      adminUid: widget.userData.uid,
-                                      onLogin: () async {
-                                        ///1. Create admin inside new license
-                                        await DatabaseUser(
-                                                licenseId: newLicenseId,
-                                                uid: widget.userData.uid)
-                                            .createAdmin(
-                                          nameController.text,
-                                          surnameController.text,
-                                          widget.userData.email,
-                                        );
+                                  builder: (_) => CupertinoAlertDialog(
+                                        title: const Text('Crea nuova licenza'),
+                                        content: Column(
+                                          children: [
+                                            const Text(
+                                                'Creando uno nuova licenza procedi alla creazione di un nuova organizzazione. Ricordati di segnarti la licenseId attuale per poter riaccedere a questa organizzazione.'),
+                                            const Text('\nLicenseId attuale:'),
+                                            Text(
+                                              '${widget.license.licenseName}: ${widget.license.id}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color:
+                                                      Style.textColor(context)),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context).pop(),
+                                              child: const Text(
+                                                'Annulla',
+                                                style: TextStyle(
+                                                    color: CupertinoColors
+                                                        .destructiveRed),
+                                              )),
+                                          TextButton(
+                                              onPressed: () async {
+                                                ///1. Create new licenseId
+                                                String newLicenseId =
+                                                    const Uuid()
+                                                        .v1()
+                                                        .substring(0, 5)
+                                                        .toUpperCase();
 
-                                        ///2. Clear license from session
+                                                await DatabaseLicense(
+                                                        newLicenseId)
+                                                    .checkExistence
+                                                    .then((alreadyExist) {
+                                                  if (alreadyExist) {
+                                                    //Set new ID
+                                                    newLicenseId = const Uuid()
+                                                        .v1()
+                                                        .substring(0, 5)
+                                                        .toUpperCase();
+                                                  }
+                                                }).whenComplete(() {
+                                                  ///2. Create a license
+                                                  showCupertinoDialog(
+                                                      context: context,
+                                                      barrierDismissible: false,
+                                                      builder: (context) {
+                                                        return AddLicense(
+                                                          licenseId:
+                                                              newLicenseId,
+                                                          adminUid: widget
+                                                              .userData.uid,
+                                                          onLogin: () async {
+                                                            ///1. Create admin inside new license
+                                                            await DatabaseUser(
+                                                                    licenseId:
+                                                                        newLicenseId,
+                                                                    uid: widget
+                                                                        .userData
+                                                                        .uid)
+                                                                .createAdmin(
+                                                              nameController
+                                                                  .text,
+                                                              surnameController
+                                                                  .text,
+                                                              widget.userData
+                                                                  .email,
+                                                            );
 
-                                        await SharedPreferences.getInstance()
-                                            .then((prefs) {
-                                          prefs.setString(
-                                              kLicenseIdKey, newLicenseId);
+                                                            ///2. Clear license from session
 
-                                          //3. Logout
-                                          Navigator.of(context).pop();
+                                                            await SharedPreferences
+                                                                    .getInstance()
+                                                                .then((prefs) {
+                                                              prefs.setString(
+                                                                  kLicenseIdKey,
+                                                                  newLicenseId);
 
-                                          ///4. Show success
-                                          EasyLoading.showSuccess(
-                                              'Ora sei dentro la nuova licenza!');
-                                        });
-                                      },
-                                    );
-                                  },
-                                );
-                              });
+                                                              //3. Logout
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+
+                                                              ///4. Show success
+                                                              EasyLoading
+                                                                  .showSuccess(
+                                                                      'Ora sei dentro la nuova licenza!');
+                                                            });
+                                                          },
+                                                        );
+                                                      });
+                                                });
+                                              },
+                                              child: const Text(
+                                                'Crea',
+                                                style: TextStyle(
+                                                    color: CupertinoColors
+                                                        .activeBlue),
+                                              )),
+                                        ],
+                                      ));
                             },
                           ),
+                          const CSSpacer(),
                           CSButton(
                             CSButtonType.DESTRUCTIVE,
                             "Esci",
@@ -367,7 +421,6 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   () => Navigator.of(context).pop());
                             },
                           ),
-                          const CSSpacer(),
                           const CSDescription(
                               'Developed with ♥️ by Francesco Vezzani.'),
                           const CSSpacer(),
