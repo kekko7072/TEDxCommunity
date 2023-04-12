@@ -23,10 +23,10 @@ class DateTimePickerModalState extends State<DateTimePickerModal> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text('Seleziona data',
               style: CupertinoTheme.of(context).textTheme.navTitleTextStyle),
-          Container(
+          SizedBox(
             height: 250,
             child: CupertinoDatePicker(
                 mode: widget.pickerType,

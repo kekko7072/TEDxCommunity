@@ -27,7 +27,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
   bool switchJustTEDx = false;
   String justTEDx = '';
 
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

@@ -349,7 +349,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           );
                           Navigator.of(context).pop();
                         },
-                        child: Text(
+                        child: const Text(
                           'Salva',
                           style: TextStyle(color: CupertinoColors.activeBlue),
                         )),
@@ -361,18 +361,18 @@ class _EditSpeakerState extends State<EditSpeaker> {
         ),
         widget.canDelete
             ? CupertinoActionSheetAction(
-                child: const Text('Elimina'),
                 isDestructiveAction: true,
                 onPressed: () {
                   DatabaseSpeaker(licenseId: licenseId, id: widget.speaker.id)
                       .deleteSpeaker();
                   Navigator.pop(context);
                 },
+                child: const Text('Elimina'),
               )
             : CupertinoActionSheetAction(
-                child: const Text('Chiudi'),
                 isDestructiveAction: true,
                 onPressed: () => Navigator.pop(context),
+                child: const Text('Chiudi'),
               )
       ],
     );

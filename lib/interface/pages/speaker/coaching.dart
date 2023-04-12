@@ -20,7 +20,7 @@ class CoachingState extends State<Coaching> {
   bool _loadingPath = false;
   bool _loadingDone = false;
 
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

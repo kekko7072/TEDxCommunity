@@ -12,7 +12,7 @@ class Elaboration extends StatefulWidget {
 }
 
 class _ElaborationState extends State<Elaboration> {
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

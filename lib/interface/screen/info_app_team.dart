@@ -147,16 +147,16 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               ),
                             ),
                             CSButton(
-                                CSButtonType.DEFAULT, "Modifica ruoli team",
-                                () {
-                              showCupertinoModalBottomSheet(
-                                backgroundColor: Style.backgroundColor(context),
-                                context: context,
-                                builder: (context) {
-                                  return const EditTeamRole();
-                                },
-                              );
-                            }),
+                                CSButtonType.DEFAULT,
+                                "Modifica ruoli team",
+                                () => showCupertinoModalBottomSheet(
+                                      backgroundColor:
+                                          Style.backgroundColor(context),
+                                      context: context,
+                                      builder: (context) {
+                                        return const EditTeamRole();
+                                      },
+                                    )),
                           ],
                           if (widget.userData.role == Role.admin) ...[
                             const CSHeader('IMPOSTAZIONI'),
@@ -367,6 +367,10 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   () => Navigator.of(context).pop());
                             },
                           ),
+                          const CSSpacer(),
+                          const CSDescription(
+                              'Developed with ♥️ by Francesco Vezzani.'),
+                          const CSSpacer(),
                         ],
                       );
                     } else {

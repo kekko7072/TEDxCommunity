@@ -15,7 +15,7 @@ class LongList extends StatefulWidget {
 }
 
 class LongListState extends State<LongList> {
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();
@@ -68,16 +68,14 @@ class LongListState extends State<LongList> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CupertinoButton.filled(
-                                  child: Text('Aggiungi Speaker'),
-                                  onPressed: () {
-                                    showCupertinoDialog(
-                                      context: context,
-                                      barrierDismissible: true,
-                                      builder: (context) {
-                                        return AddSpeaker(uid: userData.uid);
-                                      },
-                                    );
-                                  }),
+                                  child: const Text('Aggiungi Speaker'),
+                                  onPressed: () => showCupertinoDialog(
+                                        context: context,
+                                        barrierDismissible: true,
+                                        builder: (context) {
+                                          return AddSpeaker(uid: userData.uid);
+                                        },
+                                      )),
                             ],
                           ),
                         )
@@ -115,7 +113,7 @@ class LongListState extends State<LongList> {
                                                     .then((_) {
                                               EasyLoading.showToast(
                                                   'Speaker rimosso',
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),
                                                   dismissOnTap: true,
@@ -203,6 +201,6 @@ class LongListState extends State<LongList> {
                         )
                 ],
               )
-            : Center(child: CupertinoActivityIndicator()));
+            : const Center(child: CupertinoActivityIndicator()));
   }
 }

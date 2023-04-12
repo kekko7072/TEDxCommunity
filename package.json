@@ -1,0 +1,16 @@
+{
+  "name": "tedxcommunity",
+  "version": "0.0.1",
+  "description": "App for TEDx licensee",
+  "scripts": {
+    "login": "firebase login:use francesco.vezz01@gmail.com",
+    "deploy": "npm run login && flutter build web --release && firebase deploy"
+  },
+  "author": "Francesco Vezzani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kekko7072/tedxcommunity/issues"
+  },
+  "homepage": "https://github.com/kekko7072/tedxcommunity#readme",
+  "public": false
+}

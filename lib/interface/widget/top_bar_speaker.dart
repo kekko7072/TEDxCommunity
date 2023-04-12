@@ -12,7 +12,7 @@ class TopBarSpeaker extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoSliverNavigationBar(
       leading: GestureDetector(
-        child: Center(
+        child: const Center(
             child: Text(
           'Account',
           style: kPageSubtitleStyle,

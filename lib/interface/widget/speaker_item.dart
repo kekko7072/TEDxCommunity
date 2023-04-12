@@ -31,7 +31,7 @@ class _SpeakerItemState extends State<SpeakerItem> {
 
   String bio = '';
 
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();
@@ -252,17 +252,17 @@ class _SpeakerItemState extends State<SpeakerItem> {
                                 Progress.selected) ...[
                               TextSpan(
                                   text: TextLabels.kAddSpeaker2,
-                                  style: new TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold)),
                               TextSpan(text: ratePublicSpeaking),
                               TextSpan(
                                   text: TextLabels.kAddSpeaker3,
-                                  style: new TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold)),
                               TextSpan(text: justTEDx),
                               TextSpan(
                                   text: TextLabels.kAddSpeaker4,
-                                  style: new TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold)),
                               TextSpan(text: bio),
                             ]
@@ -290,7 +290,7 @@ class _SpeakerItemState extends State<SpeakerItem> {
                       progress: widget.currentProgress),
                 );
               },
-              child: Icon(
+              child: const Icon(
                 CupertinoIcons.ellipsis_vertical,
                 semanticLabel: 'Modifica',
                 color: Color(0xFF8E8E93),

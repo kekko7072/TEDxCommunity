@@ -12,7 +12,7 @@ class EditTeamRole extends StatefulWidget {
 
 class EditTeamRoleState extends State<EditTeamRole> {
   int selectedValue = 0;
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

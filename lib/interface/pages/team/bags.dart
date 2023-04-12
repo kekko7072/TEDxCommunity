@@ -12,7 +12,7 @@ class Bags extends StatefulWidget {
 }
 
 class _BagsState extends State<Bags> {
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

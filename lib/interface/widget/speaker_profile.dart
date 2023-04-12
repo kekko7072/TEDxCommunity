@@ -7,12 +7,12 @@ class SpeakerProfile extends StatefulWidget {
   final Speaker speaker;
 
   @override
-  _SpeakerProfileState createState() => _SpeakerProfileState();
+  SpeakerProfileState createState() => SpeakerProfileState();
 }
 
-class _SpeakerProfileState extends State<SpeakerProfile> {
+class SpeakerProfileState extends State<SpeakerProfile> {
   bool copied = false;
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();

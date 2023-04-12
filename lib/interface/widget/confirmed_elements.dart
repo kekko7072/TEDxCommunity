@@ -14,7 +14,7 @@ class EndCoachingOrManagement extends StatefulWidget {
 }
 
 class _EndCoachingOrManagementState extends State<EndCoachingOrManagement> {
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();
@@ -393,7 +393,7 @@ Step buildCoachingStep({
                 placeholder: 'https://meet.com/love-TEDxCortina',
                 onChanged: (value) => linkVideoCall0 = value,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               CupertinoButton.filled(
                 onPressed: () async {
                   if (linkVideoCall0 != '') {

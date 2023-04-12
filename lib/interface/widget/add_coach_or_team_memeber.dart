@@ -17,7 +17,7 @@ class AddCoachOrTeamMember extends StatefulWidget {
 
 class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
   int selectedValue = 0;
-  String licenseId = "";
+  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();
@@ -79,8 +79,8 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                             )
                               .then((_) {
                               EasyLoading.showToast('Coach assegnato',
-                                  duration:
-                                      Duration(milliseconds: kDurationToast),
+                                  duration: const Duration(
+                                      milliseconds: kDurationToast),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
@@ -94,22 +94,22 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                               .then((_) {
                               EasyLoading.showToast(
                                   'Speaker affidato a ${coachList[selectedValue].name} ${coachList[selectedValue].surname}',
-                                  duration:
-                                      Duration(milliseconds: kDurationToast),
+                                  duration: const Duration(
+                                      milliseconds: kDurationToast),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
                             });
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       'Assegna',
                       style: TextStyle(color: CupertinoColors.activeBlue),
                     )),
               ],
             );
           } else {
-            return Center(child: CupertinoActivityIndicator());
+            return const Center(child: CupertinoActivityIndicator());
           }
         });
   }

@@ -16,7 +16,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: CupertinoTextField(
         decoration: BoxDecoration(
           color: Style.inputTextFieldColor(context),
