@@ -15,8 +15,8 @@ dependencies:
 
   #Server
   firebase_core: ^2.9.0
-  firebase_auth: ^4.4.0
-  cloud_firestore: ^4.5.0
+  firebase_auth: ^4.4.1
+  cloud_firestore: ^4.5.1
   firebase_storage: ^11.1.0
   #Basic
   provider: ^6.0.5
@@ -24,7 +24,7 @@ dependencies:
   uuid: ^3.0.7
   url_launcher: ^6.1.10
   http: ^0.13.5
-  file_picker: ^5.2.8
+  file_picker: ^5.2.9
   package_info_plus: ^3.1.0
   flutter_vibrate: ^1.3.0
   flutter_tts: ^3.6.3

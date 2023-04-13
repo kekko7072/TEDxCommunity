@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+      function isUserOfLicense(licenseId){
+          return request.auth != null &&
+                 exists(/databases/$(database)/documents/licenses/$(licenseId)/users/$(request.auth.uid));
+      }
+
+   ///Access to licenses
+    match /licenses/{licenseId} {
+        allow create, read: if true;
+        allow delete, update: if request.auth != null && request.auth.uid == request.resource.data.adminUid;
+
+        match /users/{userId} {
+            allow create: if request.auth != null && request.auth.uid == request.resource.data.adminUid;
+            allow read, write: if request.auth != null && isUserOfLicense(licenseId);
+            allow write: if request.auth != null && request.auth.uid == userId || request.auth != null && request.auth.uid == request.resource.data.adminUid;
+        }
+
+        match /speakers/{speakerId} {
+            allow read, write: if request.auth != null && isUserOfLicense(licenseId);
+        }
+
+        match /warehouse/{docId} {
+            allow read, write: if request.auth != null && isUserOfLicense(licenseId);
+        }
+
+    }
+  }
+}

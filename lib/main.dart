@@ -144,12 +144,12 @@ class TextPlayerHandler extends BaseAudioHandler with QueueHandler {
       if (_playing) pause();
     });
     queue.add([
-      MediaItem(
+      const MediaItem(
         id: 'tts_speaker_list',
         album: 'Vocal Assistant',
         title: 'Lista speaker',
         artist: 'TEDxCortina',
-        duration: const Duration(seconds: 1),
+        duration: Duration(seconds: 1),
       )
     ]);
   }

@@ -34,9 +34,8 @@ class EditTeamRoleState extends State<EditTeamRole> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height / 2,
-      color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         children: [
           const SizedBox(height: 5),
