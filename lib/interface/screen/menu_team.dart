@@ -5,16 +5,17 @@ class MenuTeam extends StatefulWidget {
   final bool isDesktop;
   final AudioHandler audioHandler;
 
-  MenuTeam({
+  const MenuTeam({
+    super.key,
     required this.isDesktop,
     required this.audioHandler,
   });
 
   @override
-  _MenuTeamState createState() => _MenuTeamState();
+  MenuTeamState createState() => MenuTeamState();
 }
 
-class _MenuTeamState extends State<MenuTeam> {
+class MenuTeamState extends State<MenuTeam> {
   int pageIndex = 0;
 
   @override
@@ -31,7 +32,7 @@ class _MenuTeamState extends State<MenuTeam> {
           child: MacosScaffold(
               backgroundColor: Style.backgroundColor(context),
               toolBar: ToolBar(
-                title: Text(TextLabels.kMenuList),
+                title: Text(AppLocalizations.of(context)!.list),
                 actions: [
                   ToolBarIconButton(
                     label: 'Add',
@@ -50,9 +51,9 @@ class _MenuTeamState extends State<MenuTeam> {
                   ),
                 ],
                 leading: MacosIconButton(
-                  boxConstraints: BoxConstraints(minHeight: 50),
+                  boxConstraints: const BoxConstraints(minHeight: 50),
                   backgroundColor: MacosColors.transparent,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.sidebar_left,
                     color: MacosColors.systemGrayColor,
                   ),
@@ -78,10 +79,10 @@ class _MenuTeamState extends State<MenuTeam> {
           child: MacosScaffold(
               backgroundColor: Style.backgroundColor(context),
               toolBar: ToolBar(
-                title: Text(TextLabels.kMenuElaboration),
+                title: Text(AppLocalizations.of(context)!.elaboration),
                 actions: [
                   ToolBarIconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       CupertinoIcons.add_circled,
                       color: CupertinoColors.activeBlue,
                     ),
@@ -97,9 +98,9 @@ class _MenuTeamState extends State<MenuTeam> {
                   ),
                 ],
                 leading: MacosIconButton(
-                  boxConstraints: BoxConstraints(minHeight: 50),
+                  boxConstraints: const BoxConstraints(minHeight: 50),
                   backgroundColor: MacosColors.transparent,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.sidebar_left,
                     color: MacosColors.systemGrayColor,
                   ),
@@ -110,9 +111,7 @@ class _MenuTeamState extends State<MenuTeam> {
               ),
               children: [
                 ContentArea(builder: (context, scrollController) {
-                  return Elaboration(
-                    showMobileTitle: false,
-                  );
+                  return const Elaboration(showMobileTitle: false);
                 }),
               ]),
         );
@@ -124,10 +123,10 @@ class _MenuTeamState extends State<MenuTeam> {
           child: MacosScaffold(
               backgroundColor: Style.backgroundColor(context),
               toolBar: ToolBar(
-                title: Text(TextLabels.kMenuConfirmed),
+                title: Text(AppLocalizations.of(context)!.confirmed),
                 actions: [
                   ToolBarIconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       CupertinoIcons.add_circled,
                       color: CupertinoColors.activeBlue,
                     ),
@@ -143,9 +142,9 @@ class _MenuTeamState extends State<MenuTeam> {
                   ),
                 ],
                 leading: MacosIconButton(
-                  boxConstraints: BoxConstraints(minHeight: 50),
+                  boxConstraints: const BoxConstraints(minHeight: 50),
                   backgroundColor: MacosColors.transparent,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.sidebar_left,
                     color: MacosColors.systemGrayColor,
                   ),
@@ -156,7 +155,7 @@ class _MenuTeamState extends State<MenuTeam> {
               ),
               children: [
                 ContentArea(builder: (context, scrollController) {
-                  return Confirmed(
+                  return const Confirmed(
                     showMobileTitle: false,
                   );
                 }),
@@ -170,10 +169,10 @@ class _MenuTeamState extends State<MenuTeam> {
           child: MacosScaffold(
               backgroundColor: Style.backgroundColor(context),
               toolBar: ToolBar(
-                title: Text(TextLabels.kMenuBags),
+                title: Text(AppLocalizations.of(context)!.bags),
                 actions: [
                   ToolBarIconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       CupertinoIcons.add_circled,
                       color: CupertinoColors.activeBlue,
                     ),
@@ -189,9 +188,9 @@ class _MenuTeamState extends State<MenuTeam> {
                   ),
                 ],
                 leading: MacosIconButton(
-                  boxConstraints: BoxConstraints(minHeight: 50),
+                  boxConstraints: const BoxConstraints(minHeight: 50),
                   backgroundColor: MacosColors.transparent,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.sidebar_left,
                     color: MacosColors.systemGrayColor,
                   ),
@@ -202,9 +201,7 @@ class _MenuTeamState extends State<MenuTeam> {
               ),
               children: [
                 ContentArea(builder: (context, scrollController) {
-                  return Bags(
-                    showMobileTitle: false,
-                  );
+                  return const Bags(showMobileTitle: false);
                 }),
               ]),
         );
@@ -213,21 +210,17 @@ class _MenuTeamState extends State<MenuTeam> {
 
     return widget.isDesktop
         ? MacosWindow(
-            child: IndexedStack(
-              index: pageIndex,
-              children: pages,
-            ),
             sidebar: Sidebar(
               minWidth: 200,
               bottom: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(CupertinoIcons.profile_circled),
-                      SizedBox(width: 8.0),
+                      const Icon(CupertinoIcons.profile_circled),
+                      const SizedBox(width: 8.0),
                       Text('${userData?.name} ${userData?.surname}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -263,8 +256,8 @@ class _MenuTeamState extends State<MenuTeam> {
                   items: [
                     SidebarItem(
                       label: Text(
-                        TextLabels.kAppName,
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.appName,
+                        style: const TextStyle(
                           color: CupertinoColors.activeBlue,
                           fontSize: 15,
                           fontStyle: FontStyle.normal,
@@ -280,8 +273,8 @@ class _MenuTeamState extends State<MenuTeam> {
                               ? Style.whiteColor
                               : Style.textColor(context),
                         ),
-                        label: Text(TextLabels.kMenuList),
-                        semanticLabel: TextLabels.kMenuList),
+                        label: Text(AppLocalizations.of(context)!.list),
+                        semanticLabel: AppLocalizations.of(context)!.list),
                     SidebarItem(
                       leading: Icon(
                         CupertinoIcons.rocket,
@@ -289,8 +282,8 @@ class _MenuTeamState extends State<MenuTeam> {
                             ? Style.whiteColor
                             : Style.textColor(context),
                       ),
-                      label: Text(TextLabels.kMenuElaboration),
-                      semanticLabel: TextLabels.kMenuElaboration,
+                      label: Text(AppLocalizations.of(context)!.elaboration),
+                      semanticLabel: AppLocalizations.of(context)!.elaboration,
                     ),
                     SidebarItem(
                       leading: Icon(
@@ -299,8 +292,8 @@ class _MenuTeamState extends State<MenuTeam> {
                             ? Style.whiteColor
                             : Style.textColor(context),
                       ),
-                      label: Text(TextLabels.kMenuConfirmed),
-                      semanticLabel: TextLabels.kMenuConfirmed,
+                      label: Text(AppLocalizations.of(context)!.confirmed),
+                      semanticLabel: AppLocalizations.of(context)!.confirmed,
                     ),
                     if (license?.bags != null && license!.bags) ...[
                       SidebarItem(
@@ -310,13 +303,17 @@ class _MenuTeamState extends State<MenuTeam> {
                               ? Style.whiteColor
                               : Style.textColor(context),
                         ),
-                        label: Text(TextLabels.kMenuBags),
-                        semanticLabel: TextLabels.kMenuBags,
+                        label: Text(AppLocalizations.of(context)!.bags),
+                        semanticLabel: AppLocalizations.of(context)!.bags,
                       ),
                     ],
                   ],
                 );
               },
+            ),
+            child: IndexedStack(
+              index: pageIndex,
+              children: pages,
             ),
           )
         : CupertinoTabScaffold(
@@ -324,24 +321,24 @@ class _MenuTeamState extends State<MenuTeam> {
               inactiveColor: Style.textMenuColor(context),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.list_bullet),
-                    label: TextLabels.kMenuList,
-                    tooltip: TextLabels.kMenuList),
+                    icon: const Icon(CupertinoIcons.list_bullet),
+                    label: AppLocalizations.of(context)!.list,
+                    tooltip: AppLocalizations.of(context)!.list),
                 BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.rocket),
-                  label: TextLabels.kMenuElaboration,
-                  tooltip: TextLabels.kMenuElaboration,
+                  icon: const Icon(CupertinoIcons.rocket),
+                  label: AppLocalizations.of(context)!.elaboration,
+                  tooltip: AppLocalizations.of(context)!.elaboration,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.checkmark_rectangle),
-                  label: TextLabels.kMenuConfirmed,
-                  tooltip: TextLabels.kMenuConfirmed,
+                  icon: const Icon(CupertinoIcons.checkmark_rectangle),
+                  label: AppLocalizations.of(context)!.confirmed,
+                  tooltip: AppLocalizations.of(context)!.confirmed,
                 ),
                 if (license?.bags != null && license!.bags) ...[
                   BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.bag),
-                    label: TextLabels.kMenuBags,
-                    tooltip: TextLabels.kMenuBags,
+                    icon: const Icon(CupertinoIcons.bag),
+                    label: AppLocalizations.of(context)!.bags,
+                    tooltip: AppLocalizations.of(context)!.bags,
                   ),
                 ],
               ],
@@ -362,28 +359,22 @@ class _MenuTeamState extends State<MenuTeam> {
                   break;
                 case 1:
                   returnValue = CupertinoTabView(builder: (context) {
-                    return CupertinoPageScaffold(
-                      child: Elaboration(
-                        showMobileTitle: true,
-                      ),
+                    return const CupertinoPageScaffold(
+                      child: Elaboration(showMobileTitle: true),
                     );
                   });
                   break;
                 case 2:
                   returnValue = CupertinoTabView(builder: (context) {
-                    return CupertinoPageScaffold(
-                      child: Confirmed(
-                        showMobileTitle: true,
-                      ),
+                    return const CupertinoPageScaffold(
+                      child: Confirmed(showMobileTitle: true),
                     );
                   });
                   break;
                 case 3:
                   returnValue = CupertinoTabView(builder: (context) {
-                    return CupertinoPageScaffold(
-                      child: Bags(
-                        showMobileTitle: true,
-                      ),
+                    return const CupertinoPageScaffold(
+                      child: Bags(showMobileTitle: true),
                     );
                   });
                   break;

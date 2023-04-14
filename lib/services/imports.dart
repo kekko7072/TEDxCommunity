@@ -6,18 +6,14 @@ export 'dart:convert';
 export 'dart:typed_data';
 export 'package:flutter/services.dart';
 export 'package:flutter/foundation.dart' show kIsWeb;
+export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';
 
 ///Server
 export 'firebase_options.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
-
-///Calendar
-//export '../../test/calendar_service.dart';
-//export 'package:google_sign_in/google_sign_in.dart';
-//export 'package:googleapis_auth/auth_io.dart';
-//export 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 
 ///Basic
 export 'package:provider/provider.dart';

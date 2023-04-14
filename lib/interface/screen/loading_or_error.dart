@@ -5,20 +5,20 @@ class LoadingOrError extends StatelessWidget {
   final bool loading;
   final String? errorMessage;
 
-  LoadingOrError({required this.loading, this.errorMessage});
+  const LoadingOrError({super.key, required this.loading, this.errorMessage});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoScaffold(
         transitionBackgroundColor: CupertinoDynamicColor.resolve(
-            CupertinoDynamicColor.withBrightness(
+            const CupertinoDynamicColor.withBrightness(
               color: CupertinoColors.systemBackground,
               darkColor: CupertinoColors.darkBackgroundGray,
             ),
             context),
         body: Center(
             child: loading
-                ? CupertinoActivityIndicator()
+                ? const CupertinoActivityIndicator()
                 : Text('$errorMessage')));
   }
 }

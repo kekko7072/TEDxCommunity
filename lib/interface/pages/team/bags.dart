@@ -37,7 +37,7 @@ class _BagsState extends State<Bags> {
                       TopBarTeam(
                           license: license,
                           userData: userData,
-                          title: TextLabels.kMenuBags),
+                          title: AppLocalizations.of(context)!.bags),
                     ],
                   );
                 }
@@ -49,7 +49,7 @@ class _BagsState extends State<Bags> {
                         TopBarTeam(
                             license: license,
                             userData: userData,
-                            title: TextLabels.kMenuBags),
+                            title: AppLocalizations.of(context)!.bags),
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
@@ -65,14 +65,15 @@ class _BagsState extends State<Bags> {
                                               CupertinoColors.destructiveRed,
                                           foregroundColor: Style.whiteColor,
                                           icon: CupertinoIcons.delete,
-                                          label: 'Elimina',
+                                          label: AppLocalizations.of(context)!
+                                              .delete,
                                           onPressed: (context) async =>
                                               await DatabaseWarehouse(licenseId)
                                                   .deleteBag(bags[index].id)
                                                   .then((_) {
                                             EasyLoading.showToast(
                                                 'Bag eliminata',
-                                                duration: Duration(
+                                                duration: const Duration(
                                                     milliseconds:
                                                         kDurationToast),
                                                 dismissOnTap: true,
@@ -118,7 +119,7 @@ class _BagsState extends State<Bags> {
                                                               EasyLoadingToastPosition
                                                                   .bottom);
                                                     }),
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   CupertinoIcons.minus_circle,
                                                   size: 50,
                                                   color: Colors.grey,
@@ -133,7 +134,7 @@ class _BagsState extends State<Bags> {
                                                         context),
                                                   ),
                                                 ),
-                                                SizedBox(height: 5),
+                                                const SizedBox(height: 5),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
@@ -158,7 +159,7 @@ class _BagsState extends State<Bags> {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(height: 5),
+                                                const SizedBox(height: 5),
                                                 Text(
                                                   'Prodotti: ',
                                                   style: TextStyle(
@@ -193,7 +194,7 @@ class _BagsState extends State<Bags> {
                                                           FeedbackType.success);
                                                       EasyLoading.showToast(
                                                           '+ 1',
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   kDurationToast),
                                                           dismissOnTap: true,
@@ -201,10 +202,9 @@ class _BagsState extends State<Bags> {
                                                               EasyLoadingToastPosition
                                                                   .bottom);
                                                     }),
-                                                icon: Icon(
-                                                  CupertinoIcons.add_circled,
-                                                  size: 50,
-                                                ))
+                                                icon: const Icon(
+                                                    CupertinoIcons.add_circled,
+                                                    size: 50))
                                           ],
                                         ),
                                       ),
@@ -222,7 +222,7 @@ class _BagsState extends State<Bags> {
                   )
                 ]);
               })
-          : Center(child: CupertinoActivityIndicator()),
+          : const Center(child: CupertinoActivityIndicator()),
     );
   }
 }

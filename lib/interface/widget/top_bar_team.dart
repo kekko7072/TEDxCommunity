@@ -48,7 +48,7 @@ class TopBarTeam extends StatelessWidget {
           GestureDetector(
             child: const Icon(CupertinoIcons.add_circled),
             onTap: () {
-              if (title == TextLabels.kMenuBags) {
+              if (title == AppLocalizations.of(context)!.bags) {
                 showCupertinoDialog(
                   context: context,
                   barrierDismissible: true,

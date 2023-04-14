@@ -98,7 +98,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                         items: <Widget>[
                           const CSHeader('SOFTWARE'),
                           CSControl(
-                            nameWidget: Text(TextLabels.kAppName),
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.appName),
                             contentWidget: Text(
                               version,
                               style: kSettingsDescriptionStyle,
@@ -427,8 +428,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               'Source code',
                               () => launchUrlString(
                                   'https://github.com/kekko7072/tedxcommunity#readme')),
-                          const CSDescription(
-                              'Developed with ♥️ by Francesco Vezzani.'),
+                          CSDescription(
+                              'Developed with ♥️ by ${AppLocalizations.of(context)!.developerName}.'),
                           const CSSpacer(),
                         ],
                       );

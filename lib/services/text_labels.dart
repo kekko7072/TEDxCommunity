@@ -1,13 +1,4 @@
 class TextLabels {
-  ///App
-  static String kAppName = 'TEDxCommunity';
-
-  ///Menu
-  static String kMenuList = 'Lista';
-  static String kMenuElaboration = 'Elaborazione';
-  static String kMenuConfirmed = 'Confermati';
-  static String kMenuBags = 'Bags';
-
   ///Speaker Description
   static String kAddSpeaker0 = 'Professione: ';
   static String kAddSpeaker1 = 'Topic: ';

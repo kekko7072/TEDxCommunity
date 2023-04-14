@@ -44,7 +44,8 @@ class AuthenticateState extends State<Authenticate> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          license?.licenseName ?? TextLabels.kAppName,
+                          license?.licenseName ??
+                              AppLocalizations.of(context)!.appName,
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .navLargeTitleTextStyle,
@@ -64,7 +65,8 @@ class AuthenticateState extends State<Authenticate> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          license?.licenseName ?? TextLabels.kAppName,
+                          license?.licenseName ??
+                              AppLocalizations.of(context)!.appName,
                           style: CupertinoTheme.of(context)
                               .textTheme
                               .navLargeTitleTextStyle,

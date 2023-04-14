@@ -47,7 +47,7 @@ class _ConfirmedState extends State<Confirmed> {
                   TopBarTeam(
                       license: license,
                       userData: userData,
-                      title: TextLabels.kMenuConfirmed),
+                      title: AppLocalizations.of(context)!.confirmed),
                 ],
                 SliverList(
                   delegate: SliverChildBuilderDelegate(

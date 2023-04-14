@@ -1,0 +1,17 @@
+{
+  "appName": "TEDxCommunity",
+  "developerName": "Francesco Vezzani",
+
+  "list": "List",
+  "elaboration": "Elaboration",
+  "confirmed": "Confirmed",
+  "bags": "Bags",
+
+  "edit": "Edit",
+  "delete": "Delete",
+  "remove": "Remove",
+  "cancel": "Cancel",
+  "save": "Save"
+
+
+}

@@ -251,9 +251,10 @@ class _AddSpeakerState extends State<AddSpeaker> {
             actions: <Widget>[
               TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text(
-                    'Annulla',
-                    style: TextStyle(color: CupertinoColors.destructiveRed),
+                  child: Text(
+                    AppLocalizations.of(context)!.cancel,
+                    style:
+                        const TextStyle(color: CupertinoColors.destructiveRed),
                   )),
               TextButton(
                   onPressed: () async {
@@ -287,7 +288,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                   },
                   child: Text(
                     'Aggiungi',
-                    style: TextStyle(color: CupertinoColors.activeBlue),
+                    style: const TextStyle(color: CupertinoColors.activeBlue),
                   )),
             ],
           );

@@ -419,10 +419,8 @@ Step buildCoachingStep({
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      CupertinoIcons.video_camera_solid,
-                    ),
-                    SizedBox(width: 10),
+                    const Icon(CupertinoIcons.video_camera_solid),
+                    const SizedBox(width: 10),
                     Text(
                       'Aggiungi link',
                     ),
@@ -431,7 +429,7 @@ Step buildCoachingStep({
               ),
             ] else ...[
               Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: SignInButton(
                   Buttons.Google,
                   onPressed: buttonAction!,

@@ -116,9 +116,10 @@ class EditTeamRoleState extends State<EditTeamRole> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: const Text(
-                                              'Annulla',
-                                              style: TextStyle(
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .cancel,
+                                              style: const TextStyle(
                                                 color: CupertinoColors
                                                     .destructiveRed,
                                               ),

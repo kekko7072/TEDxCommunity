@@ -84,7 +84,7 @@ class VocalAssistantState extends State<VocalAssistant> {
           amplitude: 1,
           color: Style.primaryColor,
         ),
-        options: SiriWaveOptions(
+        options: const SiriWaveOptions(
           height: 100,
           backgroundColor: Colors.transparent,
         ),
@@ -98,11 +98,11 @@ class VocalAssistantState extends State<VocalAssistant> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Text(
               // If listening is active show the recognized words
               _speechToText.isListening || _lastWords.isNotEmpty
-                  ? '$_lastWords'
+                  ? _lastWords
                   // If listening isn't active but could be tell the user
                   // how to start it, otherwise indicate that speech
                   // recognition is not yet ready or not supported on
@@ -140,9 +140,9 @@ class VocalAssistantState extends State<VocalAssistant> {
       ),
       actions: [
         CupertinoDialogAction(
-          child: Text('Annulla'),
           isDestructiveAction: true,
           onPressed: () => Navigator.of(context).pop(),
+          child: Text(AppLocalizations.of(context)!.cancel),
         ),
         CupertinoDialogAction(
           child: Text('Salva'),

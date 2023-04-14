@@ -53,9 +53,9 @@ class CoachingState extends State<Coaching> {
         setState(() => _loadingPath = false);
       }
     } on PlatformException catch (e) {
-      print("ERROR Unsupported operation" + e.toString());
+      debugPrint("ERROR Unsupported operation" + e.toString());
     } catch (ex) {
-      print('EX ERROR' + ex.toString());
+      debugPrint('EX ERROR' + ex.toString());
     }
   }
 
@@ -195,7 +195,7 @@ class CoachingState extends State<Coaching> {
           showButtonUpload
               ? Builder(
                   builder: (BuildContext context) => _loadingPath
-                      ? Padding(
+                      ? const Padding(
                           padding: EdgeInsets.only(top: 20.0),
                           child: CircularProgressIndicator(),
                         )
@@ -242,7 +242,7 @@ class CoachingState extends State<Coaching> {
                                   ),
                             _paths != null
                                 ? Text('Caricamento fatto')
-                                : SizedBox(),
+                                : const SizedBox(),
                           ],
                         ),
                 )

@@ -4,13 +4,13 @@ import 'package:tedxcommunity/services/imports.dart';
 class InfoAppSpeaker extends StatefulWidget {
   final Speaker speakerData;
 
-  InfoAppSpeaker({required this.speakerData});
+  const InfoAppSpeaker({super.key, required this.speakerData});
 
   @override
-  _InfoAppSpeakerState createState() => _InfoAppSpeakerState();
+  InfoAppSpeakerState createState() => InfoAppSpeakerState();
 }
 
-class _InfoAppSpeakerState extends State<InfoAppSpeaker> {
+class InfoAppSpeakerState extends State<InfoAppSpeaker> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +45,7 @@ class _InfoAppSpeakerState extends State<InfoAppSpeaker> {
                                 'Speaker ID: ${widget.speakerData.accessID!.substring(0, 5)} | Codice: ${widget.speakerData.accessPassword}'))
                         .then((_) {
                       EasyLoading.showToast('Copiato',
-                          duration: Duration(seconds: 2),
+                          duration: const Duration(seconds: 2),
                           dismissOnTap: true,
                           toastPosition: EasyLoadingToastPosition.bottom);
                     });

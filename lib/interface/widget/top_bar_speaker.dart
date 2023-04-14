@@ -29,11 +29,11 @@ class TopBarSpeaker extends StatelessWidget {
       ),
       largeTitle: Text('Coaching'),
       trailing: GestureDetector(
-        child: Icon(CupertinoIcons.videocam_circle),
+        child: const Icon(CupertinoIcons.videocam_circle),
         onTap: () async {
           if (await canLaunchUrlString(speakerData.link)) {
             EasyLoading.showToast('Apro videochiamata',
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 dismissOnTap: true,
                 toastPosition: EasyLoadingToastPosition.bottom);
             await launchUrlString(
@@ -41,7 +41,7 @@ class TopBarSpeaker extends StatelessWidget {
             );
           } else {
             EasyLoading.showToast('Errore link non valido',
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 dismissOnTap: true,
                 toastPosition: EasyLoadingToastPosition.bottom);
           }

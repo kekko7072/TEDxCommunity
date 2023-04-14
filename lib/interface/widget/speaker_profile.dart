@@ -33,7 +33,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
 
     return CupertinoAlertDialog(
       title: Text(
-        '${widget.speaker.name}',
+        widget.speaker.name,
       ),
       content: widget.speaker.progress == Progress.confirmed
           ? Column(
@@ -53,9 +53,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                         return Container();
                       }
                     }),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,7 +65,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                             'Speaker ID: ${widget.speaker.accessID!.substring(0, 5)}',
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
-                                    CupertinoDynamicColor.withBrightness(
+                                    const CupertinoDynamicColor.withBrightness(
                                       color: Color.fromRGBO(0, 0, 0, 0.8),
                                       darkColor: kColorWhite,
                                       //darkColor: Color(0xBF1E1E1E),
@@ -78,7 +76,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                             'Codice: ${widget.speaker.accessPassword}',
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
-                                    CupertinoDynamicColor.withBrightness(
+                                    const CupertinoDynamicColor.withBrightness(
                                       color: kColorBlack,
                                       darkColor: kColorWhite,
                                       //darkColor: Color(0xBF1E1E1E),
@@ -98,12 +96,12 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                             setState(() {
                               copied = true;
                             });
-                            Clipboard.setData(new ClipboardData(
+                            Clipboard.setData(ClipboardData(
                                     text:
                                         'Speaker ID: ${widget.speaker.accessID!.substring(0, 5)} | Codice: ${widget.speaker.accessPassword}'))
                                 .then((_) {
                               EasyLoading.showToast('Copiato',
-                                  duration: Duration(seconds: 2),
+                                  duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
@@ -123,7 +121,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                             'Link videcohiamata',
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
-                                    CupertinoDynamicColor.withBrightness(
+                                    const CupertinoDynamicColor.withBrightness(
                                       color: Color.fromRGBO(0, 0, 0, 0.8),
                                       darkColor: kColorWhite,
                                       //darkColor: Color(0xBF1E1E1E),
@@ -136,11 +134,11 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                     Expanded(
                       flex: 1,
                       child: CupertinoButton(
-                          child: Icon(CupertinoIcons.videocam_circle),
+                          child: const Icon(CupertinoIcons.videocam_circle),
                           onPressed: () async {
                             if (await canLaunchUrlString(widget.speaker.link)) {
                               EasyLoading.showToast('Apro videochiamata',
-                                  duration: Duration(seconds: 2),
+                                  duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
@@ -149,7 +147,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                               );
                             } else {
                               EasyLoading.showToast('Errore',
-                                  duration: Duration(seconds: 2),
+                                  duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
@@ -182,23 +180,17 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                         return Container();
                       }
                     }),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CupertinoButton(
                   child: Text(
-                    '${widget.speaker.link}',
+                    widget.speaker.link,
                   ),
                   onPressed: () => setState(() {
                     launchUrl(widget.speaker.link);
                   }),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '${widget.speaker.description}',
-                ),
+                const SizedBox(height: 10),
+                Text(widget.speaker.description),
               ],
             ),
     );

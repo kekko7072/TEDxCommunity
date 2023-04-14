@@ -70,7 +70,7 @@ class _ElaborationState extends State<Elaboration> {
                     TopBarTeam(
                         license: license,
                         userData: userData,
-                        title: TextLabels.kMenuElaboration),
+                        title: AppLocalizations.of(context)!.elaboration),
                   ],
 
                   ///SELECTED
@@ -356,7 +356,7 @@ class _ElaborationState extends State<Elaboration> {
                                               ///2. Mostra conferma
                                               EasyLoading.showToast(
                                                   'Speaker confermato',
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),
                                                   dismissOnTap: true,

@@ -46,6 +46,13 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: App(audioHandler),
         builder: EasyLoading.init(),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }

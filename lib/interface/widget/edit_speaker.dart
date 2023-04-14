@@ -17,13 +17,10 @@ class EditSpeaker extends StatefulWidget {
 }
 
 class _EditSpeakerState extends State<EditSpeaker> {
-  String name = "";
   TextEditingController controllerName = TextEditingController();
 
-  String email = "";
   TextEditingController controllerEmail = TextEditingController();
 
-  String link = "";
   TextEditingController controllerLink = TextEditingController();
 
   String description = "";
@@ -50,14 +47,11 @@ class _EditSpeakerState extends State<EditSpeaker> {
     super.initState();
     DatabaseLicense.loadLicenseId.then((id) => setState(() => licenseId = id));
 
-    name = widget.speaker.name;
-    controllerName = TextEditingController(text: '${widget.speaker.name}');
+    controllerName = TextEditingController(text: widget.speaker.name);
 
-    email = widget.speaker.email;
-    controllerEmail = TextEditingController(text: '${widget.speaker.email}');
+    controllerEmail = TextEditingController(text: widget.speaker.email);
 
-    link = widget.speaker.link;
-    controllerLink = TextEditingController(text: '${widget.speaker.link}');
+    controllerLink = TextEditingController(text: widget.speaker.link);
 
     ///Profession
     if (widget.speaker.description.contains(TextLabels.kAddSpeaker0) &&
@@ -107,8 +101,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
 
        */
       controllerRatePublicSpeaking = TextEditingController(
-          text:
-              '${widget.speaker.description.substring(startIndexRate + TextLabels.kAddSpeaker2.length, endIndexRate)}');
+          text: widget.speaker.description.substring(
+              startIndexRate + TextLabels.kAddSpeaker2.length, endIndexRate));
     }
 
     ///JustTEDx
@@ -126,8 +120,9 @@ class _EditSpeakerState extends State<EditSpeaker> {
        */
 
       controllerJustTEDx = TextEditingController(
-          text:
-              '${widget.speaker.description.substring(startIndexJustTEDx + TextLabels.kAddSpeaker3.length, endIndexJustTEDx)}');
+          text: widget.speaker.description.substring(
+              startIndexJustTEDx + TextLabels.kAddSpeaker3.length,
+              endIndexJustTEDx));
     }
 
     ///Bio
@@ -141,8 +136,9 @@ class _EditSpeakerState extends State<EditSpeaker> {
 
       */
       controllerBio = TextEditingController(
-          text:
-              '${widget.speaker.description.substring(startIndexBio + TextLabels.kAddSpeaker4.length, widget.speaker.description.length)}');
+          text: widget.speaker.description.substring(
+              startIndexBio + TextLabels.kAddSpeaker4.length,
+              widget.speaker.description.length));
     }
   }
 
@@ -151,7 +147,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
     return CupertinoActionSheet(
       actions: [
         CupertinoActionSheetAction(
-          child: const Text('Modifica'),
+          child: Text(AppLocalizations.of(context)!.edit),
           onPressed: () {
             Navigator.pop(context);
             showCupertinoDialog(
@@ -159,57 +155,45 @@ class _EditSpeakerState extends State<EditSpeaker> {
               barrierDismissible: true,
               builder: (context) {
                 return CupertinoAlertDialog(
-                  title: Text(
-                    'Modifica',
-                  ),
+                  title: Text(AppLocalizations.of(context)!.edit),
                   content: Column(
                     children: [
                       Text('Modifica dati dello speaker'),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerName,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         //placeholder: speaker.name,
                         keyboardType: TextInputType.name,
-                        onChanged: (val) {
-                          name = val;
-                        },
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerEmail,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         placeholder: 'Email',
                         keyboardType: TextInputType.emailAddress,
-                        onChanged: (value) {
-                          email = value;
-                        },
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       widget.progress == Progress.confirmed
                           ? Container()
                           : CupertinoTextField(
@@ -217,48 +201,42 @@ class _EditSpeakerState extends State<EditSpeaker> {
                               controller: controllerLink,
                               decoration: BoxDecoration(
                                 color: CupertinoDynamicColor.resolve(
-                                    CupertinoDynamicColor.withBrightness(
+                                    const CupertinoDynamicColor.withBrightness(
                                       color: Color(0xFFF0F0F0),
                                       darkColor: Color(0xBF1E1E1E),
                                     ),
                                     context),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                    const BorderRadius.all(Radius.circular(10)),
                               ),
                               placeholder: 'Link',
                               keyboardType: TextInputType.url,
-                              onChanged: (value) {
-                                link = value;
-                              },
                             ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerProfession,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         placeholder: 'Professione',
                         keyboardType: TextInputType.text,
                         onChanged: (val) => profession = val,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerTopic,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
@@ -269,15 +247,13 @@ class _EditSpeakerState extends State<EditSpeaker> {
                         keyboardType: TextInputType.text,
                         onChanged: (val) => topic = val,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerRatePublicSpeaking,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
@@ -288,15 +264,13 @@ class _EditSpeakerState extends State<EditSpeaker> {
                         keyboardType: TextInputType.text,
                         onChanged: (val) => ratePublicSpeaking = val,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,
                         controller: controllerJustTEDx,
                         decoration: BoxDecoration(
                           color: CupertinoDynamicColor.resolve(
-                              CupertinoDynamicColor.withBrightness(
+                              const CupertinoDynamicColor.withBrightness(
                                 color: Color(0xFFF0F0F0),
                                 darkColor: Color(0xBF1E1E1E),
                               ),
@@ -308,7 +282,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                         keyboardType: TextInputType.text,
                         onChanged: (val) => justTEDx = val,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       CupertinoTextField(
                         decoration: BoxDecoration(
                           color: Style.inputTextFieldColor(context),
@@ -323,7 +297,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                         keyboardType: TextInputType.text,
                         onChanged: (value) => bio = value,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   ),
                   actions: <Widget>[
@@ -332,26 +306,28 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          'Annulla',
-                          style:
-                              TextStyle(color: CupertinoColors.destructiveRed),
+                          AppLocalizations.of(context)!.cancel,
+                          style: const TextStyle(
+                              color: CupertinoColors.destructiveRed),
                         )),
                     TextButton(
                         onPressed: () {
                           DatabaseSpeaker(
                                   licenseId: licenseId, id: widget.speaker.id)
                               .editSpeaker(
-                            name: name,
-                            email: TextLabels().formatEmail(email),
-                            link: link,
+                            name: controllerName.text,
+                            email:
+                                TextLabels().formatEmail(controllerEmail.text),
+                            link: controllerLink.text,
                             description:
                                 '${TextLabels.kAddSpeaker0}${controllerProfession.text}${profession != '' ? '\n' : ''}${TextLabels.kAddSpeaker1}${controllerTopic.text}${topic != '' ? '\n' : ''}${TextLabels.kAddSpeaker2}${controllerRatePublicSpeaking.text}${ratePublicSpeaking != '' ? '\n' : ''}${TextLabels.kAddSpeaker3}${controllerJustTEDx.text}${justTEDx != '' ? '\n' : ''}${TextLabels.kAddSpeaker4}${controllerBio.text}',
                           );
                           Navigator.of(context).pop();
                         },
-                        child: const Text(
-                          'Salva',
-                          style: TextStyle(color: CupertinoColors.activeBlue),
+                        child: Text(
+                          AppLocalizations.of(context)!.save,
+                          style: const TextStyle(
+                              color: CupertinoColors.activeBlue),
                         )),
                   ],
                 );
@@ -367,12 +343,12 @@ class _EditSpeakerState extends State<EditSpeaker> {
                       .deleteSpeaker();
                   Navigator.pop(context);
                 },
-                child: const Text('Elimina'),
+                child: Text(AppLocalizations.of(context)!.delete),
               )
             : CupertinoActionSheetAction(
                 isDestructiveAction: true,
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Chiudi'),
+                child: Text(AppLocalizations.of(context)!.cancel),
               )
       ],
     );

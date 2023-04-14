@@ -94,7 +94,7 @@ class _AppState extends State<App> {
                           body: MediaQuery.of(context).size.width >
                                   kConstantsResizeWidthValue
                               ? MacosApp(
-                                  title: TextLabels.kAppName,
+                                  title: AppLocalizations.of(context)!.appName,
                                   theme: MacosThemeData(
                                     primaryColor: Style.primaryColor,
                                     brightness: Brightness.light,
@@ -110,11 +110,19 @@ class _AppState extends State<App> {
                                     isDesktop: true,
                                     audioHandler: widget.audioHandler,
                                   ),
+                                  localizationsDelegates: const [
+                                    AppLocalizations.delegate,
+                                    GlobalMaterialLocalizations.delegate,
+                                    GlobalWidgetsLocalizations.delegate,
+                                    GlobalCupertinoLocalizations.delegate,
+                                  ],
+                                  supportedLocales:
+                                      AppLocalizations.supportedLocales,
                                   builder: EasyLoading.init(),
                                 )
                               : CupertinoApp(
                                   debugShowCheckedModeBanner: false,
-                                  title: TextLabels.kAppName,
+                                  title: AppLocalizations.of(context)!.appName,
                                   theme: CupertinoThemeData(
                                     primaryColor: Style.primaryColor,
                                     barBackgroundColor:
@@ -122,6 +130,14 @@ class _AppState extends State<App> {
                                     scaffoldBackgroundColor:
                                         Style.backgroundColor(context),
                                   ),
+                                  localizationsDelegates: const [
+                                    AppLocalizations.delegate,
+                                    GlobalMaterialLocalizations.delegate,
+                                    GlobalWidgetsLocalizations.delegate,
+                                    GlobalCupertinoLocalizations.delegate,
+                                  ],
+                                  supportedLocales:
+                                      AppLocalizations.supportedLocales,
                                   home: MenuTeam(
                                     isDesktop: false,
                                     audioHandler: widget.audioHandler,
@@ -145,7 +161,8 @@ class _AppState extends State<App> {
                                 body: MediaQuery.of(context).size.width >
                                         kConstantsResizeWidthValue
                                     ? MacosApp(
-                                        title: TextLabels.kAppName,
+                                        title: AppLocalizations.of(context)!
+                                            .appName,
                                         theme: MacosThemeData.light(),
                                         darkTheme: MacosThemeData.dark(),
                                         debugShowCheckedModeBanner: false,
@@ -153,11 +170,20 @@ class _AppState extends State<App> {
                                           speakerData: speakerData,
                                           isDesktop: true,
                                         ),
+                                        localizationsDelegates: const [
+                                          AppLocalizations.delegate,
+                                          GlobalMaterialLocalizations.delegate,
+                                          GlobalWidgetsLocalizations.delegate,
+                                          GlobalCupertinoLocalizations.delegate,
+                                        ],
+                                        supportedLocales:
+                                            AppLocalizations.supportedLocales,
                                         builder: EasyLoading.init(),
                                       )
                                     : CupertinoApp(
                                         debugShowCheckedModeBanner: false,
-                                        title: TextLabels.kAppName,
+                                        title: AppLocalizations.of(context)!
+                                            .appName,
                                         theme: CupertinoThemeData(
                                           primaryColor: Style.primaryColor,
                                           barBackgroundColor:
@@ -169,6 +195,14 @@ class _AppState extends State<App> {
                                           speakerData: speakerData,
                                           isDesktop: false,
                                         ),
+                                        localizationsDelegates: const [
+                                          AppLocalizations.delegate,
+                                          GlobalMaterialLocalizations.delegate,
+                                          GlobalWidgetsLocalizations.delegate,
+                                          GlobalCupertinoLocalizations.delegate,
+                                        ],
+                                        supportedLocales:
+                                            AppLocalizations.supportedLocales,
                                         builder: EasyLoading.init(),
                                       ),
                               );

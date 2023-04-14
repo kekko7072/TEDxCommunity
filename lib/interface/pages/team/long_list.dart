@@ -51,7 +51,7 @@ class LongListState extends State<LongList> {
                     TopBarTeam(
                         userData: userData,
                         license: license,
-                        title: TextLabels.kMenuList,
+                        title: AppLocalizations.of(context)!.list,
                         widget: GestureDetector(
                           child: const Icon(CupertinoIcons.waveform_circle),
                           onTap: () => showCupertinoModalBottomSheet(

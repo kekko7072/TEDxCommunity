@@ -5,13 +5,14 @@ class MenuSpeaker extends StatefulWidget {
   final bool isDesktop;
   final Speaker speakerData;
 
-  MenuSpeaker({required this.isDesktop, required this.speakerData});
+  const MenuSpeaker(
+      {super.key, required this.isDesktop, required this.speakerData});
 
   @override
-  _MenuSpeakerState createState() => _MenuSpeakerState();
+  MenuSpeakerState createState() => MenuSpeakerState();
 }
 
-class _MenuSpeakerState extends State<MenuSpeaker> {
+class MenuSpeakerState extends State<MenuSpeaker> {
   int pageIndex = 0;
 
   @override
@@ -35,7 +36,7 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
                     onPressed: () async {
                       if (await canLaunchUrlString(widget.speakerData.link)) {
                         EasyLoading.showToast('Apro videochiamata',
-                            duration: Duration(seconds: 2),
+                            duration: const Duration(seconds: 2),
                             dismissOnTap: true,
                             toastPosition: EasyLoadingToastPosition.bottom);
                         await launchUrlString(
@@ -43,7 +44,7 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
                         );
                       } else {
                         EasyLoading.showToast('Errore link non valido',
-                            duration: Duration(seconds: 2),
+                            duration: const Duration(seconds: 2),
                             dismissOnTap: true,
                             toastPosition: EasyLoadingToastPosition.bottom);
                       }
@@ -53,7 +54,7 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
                   ),
                 ],
                 leading: MacosIconButton(
-                  boxConstraints: BoxConstraints(minHeight: 50),
+                  boxConstraints: const BoxConstraints(minHeight: 50),
                   backgroundColor: MacosColors.transparent,
                   icon: const Icon(
                     CupertinoIcons.sidebar_left,
@@ -82,7 +83,7 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
               backgroundColor: Style.backgroundColor(context),
               children: [
                 TitleBar(
-                  title: Text(TextLabels.kMenuElaboration),
+                  title: Text(AppLocalizations.of(context)!.elaboration),
                   /*actions: [
                     ToolBarIconButton(
                       icon: Icon(
@@ -128,13 +129,13 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
               bottom: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(CupertinoIcons.profile_circled),
-                      SizedBox(width: 8.0),
-                      Text('${widget.speakerData.name}',
+                      const Icon(CupertinoIcons.profile_circled),
+                      const SizedBox(width: 8.0),
+                      Text(widget.speakerData.name,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Style.textColor(context),
@@ -166,8 +167,8 @@ class _MenuSpeakerState extends State<MenuSpeaker> {
                   items: [
                     SidebarItem(
                       label: Text(
-                        TextLabels.kAppName,
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.appName,
+                        style: const TextStyle(
                           color: CupertinoColors.activeBlue,
                           fontSize: 18,
                           fontStyle: FontStyle.normal,

@@ -79,9 +79,10 @@ class _AddBagState extends State<AddBag> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text(
-                    'Annulla',
-                    style: TextStyle(color: CupertinoColors.destructiveRed),
+                  child: Text(
+                    AppLocalizations.of(context)!.cancel,
+                    style:
+                        const TextStyle(color: CupertinoColors.destructiveRed),
                   )),
               TextButton(
                   onPressed: () async {

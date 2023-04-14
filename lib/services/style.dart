@@ -8,17 +8,17 @@ class Style {
   ///Colors
   static Color primaryColor = CupertinoColors.activeBlue;
 
-  static Color barLightColor = Color(0xFFF2F2F7);
-  static Color barDarkColor = Color(0xFF2C2C2E);
+  static Color barLightColor = const Color(0xFFF2F2F7);
+  static Color barDarkColor = const Color(0xFF2C2C2E);
 
-  static Color backgroundLightColor = Color(0xFFFFFFFF);
-  static Color backgroundDarkColor = Color(0xFF1C1C1E);
+  static Color backgroundLightColor = const Color(0xFFFFFFFF);
+  static Color backgroundDarkColor = const Color(0xFF1C1C1E);
 
   static Color whiteColor = Colors.white;
   static Color blackColor = Colors.black;
 
-  static Color inputTextFieldLightColor = Color(0xFFF0F0F0);
-  static Color inputTextFieldDarkColor = Color(0xBF141414);
+  static Color inputTextFieldLightColor = const Color(0xFFF0F0F0);
+  static Color inputTextFieldDarkColor = const Color(0xBF141414);
 
   static Color menuColor(BuildContext context) => CupertinoDynamicColor.resolve(
       CupertinoDynamicColor.withBrightness(

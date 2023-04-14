@@ -45,8 +45,8 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
               Navigator.of(context).pop();
             },
             child: Text(
-              'Annulla',
-              style: TextStyle(color: CupertinoColors.destructiveRed),
+              AppLocalizations.of(context)!.cancel,
+              style: const TextStyle(color: CupertinoColors.destructiveRed),
             )),
         TextButton(
           onPressed: () async {
