@@ -421,6 +421,12 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   () => Navigator.of(context).pop());
                             },
                           ),
+                          const CSSpacer(),
+                          CSButton(
+                              CSButtonType.DEFAULT_CENTER,
+                              'Source code',
+                              () => launchUrlString(
+                                  'https://github.com/kekko7072/tedxcommunity#readme')),
                           const CSDescription(
                               'Developed with ♥️ by Francesco Vezzani.'),
                           const CSSpacer(),
