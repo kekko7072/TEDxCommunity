@@ -178,7 +178,7 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                       selectedColor: Colors.transparent,
                     ),
                     SidebarItem(
-                        leading: Icon(
+                        leading: MacosIcon(
                           CupertinoIcons.calendar,
                           color: pageIndex == 0
                               ? Style.whiteColor
@@ -187,7 +187,7 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                         label: Text('Coaching'),
                         semanticLabel: 'Coaching'),
                     SidebarItem(
-                      leading: Icon(
+                      leading: MacosIcon(
                         CupertinoIcons.book,
                         color: pageIndex == 1
                             ? Style.whiteColor

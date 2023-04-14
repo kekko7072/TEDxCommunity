@@ -313,10 +313,10 @@ class _SpeakerItemState extends State<SpeakerItem> {
                             progress: widget.currentProgress),
                       );
                     },
-                    child: const Icon(
+                    child: Icon(
                       CupertinoIcons.ellipsis_vertical,
-                      semanticLabel: 'Modifica',
-                      color: Color(0xFF8E8E93),
+                      semanticLabel: AppLocalizations.of(context)!.edit,
+                      color: const Color(0xFF8E8E93),
                     ),
                   ),
                 ],

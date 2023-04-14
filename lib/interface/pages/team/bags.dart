@@ -72,7 +72,8 @@ class _BagsState extends State<Bags> {
                                                   .deleteBag(bags[index].id)
                                                   .then((_) {
                                             EasyLoading.showToast(
-                                                'Bag eliminata',
+                                                AppLocalizations.of(context)!
+                                                    .deleted,
                                                 duration: const Duration(
                                                     milliseconds:
                                                         kDurationToast),

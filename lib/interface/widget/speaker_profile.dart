@@ -163,9 +163,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                 Text(
                   '${widget.speaker.email}',
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 StreamBuilder<UserData>(
                     stream: DatabaseUser(
                             licenseId: licenseId,

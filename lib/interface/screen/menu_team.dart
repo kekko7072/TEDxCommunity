@@ -267,7 +267,7 @@ class MenuTeamState extends State<MenuTeam> {
                       selectedColor: Colors.transparent,
                     ),
                     SidebarItem(
-                        leading: Icon(
+                        leading: MacosIcon(
                           CupertinoIcons.list_bullet,
                           color: pageIndex == 0
                               ? Style.whiteColor
@@ -276,7 +276,7 @@ class MenuTeamState extends State<MenuTeam> {
                         label: Text(AppLocalizations.of(context)!.list),
                         semanticLabel: AppLocalizations.of(context)!.list),
                     SidebarItem(
-                      leading: Icon(
+                      leading: MacosIcon(
                         CupertinoIcons.rocket,
                         color: pageIndex == 1
                             ? Style.whiteColor
@@ -286,7 +286,7 @@ class MenuTeamState extends State<MenuTeam> {
                       semanticLabel: AppLocalizations.of(context)!.elaboration,
                     ),
                     SidebarItem(
-                      leading: Icon(
+                      leading: MacosIcon(
                         CupertinoIcons.checkmark_rectangle,
                         color: pageIndex == 2
                             ? Style.whiteColor
@@ -297,7 +297,7 @@ class MenuTeamState extends State<MenuTeam> {
                     ),
                     if (license?.bags != null && license!.bags) ...[
                       SidebarItem(
-                        leading: Icon(
+                        leading: MacosIcon(
                           CupertinoIcons.bag,
                           color: pageIndex == 3
                               ? Style.whiteColor

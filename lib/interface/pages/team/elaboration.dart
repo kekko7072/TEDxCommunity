@@ -291,7 +291,8 @@ class _ElaborationState extends State<Elaboration> {
                                             CupertinoColors.activeGreen,
                                         foregroundColor: Style.whiteColor,
                                         icon: CupertinoIcons.check_mark,
-                                        label: 'Confermato',
+                                        label: AppLocalizations.of(context)!
+                                            .confirmed,
                                         onPressed: (context) async {
                                           dynamic result = await auth
                                               .registerSpeakerWithEmailAndPassword(
@@ -336,7 +337,9 @@ class _ElaborationState extends State<Elaboration> {
                                                               .pop();
                                                         },
                                                         child: Text(
-                                                          'Chiudi',
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .cancel,
                                                           style: TextStyle(
                                                               color: CupertinoColors
                                                                   .destructiveRed),
@@ -355,7 +358,8 @@ class _ElaborationState extends State<Elaboration> {
                                                 .then((_) {
                                               ///2. Mostra conferma
                                               EasyLoading.showToast(
-                                                  'Speaker confermato',
+                                                  AppLocalizations.of(context)!
+                                                      .confirmed,
                                                   duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),

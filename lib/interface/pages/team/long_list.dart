@@ -103,7 +103,8 @@ class LongListState extends State<LongList> {
                                                 CupertinoColors.destructiveRed,
                                             foregroundColor: Style.whiteColor,
                                             icon: CupertinoIcons.clear_thick,
-                                            label: 'Rimuovi',
+                                            label: AppLocalizations.of(context)!
+                                                .remove,
                                             onPressed: (context) async =>
                                                 await DatabaseSpeaker(
                                                         licenseId: licenseId,

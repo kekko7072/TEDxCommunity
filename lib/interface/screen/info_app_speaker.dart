@@ -40,7 +40,7 @@ class InfoAppSpeakerState extends State<InfoAppSpeaker> {
                 ),
                 CSButton(CSButtonType.DEFAULT_CENTER, "Copia credenziali", () {
                   setState(() {
-                    Clipboard.setData(new ClipboardData(
+                    Clipboard.setData(ClipboardData(
                             text:
                                 'Speaker ID: ${widget.speakerData.accessID!.substring(0, 5)} | Codice: ${widget.speakerData.accessPassword}'))
                         .then((_) {
