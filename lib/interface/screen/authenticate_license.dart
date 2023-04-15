@@ -94,7 +94,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                   const SizedBox(height: 15),
                   CupertinoButton(
                     color: Style.primaryColor,
-                    child: const Text('Accedi'),
+                    child: Text(AppLocalizations.of(context)!.login),
                     onPressed: () async {
                       if (licenseIdController.text.isNotEmpty &&
                           await DatabaseLicense(licenseIdController.text)
@@ -123,7 +123,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Richiedi qui.',
+                            text: 'Crea qui.',
                             style: TextStyle(
                               color: Style.primaryColor,
                               fontWeight: FontWeight.bold,
@@ -152,7 +152,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   enableSuggestions: true,
                                   controller: nameController,
                                   textCapitalization: TextCapitalization.words,
-                                  placeholder: 'Nome',
+                                  placeholder: 'Name',
                                   keyboardType: TextInputType.name,
                                 ),
                                 const SizedBox(height: 10),
@@ -166,7 +166,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   enableSuggestions: true,
                                   controller: surnameController,
                                   textCapitalization: TextCapitalization.words,
-                                  placeholder: 'Cognome',
+                                  placeholder: 'Surname',
                                   keyboardType: TextInputType.name,
                                 ),
                                 const SizedBox(height: 10),
@@ -201,9 +201,9 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                             actions: <Widget>[
                               TextButton(
                                   onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text(
-                                    'Annulla',
-                                    style: TextStyle(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.cancel,
+                                    style: const TextStyle(
                                         color: CupertinoColors.destructiveRed),
                                   )),
                               TextButton(
@@ -233,9 +233,11 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                                     onPressed: () =>
                                                         Navigator.of(context)
                                                             .pop(),
-                                                    child: const Text(
-                                                      'Chiudi',
-                                                      style: TextStyle(
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .cancel,
+                                                      style: const TextStyle(
                                                           color: CupertinoColors
                                                               .destructiveRed),
                                                     )),
@@ -262,9 +264,9 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                       }
                                     });
                                   },
-                                  child: const Text(
-                                    'Crea',
-                                    style: TextStyle(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.create,
+                                    style: const TextStyle(
                                         color: CupertinoColors.activeBlue),
                                   )),
                             ],

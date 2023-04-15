@@ -84,9 +84,10 @@ class AuthenticateState extends State<Authenticate> {
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
-                            false: const Text(
-                              'Speaker',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                            false: Text(
+                              AppLocalizations.of(context)!.speaker,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           },
                           groupValue: isTeam,
@@ -184,7 +185,7 @@ class AuthenticateState extends State<Authenticate> {
                                       obscureText: true,
                                       keyboardType:
                                           TextInputType.visiblePassword,
-                                      placeholder: 'Codice',
+                                      placeholder: 'Code',
                                       maxLength: 8,
                                       onChanged: (value) =>
                                           setState(() => password = value),
@@ -195,7 +196,7 @@ class AuthenticateState extends State<Authenticate> {
                         const SizedBox(height: 15),
                         CupertinoButton(
                           color: Style.primaryColor,
-                          child: const Text('Accedi'),
+                          child: Text(AppLocalizations.of(context)!.login),
                           onPressed: () async {
                             setState(() => loading = true);
                             if (isTeam) {
@@ -248,7 +249,8 @@ class AuthenticateState extends State<Authenticate> {
                                               Navigator.of(context).pop();
                                             },
                                             child: Text(
-                                              'Chiudi',
+                                              AppLocalizations.of(context)!
+                                                  .cancel,
                                               style: TextStyle(
                                                   color: CupertinoColors
                                                       .destructiveRed),
@@ -329,7 +331,7 @@ class AuthenticateState extends State<Authenticate> {
                                                         textCapitalization:
                                                             TextCapitalization
                                                                 .words,
-                                                        placeholder: 'Nome',
+                                                        placeholder: 'Name',
                                                         keyboardType:
                                                             TextInputType.name,
                                                         onChanged: (value) {
@@ -357,7 +359,7 @@ class AuthenticateState extends State<Authenticate> {
                                                         textCapitalization:
                                                             TextCapitalization
                                                                 .words,
-                                                        placeholder: 'Cognome',
+                                                        placeholder: 'Surname',
                                                         keyboardType:
                                                             TextInputType.name,
                                                         onChanged: (value) {
@@ -427,9 +429,11 @@ class AuthenticateState extends State<Authenticate> {
                                                           Navigator.of(context)
                                                               .pop();
                                                         },
-                                                        child: const Text(
-                                                          'Annulla',
-                                                          style: TextStyle(
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .cancel,
+                                                          style: const TextStyle(
                                                               color: CupertinoColors
                                                                   .destructiveRed),
                                                         )),
@@ -460,7 +464,7 @@ class AuthenticateState extends State<Authenticate> {
                                                                   (context) {
                                                                 return CupertinoAlertDialog(
                                                                   title: Text(
-                                                                    'Errore creazione',
+                                                                    'Error creation',
                                                                   ),
                                                                   content: Text(
                                                                       _auth
@@ -475,7 +479,8 @@ class AuthenticateState extends State<Authenticate> {
                                                                         },
                                                                         child:
                                                                             Text(
-                                                                          'Chiudi',
+                                                                          AppLocalizations.of(context)!
+                                                                              .cancel,
                                                                           style:
                                                                               TextStyle(color: CupertinoColors.destructiveRed),
                                                                         )),
@@ -486,8 +491,10 @@ class AuthenticateState extends State<Authenticate> {
                                                           }
                                                         },
                                                         child: Text(
-                                                          'Crea',
-                                                          style: TextStyle(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .create,
+                                                          style: const TextStyle(
                                                               color: CupertinoColors
                                                                   .activeBlue),
                                                         )),

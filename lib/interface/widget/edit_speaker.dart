@@ -158,7 +158,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                   title: Text(AppLocalizations.of(context)!.edit),
                   content: Column(
                     children: [
-                      Text('Modifica dati dello speaker'),
+                      Text(AppLocalizations.of(context)!.edit),
                       const SizedBox(height: 10),
                       CupertinoTextField(
                         enableSuggestions: true,

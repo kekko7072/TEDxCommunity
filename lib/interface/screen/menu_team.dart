@@ -35,7 +35,7 @@ class MenuTeamState extends State<MenuTeam> {
                 title: Text(AppLocalizations.of(context)!.list),
                 actions: [
                   ToolBarIconButton(
-                    label: 'Add',
+                    label: AppLocalizations.of(context)!.add,
                     showLabel: false,
                     icon: const Icon(
                       CupertinoIcons.add_circled,

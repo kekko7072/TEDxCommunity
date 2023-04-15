@@ -36,7 +36,9 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
             List<UserData> coachList = snapshot.data!;
             return CupertinoAlertDialog(
               title: Text(
-                widget.isSelectCoach ? 'Assegna coach' : 'Assegna membro team',
+                widget.isSelectCoach
+                    ? AppLocalizations.of(context)!.assignCoach
+                    : AppLocalizations.of(context)!.assignTeam,
               ),
               content: SizedBox(
                 height: 100,
@@ -70,23 +72,24 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                           color: CupertinoColors.destructiveRed),
                     )),
                 TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       widget.isSelectCoach
-                          ? DatabaseSpeaker(
+                          ? await DatabaseSpeaker(
                                   licenseId: licenseId,
                                   id: widget.speakerData.id)
                               .editSpeakerCoach(
                               uidCoach: coachList[selectedValue].uid,
                             )
                               .then((_) {
-                              EasyLoading.showToast('Coach assegnato',
+                              EasyLoading.showToast(
+                                  AppLocalizations.of(context)!.assigned,
                                   duration: const Duration(
                                       milliseconds: kDurationToast),
                                   dismissOnTap: true,
                                   toastPosition:
                                       EasyLoadingToastPosition.bottom);
                             })
-                          : DatabaseSpeaker(
+                          : await DatabaseSpeaker(
                                   licenseId: licenseId,
                                   id: widget.speakerData.id)
                               .editSpeakerUidCreator(
@@ -94,7 +97,7 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                             )
                               .then((_) {
                               EasyLoading.showToast(
-                                  'Speaker affidato a ${coachList[selectedValue].name} ${coachList[selectedValue].surname}',
+                                  AppLocalizations.of(context)!.assigned,
                                   duration: const Duration(
                                       milliseconds: kDurationToast),
                                   dismissOnTap: true,
@@ -103,9 +106,9 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                             });
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
-                      'Assegna',
-                      style: TextStyle(color: CupertinoColors.activeBlue),
+                    child: Text(
+                      AppLocalizations.of(context)!.assign,
+                      style: const TextStyle(color: CupertinoColors.activeBlue),
                     )),
               ],
             );

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tedxcommunity/services/imports.dart';
 
 class DateTimePickerModal extends StatefulWidget {
   final CupertinoDatePickerMode pickerType;
@@ -35,7 +36,7 @@ class DateTimePickerModalState extends State<DateTimePickerModal> {
                 onDateTimeChanged: (val) => widget.onDateTimeChanged(val)),
           ),
           CupertinoButton(
-            child: Text('Salva'),
+            child: Text(AppLocalizations.of(context)!.add),
             onPressed: () => widget.onPressed(),
           )
         ],

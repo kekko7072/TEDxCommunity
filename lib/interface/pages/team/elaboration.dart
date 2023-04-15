@@ -79,7 +79,7 @@ class _ElaborationState extends State<Elaboration> {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Center(
                         child: Text(
-                          'Selezionati',
+                          AppLocalizations.of(context)!.selected,
                           style: kPageSubtitleStyle.copyWith(
                             color: Style.textColor(context),
                           ),
@@ -112,7 +112,8 @@ class _ElaborationState extends State<Elaboration> {
                                           CupertinoColors.destructiveRed,
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons.clear_thick,
-                                      label: 'Rimuovi',
+                                      label:
+                                          AppLocalizations.of(context)!.remove,
                                       onPressed: (context) async =>
                                           await DatabaseSpeaker(
                                                   licenseId: licenseId,
@@ -121,7 +122,9 @@ class _ElaborationState extends State<Elaboration> {
                                               .updateProgress(
                                                   progress: Progress.backlog)
                                               .then((_) {
-                                        EasyLoading.showToast('Speaker rimosso',
+                                        EasyLoading.showToast(
+                                            AppLocalizations.of(context)!
+                                                .removed,
                                             duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
@@ -141,7 +144,8 @@ class _ElaborationState extends State<Elaboration> {
                                         foregroundColor: Style.whiteColor,
                                         icon: CupertinoIcons
                                             .person_crop_circle_badge_plus,
-                                        label: 'Assegna speaker',
+                                        label: AppLocalizations.of(context)!
+                                            .assignTeam,
                                         onPressed: (context) async =>
                                             await showCupertinoDialog(
                                           barrierDismissible: true,
@@ -161,7 +165,8 @@ class _ElaborationState extends State<Elaboration> {
                                           CupertinoColors.activeGreen,
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons.check_mark,
-                                      label: 'Contatta',
+                                      label:
+                                          AppLocalizations.of(context)!.contact,
                                       onPressed: (context) async =>
                                           await showCupertinoDialog(
                                         barrierDismissible: true,
@@ -205,7 +210,7 @@ class _ElaborationState extends State<Elaboration> {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Center(
                         child: Text(
-                          'Contattati',
+                          AppLocalizations.of(context)!.contacted,
                           style: kPageSubtitleStyle.copyWith(
                             color: Style.textColor(context),
                           ),
@@ -241,7 +246,8 @@ class _ElaborationState extends State<Elaboration> {
                                           CupertinoColors.destructiveRed,
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons.clear_thick,
-                                      label: 'Rifiutato',
+                                      label: AppLocalizations.of(context)!
+                                          .rejected,
                                       onPressed: (context) async =>
                                           await DatabaseSpeaker(
                                                   licenseId: licenseId,
@@ -251,7 +257,8 @@ class _ElaborationState extends State<Elaboration> {
                                                   progress: Progress.rejected)
                                               .then((_) {
                                         EasyLoading.showToast(
-                                            'Speaker rifiutato',
+                                            AppLocalizations.of(context)!
+                                                .rejected,
                                             duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
@@ -271,7 +278,8 @@ class _ElaborationState extends State<Elaboration> {
                                         foregroundColor: Style.whiteColor,
                                         icon: CupertinoIcons
                                             .person_crop_circle_badge_plus,
-                                        label: 'Assegna speaker',
+                                        label: AppLocalizations.of(context)!
+                                            .assignTeam,
                                         onPressed: (context) async =>
                                             await showCupertinoDialog(
                                           barrierDismissible: true,
@@ -321,7 +329,7 @@ class _ElaborationState extends State<Elaboration> {
                                               builder: (context) {
                                                 return CupertinoAlertDialog(
                                                   title: Text(
-                                                    'Errore',
+                                                    'Error',
                                                   ),
                                                   content: Column(
                                                     children: [
@@ -401,7 +409,7 @@ class _ElaborationState extends State<Elaboration> {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Center(
                         child: Text(
-                          'Rifiutati',
+                          AppLocalizations.of(context)!.rejected,
                           style: kPageSubtitleStyle.copyWith(
                             color: Style.textColor(context),
                           ),
@@ -434,7 +442,8 @@ class _ElaborationState extends State<Elaboration> {
                                           CupertinoColors.destructiveRed,
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons.clear_thick,
-                                      label: 'Rimuovi',
+                                      label:
+                                          AppLocalizations.of(context)!.remove,
                                       onPressed: (context) async =>
                                           await DatabaseSpeaker(
                                                   licenseId: licenseId,
@@ -442,7 +451,9 @@ class _ElaborationState extends State<Elaboration> {
                                                       .id)
                                               .removeFromThisEvent()
                                               .then((_) {
-                                        EasyLoading.showToast('Speaker rimosso',
+                                        EasyLoading.showToast(
+                                            AppLocalizations.of(context)!
+                                                .removed,
                                             duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,
@@ -461,7 +472,8 @@ class _ElaborationState extends State<Elaboration> {
                                           CupertinoColors.activeGreen,
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons.arrow_up,
-                                      label: 'Recupera',
+                                      label:
+                                          AppLocalizations.of(context)!.recover,
                                       onPressed: (context) async =>
                                           await DatabaseSpeaker(
                                                   licenseId: licenseId,
@@ -471,7 +483,8 @@ class _ElaborationState extends State<Elaboration> {
                                                   progress: Progress.contacted)
                                               .then((_) {
                                         EasyLoading.showToast(
-                                            'Speaker recuperato',
+                                            AppLocalizations.of(context)!
+                                                .recovered,
                                             duration: const Duration(
                                                 milliseconds: kDurationToast),
                                             dismissOnTap: true,

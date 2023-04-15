@@ -4,15 +4,37 @@
 
   "list": "List",
   "elaboration": "Elaboration",
+  "selected": "Selected",
   "confirmed": "Confirmed",
+  "contacted": "Contacted",
+  "rejected": "Rejected",
   "bags": "Bags",
 
+  "login": "Login",
+  "noAccount": "Create an account.",
+
+  "add": "Add",
+  "create": "Create",
   "edit": "Edit",
   "delete": "Delete",
   "deleted": "Deleted",
   "remove": "Remove",
+  "removed": "Removed",
+  "recover": "Recover",
+  "recovered": "Recovered",
+  "approve": "Approve",
+  "approved": "Approved",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "assign": "Assign",
+  "assigned": "Assigned",
+  "assignTeam": "Assign team",
+  "assignCoach": "Assign coach",
+  "contact": "Contact",
+
+  "speaker": "Speaker",
+  "speakerAdd": "Add speaker"
+
 
 
 }

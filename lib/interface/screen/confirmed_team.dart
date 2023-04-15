@@ -241,7 +241,8 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             showButton: true,
             dateIsSelected: dateSelected,
             linkVideoCall: widget.speaker.link,
-            buttonText: dateSelected ? 'Modifica' : 'Seleziona',
+            buttonText:
+                dateSelected ? AppLocalizations.of(context)!.edit : 'Seleziona',
             buttonAction: () => selectCoachingDate(numberDescription: 1),
             content: dateSelected
                 ? 'Il primo incontro si svolgerà alle  $coachingStepDate .'

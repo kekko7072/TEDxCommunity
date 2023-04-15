@@ -1,15 +1,36 @@
 {
   "list": "Lista",
   "elaboration": "Elaborazione",
+  "selected": "Selezionati",
   "confirmed": "Confermati",
+  "contacted": "Contattati",
+  "rejected": "Rifiutati",
   "bags": "Bags",
 
+  "login": "Accedi",
+  "noAccount": "Create an account.",
+
+  "add": "Aggiungi",
+  "create": "Crea",
   "edit": "Modifica",
   "delete": "Elimina",
   "deleted": "Eliminato",
   "remove": "Rimuovi",
+  "removed": "Rimosso",
+  "recover": "Recupera",
+  "recovered": "Recuperato",
+  "approve": "Approva",
+  "approved": "Approvato",
   "cancel": "Annulla",
-  "save": "Salva"
+  "save": "Salva",
+  "assign": "Assegna",
+  "assigned": "Assegnato",
+  "assignTeam": "Assegna team",
+  "assignCoach": "Assegna coach",
+  "contact": "Contatta",
+
+  "speaker": "Speaker",
+  "speakerAdd": "Aggiungi speaker"
 
 
 

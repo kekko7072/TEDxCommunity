@@ -145,13 +145,13 @@ class VocalAssistantState extends State<VocalAssistant> {
           child: Text(AppLocalizations.of(context)!.cancel),
         ),
         CupertinoDialogAction(
-          child: Text('Salva'),
           isDefaultAction: true,
           onPressed: () {
             _stopListening();
             widget.onCompleted(_lastWords);
             Navigator.of(context).pop();
           },
+          child: Text(AppLocalizations.of(context)!.save),
         )
       ],
     );
@@ -220,7 +220,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 40.0, horizontal: 40),
                       child: CupertinoButton.filled(
-                          child: Text('Fine'),
+                          child: Text(AppLocalizations.of(context)!.cancel),
                           onPressed: () => Navigator.of(context).pop()),
                     ),
                   );

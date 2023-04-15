@@ -326,13 +326,13 @@ Step buildCoachingStep({
             style: kSpeakerDescriptionStyle,
           ),
           if (dateIsSelected) ...[
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CupertinoButton.filled(
               onPressed: () async {
                 if (linkVideoCall != null) {
                   if (await canLaunchUrlString(linkVideoCall)) {
                     EasyLoading.showToast('Apro videochiamata',
-                        duration: Duration(seconds: 2),
+                        duration: const Duration(seconds: 2),
                         dismissOnTap: true,
                         toastPosition: EasyLoadingToastPosition.bottom);
                     await launchUrlString(
@@ -410,7 +410,7 @@ Step buildCoachingStep({
                     Navigator.of(context).pop();
                   } else {
                     EasyLoading.showToast('Aggiungi un link per procedere',
-                        duration: Duration(seconds: 3),
+                        duration: const Duration(seconds: 3),
                         dismissOnTap: true,
                         toastPosition: EasyLoadingToastPosition.bottom);
                   }

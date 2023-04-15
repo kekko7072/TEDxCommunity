@@ -74,14 +74,15 @@ class _ConfirmedState extends State<Confirmed> {
                                         CupertinoColors.destructiveRed,
                                     foregroundColor: Style.whiteColor,
                                     icon: CupertinoIcons.clear_thick,
-                                    label: 'Rimuovi',
+                                    label: AppLocalizations.of(context)!.remove,
                                     onPressed: (context) async =>
                                         DatabaseSpeaker(
                                                 licenseId: licenseId,
                                                 id: speakersConfirmed[index].id)
                                             .removeFromThisEvent()
                                             .then((_) {
-                                      EasyLoading.showToast('Speaker rimosso',
+                                      EasyLoading.showToast(
+                                          AppLocalizations.of(context)!.removed,
                                           duration: const Duration(
                                               milliseconds: kDurationToast),
                                           dismissOnTap: true,
@@ -100,7 +101,8 @@ class _ConfirmedState extends State<Confirmed> {
                                       foregroundColor: Style.whiteColor,
                                       icon: CupertinoIcons
                                           .person_crop_circle_badge_plus,
-                                      label: 'Assegna speaker',
+                                      label: AppLocalizations.of(context)!
+                                          .assignTeam,
                                       onPressed: (context) async =>
                                           await showCupertinoDialog(
                                         barrierDismissible: true,
@@ -121,7 +123,8 @@ class _ConfirmedState extends State<Confirmed> {
                                     foregroundColor: Style.whiteColor,
                                     icon: CupertinoIcons
                                         .person_crop_circle_badge_plus,
-                                    label: 'Assegna coach',
+                                    label: AppLocalizations.of(context)!
+                                        .assignCoach,
                                     onPressed: (context) async =>
                                         await showCupertinoDialog(
                                       barrierDismissible: true,

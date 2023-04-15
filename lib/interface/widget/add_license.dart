@@ -56,7 +56,7 @@ class _AddLicenseState extends State<AddLicense> {
             enableSuggestions: true,
             controller: licenseNameController,
             textCapitalization: TextCapitalization.words,
-            placeholder: 'Nome (es. TEDxCortina)',
+            placeholder: 'Name (es. TEDxCortina)',
             keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 10),

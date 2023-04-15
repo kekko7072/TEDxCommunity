@@ -69,7 +69,8 @@ class LongListState extends State<LongList> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CupertinoButton.filled(
-                                  child: const Text('Aggiungi Speaker'),
+                                  child: Text(
+                                      AppLocalizations.of(context)!.speakerAdd),
                                   onPressed: () => showCupertinoDialog(
                                         context: context,
                                         barrierDismissible: true,
@@ -114,7 +115,8 @@ class LongListState extends State<LongList> {
                                                     .removeFromThisEvent()
                                                     .then((_) {
                                               EasyLoading.showToast(
-                                                  'Speaker rimosso',
+                                                  AppLocalizations.of(context)!
+                                                      .removed,
                                                   duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),
@@ -135,7 +137,8 @@ class LongListState extends State<LongList> {
                                             foregroundColor: Style.whiteColor,
                                             icon: CupertinoIcons
                                                 .person_crop_circle_badge_plus,
-                                            label: 'Assegna speaker',
+                                            label: AppLocalizations.of(context)!
+                                                .assignTeam,
                                             onPressed: (context) =>
                                                 showCupertinoDialog(
                                               barrierDismissible: true,
@@ -154,7 +157,8 @@ class LongListState extends State<LongList> {
                                                 CupertinoColors.activeGreen,
                                             foregroundColor: Style.whiteColor,
                                             icon: CupertinoIcons.check_mark,
-                                            label: 'Approva',
+                                            label: AppLocalizations.of(context)!
+                                                .approve,
                                             onPressed: (context) async =>
                                                 await DatabaseSpeaker(
                                                         licenseId: licenseId,
@@ -166,7 +170,8 @@ class LongListState extends State<LongList> {
                                                             Progress.selected)
                                                     .then((_) {
                                               EasyLoading.showToast(
-                                                  'Speaker approvato',
+                                                  AppLocalizations.of(context)!
+                                                      .approved,
                                                   duration: const Duration(
                                                       milliseconds:
                                                           kDurationToast),

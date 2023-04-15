@@ -281,13 +281,13 @@ class _AddSpeakerState extends State<AddSpeaker> {
                       Navigator.of(context).pop();
                     } else {
                       await EasyLoading.showToast('Speaker già presente',
-                          duration: Duration(seconds: 2),
+                          duration: const Duration(seconds: 2),
                           dismissOnTap: true,
                           toastPosition: EasyLoadingToastPosition.bottom);
                     }
                   },
                   child: Text(
-                    'Aggiungi',
+                    AppLocalizations.of(context)!.add,
                     style: const TextStyle(color: CupertinoColors.activeBlue),
                   )),
             ],

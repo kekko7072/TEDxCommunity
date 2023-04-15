@@ -93,9 +93,9 @@ class _AddBagState extends State<AddBag> {
                             id: id, name: name, products: products, units: 0))
                         .whenComplete(() => Navigator.of(context).pop());
                   },
-                  child: const Text(
-                    'Aggiungi',
-                    style: TextStyle(color: CupertinoColors.activeBlue),
+                  child: Text(
+                    AppLocalizations.of(context)!.add,
+                    style: const TextStyle(color: CupertinoColors.activeBlue),
                   )),
             ],
           );
