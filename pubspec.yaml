@@ -1,5 +1,5 @@
 name: tedxcommunity
-description: TEDxCommunity app for organising events.
+description: The TEDxCommunity app is an open-source and free-to-use tool designed to help organize a TEDx event.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

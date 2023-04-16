@@ -14,6 +14,8 @@ class AddSpeaker extends StatefulWidget {
 }
 
 class _AddSpeakerState extends State<AddSpeaker> {
+  String licenseId = "NO_ID";
+
   final String id = const Uuid().v1();
 
   TextEditingController nameController = TextEditingController();
@@ -27,7 +29,6 @@ class _AddSpeakerState extends State<AddSpeaker> {
   bool switchJustTEDx = false;
   String justTEDx = '';
 
-  String licenseId = "NO_ID";
   @override
   void initState() {
     super.initState();
@@ -153,7 +154,34 @@ class _AddSpeakerState extends State<AddSpeaker> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Public speaking'),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(AppLocalizations.of(context)!.publicSpeaking),
+                          const SizedBox(width: 10),
+                          const Icon(Icons.info)
+                        ],
+                      ),
+                      onTap: () => showCupertinoDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (_) => CupertinoAlertDialog(
+                                content: Text(AppLocalizations.of(context)!
+                                    .publicSpeakingDescription),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.cancel,
+                                        style: const TextStyle(
+                                            color: CupertinoColors.activeBlue),
+                                      )),
+                                ],
+                              )),
+                    ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -168,12 +196,10 @@ class _AddSpeakerState extends State<AddSpeaker> {
                             onPressed: () async {
                               if (ratePublicSpeaking > 0) {
                                 setState(() => --ratePublicSpeaking);
-
-                                print(ratePublicSpeaking);
                               } else {
                                 await EasyLoading.showToast(
                                     '0 è il valore minimo per il public speaking',
-                                    duration: Duration(seconds: 2),
+                                    duration: const Duration(seconds: 2),
                                     dismissOnTap: true,
                                     toastPosition:
                                         EasyLoadingToastPosition.bottom);
@@ -191,8 +217,6 @@ class _AddSpeakerState extends State<AddSpeaker> {
                             onPressed: () async {
                               if (ratePublicSpeaking < 5) {
                                 setState(() => ++ratePublicSpeaking);
-
-                                print(ratePublicSpeaking);
                               } else {
                                 await EasyLoading.showToast(
                                     '5 è il valore massimo per il public speaking',
@@ -271,14 +295,15 @@ class _AddSpeakerState extends State<AddSpeaker> {
                         !snapshot.hasData) {
                       await DatabaseSpeaker(licenseId: licenseId, id: id)
                           .addSpeaker(
-                        uidCreator: widget.uid,
-                        name: nameController.text,
-                        email: TextLabels().formatEmail(emailController.text),
-                        link: linkController.text,
-                        description:
-                            '${TextLabels.kAddSpeaker0}${professionController.text}\n${TextLabels.kAddSpeaker1}${topicController.text}\n${TextLabels.kAddSpeaker2}$ratePublicSpeaking\n$justTEDx\n${TextLabels.kAddSpeaker4}${bioController.text}',
-                      );
-                      Navigator.of(context).pop();
+                            uidCreator: widget.uid,
+                            name: nameController.text,
+                            email:
+                                TextLabels().formatEmail(emailController.text),
+                            link: linkController.text,
+                            description:
+                                '${TextLabels.kAddSpeaker0}${professionController.text}\n${TextLabels.kAddSpeaker1}${topicController.text}\n${TextLabels.kAddSpeaker2}$ratePublicSpeaking\n$justTEDx\n${TextLabels.kAddSpeaker4}${bioController.text}',
+                          )
+                          .whenComplete(() => Navigator.of(context).pop());
                     } else {
                       await EasyLoading.showToast('Speaker già presente',
                           duration: const Duration(seconds: 2),

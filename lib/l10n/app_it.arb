@@ -35,6 +35,9 @@
 
   "speaker": "Speaker",
   "speakerAdd": "Aggiungi speaker",
+  "publicSpeaking": "Public speaking",
+  "publicSpeakingDescription": "Dai un voto da 1 a 5 al public speaking dello speaker. La scala va da 1 a 5 dove 1 significa che in pubblico è impacciato, mentre 5 vuol dire che è un ottimo oratore. Utilizza materiale come video di interviste per valutare lo speaker.",
+
 
   "createAccountAdmin": "Crea account admin",
 
