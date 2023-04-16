@@ -255,13 +255,26 @@ class MenuTeamState extends State<MenuTeam> {
                   scrollController: controller,
                   items: [
                     SidebarItem(
-                      label: Text(
-                        AppLocalizations.of(context)!.appName,
-                        style: const TextStyle(
-                          color: CupertinoColors.activeBlue,
-                          fontSize: 15,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
+                      label: GestureDetector(
+                        onTap: () => userData != null && license != null
+                            ? showCupertinoDialog(
+                                barrierDismissible: true,
+                                context: context,
+                                builder: (context) {
+                                  return InfoAppTeam(
+                                      license: license, userData: userData);
+                                },
+                              )
+                            : {},
+                        child: Text(
+                          license?.licenseName ??
+                              AppLocalizations.of(context)!.appName,
+                          style: const TextStyle(
+                            color: CupertinoColors.activeBlue,
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       selectedColor: Colors.transparent,

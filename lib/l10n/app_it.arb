@@ -48,10 +48,15 @@
 
   "createAccountAdmin": "Crea account admin",
 
-  "software": "Programma",
+  "settings": "Impostazioni",
   "licenseId": "ID licenza",
   "userRegistration": "Registrazione utenti",
   "editTeamRoles": "Modifica ruoli team",
+  "software": "Software",
+  "name": "Nome",
+  "version": "Versione",
+  "sourceCode": "Codice sorgente",
+  "credits": "Crediti",
   "developedWithLoveBy": "Sviluppata con ♥️ da",
 
 

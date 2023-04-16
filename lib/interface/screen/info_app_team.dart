@@ -80,9 +80,9 @@ class InfoAppTeamState extends State<InfoAppTeam> {
             },
             child: CupertinoPageScaffold(
               resizeToAvoidBottomInset: false,
-              navigationBar: const CupertinoNavigationBar(
+              navigationBar: CupertinoNavigationBar(
                 automaticallyImplyLeading: false,
-                middle: Text('Impostazioni'),
+                middle: Text(AppLocalizations.of(context)!.settings),
               ),
               child: StreamBuilder<License>(
                   stream: DatabaseLicense(widget.license.id).stream,
@@ -96,16 +96,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
 
                       return CupertinoSettings(
                         items: <Widget>[
-                          CSHeader(AppLocalizations.of(context)!.software),
-                          CSControl(
-                            nameWidget:
-                                Text(AppLocalizations.of(context)!.appName),
-                            contentWidget: Text(
-                              version,
-                              style: kSettingsDescriptionStyle,
-                            ),
-                            addPaddingToBorder: false,
-                          ),
+                          CSHeader(AppLocalizations.of(context)!.settings),
                           CSControl(
                             nameWidget:
                                 Text(AppLocalizations.of(context)!.licenseId),
@@ -149,10 +140,10 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                 },
                               ),
                             ),
-                            CSButton(
-                                CSButtonType.DEFAULT,
-                                AppLocalizations.of(context)!.editTeamRoles,
-                                () => showCupertinoModalBottomSheet(
+                            CSLink(
+                                title:
+                                    AppLocalizations.of(context)!.editTeamRoles,
+                                onPressed: () => showCupertinoModalBottomSheet(
                                       backgroundColor:
                                           Style.backgroundColor(context),
                                       context: context,
@@ -160,9 +151,6 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                         return const EditTeamRole();
                                       },
                                     )),
-                          ],
-                          if (widget.userData.role == Role.admin) ...[
-                            const CSHeader('IMPOSTAZIONI'),
                             CSControl(
                               nameWidget: const Text('Data evento'),
                               contentWidget: TextButton(
@@ -300,6 +288,35 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                             addPaddingToBorder: false,
                           ),
+                          CSHeader(AppLocalizations.of(context)!.software),
+                          CSControl(
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.name),
+                            contentWidget: Text(
+                              AppLocalizations.of(context)!.appName,
+                              style: kSettingsDescriptionStyle,
+                            ),
+                            addPaddingToBorder: false,
+                          ),
+                          CSControl(
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.version),
+                            contentWidget: Text(
+                              version,
+                              style: kSettingsDescriptionStyle,
+                            ),
+                            addPaddingToBorder: false,
+                          ),
+                          CSLink(
+                              title: AppLocalizations.of(context)!.sourceCode,
+                              onPressed: () =>
+                                  launchUrlString(kGitHubSourceCodeLink)),
+                          CSLink(
+                              title: AppLocalizations.of(context)!.credits,
+                              onPressed: () =>
+                                  launchUrlString(kGitHubCreditsLink)),
+                          CSDescription(
+                              '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}.'),
                           const CSHeader(''),
                           CSButton(
                             CSButtonType.DEFAULT_CENTER,
@@ -426,14 +443,6 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   () => Navigator.of(context).pop());
                             },
                           ),
-                          const CSSpacer(),
-                          CSButton(
-                              CSButtonType.DEFAULT_CENTER,
-                              'Source code',
-                              () => launchUrlString(
-                                  'https://github.com/kekko7072/tedxcommunity#readme')),
-                          CSDescription(
-                              '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}.'),
                           const CSSpacer(),
                         ],
                       );
