@@ -15,6 +15,7 @@ class EndCoachingOrManagement extends StatefulWidget {
 
 class _EndCoachingOrManagementState extends State<EndCoachingOrManagement> {
   String licenseId = "NO_ID";
+
   @override
   void initState() {
     super.initState();
@@ -93,16 +94,17 @@ class ManagementData extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Card(
             elevation: 0,
             color: Colors.transparent,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               side: BorderSide(color: CupertinoColors.activeBlue, width: 1.0),
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -207,9 +209,7 @@ class ManagementData extends StatelessWidget {
                         throw 'Could not launch the url';
                       }
                     },
-                    child: Text(
-                      "Scarica liberatoria",
-                    ),
+                    child: Text("Scarica liberatoria"),
                   )
                 ],
               ),
@@ -217,16 +217,17 @@ class ManagementData extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
           child: Card(
             elevation: 0,
             color: Colors.transparent,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               side: BorderSide(color: CupertinoColors.activeBlue, width: 1.0),
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -299,7 +300,6 @@ Step buildCoachingStep({
   StepState state = StepState.indexed,
   required String content,
   required bool showButton,
-  required bool showGoogleSignInButton,
   required bool dateIsSelected,
   String? linkVideoCall,
   String? buttonText,
@@ -307,8 +307,6 @@ Step buildCoachingStep({
 }) {
   String linkVideoCall0 = "";
   bool selectedIndexValue = true;
-
-  ///TODO va sistemata la modifica del link dello spekaer e sistemata meglio l'aggiunta del link
 
   return Step(
     title: Text(title),
@@ -340,8 +338,8 @@ Step buildCoachingStep({
                     );
                   }
                 } else {
-                  EasyLoading.showToast('Errore',
-                      duration: Duration(seconds: 2),
+                  EasyLoading.showToast('Error',
+                      duration: const Duration(seconds: 2),
                       dismissOnTap: true,
                       toastPosition: EasyLoadingToastPosition.bottom);
                 }
@@ -361,7 +359,7 @@ Step buildCoachingStep({
               ),
             ),
           ] else ...[
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CupertinoSegmentedControl(
               borderColor: Style.primaryColor,
               selectedColor: Style.primaryColor,
@@ -437,7 +435,7 @@ Step buildCoachingStep({
               )
             ],
           ],
-          if (!showGoogleSignInButton && showButton) ...[
+          if (showButton) ...[
             CupertinoButton(
               onPressed: buttonAction!,
               child: Text(

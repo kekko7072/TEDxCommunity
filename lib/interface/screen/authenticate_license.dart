@@ -22,6 +22,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
 
   ///Create license
   String newLicenseId = const Uuid().v1().substring(0, 5).toUpperCase();
+
   @override
   void initState() {
     super.initState();

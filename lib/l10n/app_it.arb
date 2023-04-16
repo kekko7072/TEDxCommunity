@@ -1,6 +1,9 @@
 {
   "list": "Lista",
   "elaboration": "Elaborazione",
+  "select": "Seleziona",
+  "selectTeam": "Seleziona team",
+  "selectCoach": "Seleziona coach",
   "selected": "Selezionati",
   "confirmed": "Confermati",
   "contacted": "Contattati",
@@ -10,7 +13,7 @@
   "login": "Accedi",
   "createHere": "Crea qui." ,
   "noAccount": "Non hai un account? ",
-  "noLicense": "Non hai una license? ",
+  "noLicense": "Non hai una licenza? ",
 
 
 
@@ -32,6 +35,9 @@
   "assignTeam": "Assegna team",
   "assignCoach": "Assegna coach",
   "contact": "Contatta",
+  "completed": "Completato",
+  "inProgress": "In corso",
+  "toDo": "Da fare",
 
   "speaker": "Speaker",
   "speakerAdd": "Aggiungi speaker",
@@ -44,6 +50,14 @@
   "software": "Programma",
   "licenseId": "ID licenza",
   "userRegistration": "Registrazione utenti",
-  "editTeamRoles": "Modifica ruoli team"
+  "editTeamRoles": "Modifica ruoli team",
+
+  "addBag": "Aggiungi bag",
+  "insertNameTypeBag": "Inserisci nome tiplologia bag",
+  "typeBag": "Tipologia bag",
+  "insertProductInside": "Inserisci prodotti all'interno",
+  "nameProduct": "Nome prodotto",
+  "quantity": "Quantità",
+  "products": "Prodotti"
 
 }

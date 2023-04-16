@@ -27,8 +27,6 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
   String coachingStepDate = '';
   DateTime coachingDate = DateTime.now().toUtc().toLocal();
 
-  bool showGoogleSignIn = true;
-
   String licenseId = "";
   @override
   void initState() {
@@ -45,7 +43,6 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
 
       if (widget.speaker.coachingStepDate.isNotEmpty) {
         dateSelected = true;
-        showGoogleSignIn = false;
       }
     });
   }
@@ -230,20 +227,20 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             speakerID: widget.speaker.id,
             title: StepService.loadStepCoachingTitle(1),
             subtitle: currentCoachingStep > 0
-                ? 'Completato'
+                ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 0
-                    ? 'In corso'
-                    : 'Da fare',
+                    ? AppLocalizations.of(context)!.inProgress
+                    : AppLocalizations.of(context)!.toDo,
             state: currentCoachingStep >= 0
                 ? StepState.complete
                 : StepState.disabled,
-            showGoogleSignInButton: showGoogleSignIn,
             showButton: true,
             dateIsSelected: dateSelected,
             linkVideoCall: widget.speaker.link,
-            buttonText:
-                dateSelected ? AppLocalizations.of(context)!.edit : 'Seleziona',
-            buttonAction: () => selectCoachingDate(numberDescription: 1),
+            buttonText: dateSelected
+                ? AppLocalizations.of(context)!.edit
+                : AppLocalizations.of(context)!.select,
+            buttonAction: () => {},
             content: dateSelected
                 ? 'Il primo incontro si svolgerà alle  $coachingStepDate .'
                 : 'Imposta la data per il primo incontro.'),
@@ -253,14 +250,13 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             speakerID: widget.speaker.id,
             title: StepService.loadStepCoachingTitle(2),
             subtitle: currentCoachingStep > 1
-                ? 'Completato'
+                ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 1
-                    ? 'In corso'
-                    : 'Da fare',
+                    ? AppLocalizations.of(context)!.inProgress
+                    : AppLocalizations.of(context)!.toDo,
             state: currentCoachingStep >= 1
                 ? StepState.complete
                 : StepState.disabled,
-            showGoogleSignInButton: false,
             dateIsSelected: false,
             showButton: widget.speaker.talkDownloadLink! == '' ? false : true,
             buttonText: 'Scarica',
@@ -285,19 +281,20 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             speakerID: widget.speaker.id,
             title: StepService.loadStepCoachingTitle(3),
             subtitle: currentCoachingStep > 2
-                ? 'Completato'
+                ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 2
-                    ? 'In corso'
-                    : 'Da fare',
+                    ? AppLocalizations.of(context)!.inProgress
+                    : AppLocalizations.of(context)!.toDo,
             state: currentCoachingStep >= 2
                 ? StepState.complete
                 : StepState.disabled,
-            showGoogleSignInButton: showGoogleSignIn,
             showButton: true,
             dateIsSelected: dateSelected,
             linkVideoCall: widget.speaker.link,
-            buttonText: dateSelected ? 'Modifica' : 'Seleziona',
-            buttonAction: () => selectCoachingDate(numberDescription: 2),
+            buttonText: dateSelected
+                ? AppLocalizations.of(context)!.edit
+                : AppLocalizations.of(context)!.select,
+            buttonAction: () => {},
             content: dateSelected
                 ? 'L\'incontro si svolgerà alle  $coachingStepDate .'
                 : 'Imposta la data dell\'incontro.'),
@@ -307,19 +304,20 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
           speakerID: widget.speaker.id,
           title: StepService.loadStepCoachingTitle(4),
           subtitle: currentCoachingStep > 3
-              ? 'Completato'
+              ? AppLocalizations.of(context)!.completed
               : currentCoachingStep == 3
-                  ? 'In corso'
-                  : 'Da fare',
+                  ? AppLocalizations.of(context)!.inProgress
+                  : AppLocalizations.of(context)!.toDo,
           state: currentCoachingStep >= 3
               ? StepState.complete
               : StepState.disabled,
-          showGoogleSignInButton: showGoogleSignIn,
           showButton: true,
           dateIsSelected: dateSelected,
           linkVideoCall: widget.speaker.link,
-          buttonText: dateSelected ? 'Modifica' : 'Seleziona',
-          buttonAction: () => selectCoachingDate(numberDescription: 3),
+          buttonText: dateSelected
+              ? AppLocalizations.of(context)!.edit
+              : AppLocalizations.of(context)!.select,
+          buttonAction: () => {},
           content: dateSelected
               ? 'L\'incontro di revisione si svolgerà alle  $coachingStepDate .'
               : 'Imposta la data per l\'incontro di revisione.',
@@ -359,10 +357,10 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
         buildManagementStep(
             title: StepService.loadStepManagementText(1),
             subtitle: currentManagementStep > 0
-                ? 'Completato'
+                ? AppLocalizations.of(context)!.completed
                 : currentManagementStep == 0
-                    ? 'In corso'
-                    : 'Da fare',
+                    ? AppLocalizations.of(context)!.inProgress
+                    : AppLocalizations.of(context)!.toDo,
             state: currentManagementStep >= 0
                 ? StepState.complete
                 : StepState.disabled,
@@ -371,10 +369,10 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
         buildManagementStep(
             title: StepService.loadStepManagementText(2),
             subtitle: currentManagementStep > 1
-                ? 'Completato'
+                ? AppLocalizations.of(context)!.completed
                 : currentManagementStep == 1
-                    ? 'In corso'
-                    : 'Da fare',
+                    ? AppLocalizations.of(context)!.inProgress
+                    : AppLocalizations.of(context)!.toDo,
             state: currentManagementStep >= 1
                 ? StepState.complete
                 : StepState.disabled,
@@ -382,190 +380,5 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 'Il modulo con le le informazioni sulla logistica è stato inviato il giorno ${widget.speaker.managementStepDate.substring(0, 10)} .'),
       ],
     );
-  }
-
-  Future<void> selectCoachingDate({required int numberDescription}) async {
-    if (widget.userData.role != Role.volunteer &&
-            widget.speaker.email.isNotEmpty ||
-        widget.userData.uid == widget.speaker.uidCreator &&
-            widget.speaker.email.isNotEmpty) {
-      /* List<String> ccEmailList = [];
-      if (await CalendarService().loadCalendarApi()) {
-        setState(() {
-          showGoogleSignIn = false;
-        });
-        bool selectedName = false;
-        showCupertinoModalBottomSheet(
-          context: context,
-          isDismissible: true,
-          builder: (_) => StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) =>
-                selectedName
-                    ? DateTimePickerModal(
-                        pickerType: CupertinoDatePickerMode.dateAndTime,
-                        onDateTimeChanged: (val) {
-                          setState(() {
-                            coachingDate = val;
-                          });
-                        },
-                        onPressed: () async {
-                          List<cal.EventAttendee> listAttendee = [
-                            cal.EventAttendee(
-                              displayName: widget.speaker.name,
-                              email: widget.speaker.email,
-                            ),
-                          ];
-
-                          for (var i = 0; i < ccEmailList.length; i++) {
-                            listAttendee
-                                .add(cal.EventAttendee(email: ccEmailList[i]));
-                          }
-
-                          await CalendarService().insert(
-                            userData: widget.userData,
-                            edit: dateSelected,
-                            speaker: widget.speaker,
-                            title:
-                                'TEDxCortina - coaching con ${widget.speaker.name}',
-                            description:
-                                StepService.loadStepCoachingDescription(
-                                    numberDescription),
-                            attendeeEmailList: listAttendee,
-                            startTime: coachingDate,
-                          );
-
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                        },
-                      )
-                    : SafeArea(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(height: 10),
-                            Text('Seleziona team da invitare',
-                                style: CupertinoTheme.of(context)
-                                    .textTheme
-                                    .navTitleTextStyle),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Container(
-                                height: 150,
-                                child: StreamBuilder<
-                                        QuerySnapshot<Map<String, dynamic>>>(
-                                    stream: FirebaseFirestore.instance
-                                        .collection('users')
-                                        .where('email',
-                                            isNotEqualTo: widget.userData.email)
-                                        .snapshots(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<
-                                                QuerySnapshot<
-                                                    Map<String, dynamic>>>
-                                            snapshot) {
-                                      if (snapshot.hasData) {
-                                        List<UserData> staffList =
-                                            DatabaseUser().userListFromSnapshot(
-                                                snapshot.data!);
-                                        if (widget.speaker.uidCreator !=
-                                                widget.userData.uid &&
-                                            widget.speaker.uidCreator
-                                                .isNotEmpty) {
-                                          ccEmailList.add(staffList
-                                              .where((UserData element) =>
-                                                  widget.speaker.uidCreator ==
-                                                  element.uid)
-                                              .first
-                                              .email);
-                                        }
-                                        return StatefulBuilder(
-                                          builder: (BuildContext context,
-                                                  StateSetter setState) =>
-                                              ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            itemCount: staffList.length,
-                                            itemBuilder: (context, index) {
-                                              return ListTile(
-                                                contentPadding: EdgeInsets.zero,
-                                                title: Text(
-                                                    '${staffList[index].name} ${staffList[index].surname}',
-                                                    style: TextStyle(
-                                                        color: Style.textColor(
-                                                            context))),
-                                                trailing: IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  icon: ccEmailList.contains(
-                                                          staffList[index]
-                                                              .email)
-                                                      ? Icon(
-                                                          CupertinoIcons
-                                                              .check_mark_circled_solid,
-                                                          color: CupertinoColors
-                                                              .activeBlue,
-                                                        )
-                                                      : Icon(
-                                                          CupertinoIcons
-                                                              .add_circled,
-                                                          color:
-                                                              Style.textColor(
-                                                                  context),
-                                                        ),
-                                                  onPressed: () {
-                                                    if (!ccEmailList.contains(
-                                                        staffList[index]
-                                                            .email)) {
-                                                      ccEmailList.add(
-                                                          staffList[index]
-                                                              .email);
-                                                    } else {
-                                                      ccEmailList.remove(
-                                                          staffList[index]
-                                                              .email);
-                                                    }
-                                                    setState(() {});
-                                                  },
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      } else {
-                                        return CupertinoActivityIndicator();
-                                      }
-                                    }),
-                              ),
-                            ),
-
-                            // Close the modal
-                            CupertinoButton(
-                              child: Text('Continua'),
-                              onPressed: () => {
-                                setState(() {
-                                  selectedName = true;
-                                })
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-          ),
-        );
-      } else {
-        EasyLoading.showToast(
-            'Per procedere devi per forza accedere con il tuo Account Google',
-            duration: Duration(seconds: 4),
-            dismissOnTap: false,
-            toastPosition: EasyLoadingToastPosition.bottom);
-      }*/
-    } else {
-      EasyLoading.showToast(
-          widget.userData.role == Role.volunteer &&
-                  widget.userData.uid != widget.speaker.uidCreator
-              ? 'I volontari non possono creare eventi'
-              : 'Email speaker non valida, modifica e riprova.',
-          duration: const Duration(seconds: 2),
-          dismissOnTap: true,
-          toastPosition: EasyLoadingToastPosition.bottom);
-    }
   }
 }

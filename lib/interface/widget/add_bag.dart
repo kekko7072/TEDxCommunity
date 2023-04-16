@@ -24,17 +24,17 @@ class _AddBagState extends State<AddBag> {
         stream: DatabaseSpeaker(licenseId: licenseId).allQuery,
         builder: (context, snapshot) {
           return CupertinoAlertDialog(
-            title: const Text('Aggiungi bag'),
+            title: Text(AppLocalizations.of(context)!.addBag),
             content: Column(
               children: [
-                const Text('Inserisci nome tiplologia'),
+                Text(AppLocalizations.of(context)!.insertNameTypeBag),
                 InputField(
-                  placeholder: 'Tipologia bag',
+                  placeholder: AppLocalizations.of(context)!.typeBag,
                   keyboardType: TextInputType.name,
                   onChanged: (val) => name = val,
                 ),
                 const SizedBox(height: 5),
-                const Text('Inserisci prodotti all\'interno'),
+                Text(AppLocalizations.of(context)!.insertProductInside),
                 Row(
                   children: [
                     Expanded(
@@ -50,7 +50,8 @@ class _AddBagState extends State<AddBag> {
                           ),
                           enableSuggestions: true,
                           textCapitalization: TextCapitalization.sentences,
-                          placeholder: 'Nome prodotto',
+                          placeholder:
+                              AppLocalizations.of(context)!.nameProduct,
                           keyboardType: TextInputType.name,
                         ),
                       ),

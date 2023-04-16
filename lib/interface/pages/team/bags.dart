@@ -139,7 +139,7 @@ class _BagsState extends State<Bags> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    'Quantità: ',
+                                                    '${AppLocalizations.of(context)!.quantity}: ',
                                                     style: TextStyle(
                                                       fontSize: 15,
                                                       fontWeight:
@@ -160,7 +160,7 @@ class _BagsState extends State<Bags> {
                                               ),
                                               const SizedBox(height: 5),
                                               Text(
-                                                'Prodotti: ',
+                                                '${AppLocalizations.of(context)!.products}: ',
                                                 style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500,

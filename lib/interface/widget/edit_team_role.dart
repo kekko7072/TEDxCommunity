@@ -170,9 +170,10 @@ class EditTeamRoleState extends State<EditTeamRole> {
 
                                               Navigator.of(context).pop();
                                             },
-                                            child: const Text(
-                                              'Modifica',
-                                              style: TextStyle(
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .edit,
+                                              style: const TextStyle(
                                                 color:
                                                     CupertinoColors.activeBlue,
                                               ),

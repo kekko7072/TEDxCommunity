@@ -51,8 +51,8 @@ class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
                   children: [
                     Text(
                       widget.isSelectCoach
-                          ? 'Seleziona coach'
-                          : 'Seleziona membro team',
+                          ? AppLocalizations.of(context)!.selectCoach
+                          : AppLocalizations.of(context)!.selectTeam,
                     ),
                     for (var i = 0; i < coachList.length; i++)
                       Text(

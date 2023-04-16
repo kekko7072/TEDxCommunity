@@ -301,83 +301,89 @@ class _ElaborationState extends State<Elaboration> {
                                         icon: CupertinoIcons.check_mark,
                                         label: AppLocalizations.of(context)!
                                             .confirmed,
-                                        onPressed: (context) async {
-                                          dynamic result = await auth
-                                              .registerSpeakerWithEmailAndPassword(
-                                                  licenseId: licenseId,
-                                                  uidCreator:
-                                                      speakersContacted[index]
-                                                          .uidCreator,
-                                                  accessID: speakerID,
-                                                  accessPassword: speakerPSSWD,
-                                                  progress: Progress.confirmed,
-                                                  name: speakersContacted[index]
-                                                      .name,
-                                                  email:
-                                                      speakersContacted[index]
-                                                          .email,
-                                                  link: speakersContacted[index]
-                                                      .link,
-                                                  description:
-                                                      speakersContacted[index]
-                                                          .description,
-                                                  context: context);
-                                          if (result != null) {
-                                            showCupertinoDialog(
-                                              context: context,
-                                              barrierDismissible: true,
-                                              builder: (context) {
-                                                return CupertinoAlertDialog(
-                                                  title: Text(
-                                                    'Error',
-                                                  ),
-                                                  content: Column(
-                                                    children: [
-                                                      Text(
-                                                          'Errore nella creazione del profilo dello Speaker'),
-                                                      Text(auth.error),
-                                                    ],
-                                                  ),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Text(
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .cancel,
-                                                          style: TextStyle(
-                                                              color: CupertinoColors
-                                                                  .destructiveRed),
-                                                        )),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          } else {
-                                            ///1. Elimina vecchio DOC speaker
-                                            await DatabaseSpeaker(
+                                        onPressed: (context) async => await auth
+                                                .registerSpeakerWithEmailAndPassword(
                                                     licenseId: licenseId,
-                                                    id: speakersContacted[index]
-                                                        .id)
-                                                .deleteSpeaker()
-                                                .then((_) {
-                                              ///2. Mostra conferma
-                                              EasyLoading.showToast(
-                                                  AppLocalizations.of(context)!
-                                                      .confirmed,
-                                                  duration: const Duration(
-                                                      milliseconds:
-                                                          kDurationToast),
-                                                  dismissOnTap: true,
-                                                  toastPosition:
-                                                      EasyLoadingToastPosition
-                                                          .bottom);
-                                            });
-                                          }
-                                        })
+                                                    uidCreator:
+                                                        speakersContacted[index]
+                                                            .uidCreator,
+                                                    accessID: speakerID,
+                                                    accessPassword:
+                                                        speakerPSSWD,
+                                                    progress:
+                                                        Progress.confirmed,
+                                                    name:
+                                                        speakersContacted[index]
+                                                            .name,
+                                                    email:
+                                                        speakersContacted[index]
+                                                            .email,
+                                                    link:
+                                                        speakersContacted[index]
+                                                            .link,
+                                                    description:
+                                                        speakersContacted[index]
+                                                            .description,
+                                                    context: context)
+                                                .then((result) async {
+                                              if (result != null) {
+                                                showCupertinoDialog(
+                                                  context: context,
+                                                  barrierDismissible: true,
+                                                  builder: (context) {
+                                                    return CupertinoAlertDialog(
+                                                      title:
+                                                          const Text('Error'),
+                                                      content: Column(
+                                                        children: [
+                                                          const Text(
+                                                              'Error in creation of speaker profile'),
+                                                          Text(auth.error),
+                                                        ],
+                                                      ),
+                                                      actions: <Widget>[
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .cancel,
+                                                              style: const TextStyle(
+                                                                  color: CupertinoColors
+                                                                      .destructiveRed),
+                                                            )),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                ///1. Elimina vecchio DOC speaker
+                                                await DatabaseSpeaker(
+                                                        licenseId: licenseId,
+                                                        id: speakersContacted[
+                                                                index]
+                                                            .id)
+                                                    .deleteSpeaker()
+                                                    .then((_) {
+                                                  ///2. Mostra conferma
+                                                  EasyLoading.showToast(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .confirmed,
+                                                      duration: const Duration(
+                                                          milliseconds:
+                                                              kDurationToast),
+                                                      dismissOnTap: true,
+                                                      toastPosition:
+                                                          EasyLoadingToastPosition
+                                                              .bottom);
+                                                });
+                                              }
+                                            }))
                                   ],
                                 ),
                                 child: SpeakerItem(

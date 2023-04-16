@@ -4,6 +4,9 @@
 
   "list": "List",
   "elaboration": "Elaboration",
+  "select": "Select",
+  "selectTeam": "Select team",
+  "selectCoach": "Select coach",
   "selected": "Selected",
   "confirmed": "Confirmed",
   "contacted": "Contacted",
@@ -35,6 +38,9 @@
   "assignTeam": "Assign team",
   "assignCoach": "Assign coach",
   "contact": "Contact",
+  "completed": "Completed",
+  "inProgress": "In progress",
+  "toDo": "To do",
 
   "speaker": "Speaker",
   "speakerAdd": "Add speaker",
@@ -44,7 +50,16 @@
   "software": "Software",
   "licenseId": "License ID",
   "userRegistration": "User registration",
-  "editTeamRoles": "Edit team roles"
+  "editTeamRoles": "Edit team roles",
+
+  "addBag": "Add bag",
+  "insertNameTypeBag": "Insert name type bag",
+  "typeBag": "Type bag",
+  "insertProductInside": "Insert product inside",
+  "nameProduct": "Name product",
+  "quantity": "Quantity",
+  "products": "Products"
+
 
 
 

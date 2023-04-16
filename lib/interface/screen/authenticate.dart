@@ -20,10 +20,8 @@ class AuthenticateState extends State<Authenticate> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
-  late String email;
-  late String password;
-  late String name;
-  late String surname;
+
+  String emailSpeaker = "";
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +120,6 @@ class AuthenticateState extends State<Authenticate> {
                                       controller: emailController,
                                       placeholder: 'Email',
                                       keyboardType: TextInputType.emailAddress,
-                                      onChanged: (value) =>
-                                          setState(() => email = value),
                                     ),
                                     CupertinoTextFormFieldRow(
                                       decoration: BoxDecoration(
@@ -138,11 +134,6 @@ class AuthenticateState extends State<Authenticate> {
                                       obscureText: true,
                                       keyboardType:
                                           TextInputType.visiblePassword,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          password = value;
-                                        });
-                                      },
                                     ),
                                   ],
                                 ),
@@ -170,8 +161,9 @@ class AuthenticateState extends State<Authenticate> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         maxLength: 5,
-                                        onChanged: (value) => setState(() => email =
-                                            '$value@$kTEDxCommunityCustomSpeakerDomain')),
+                                        onChanged: (value) => setState(() =>
+                                            emailSpeaker =
+                                                '$value@$kTEDxCommunityCustomSpeakerDomain')),
                                     CupertinoTextFormFieldRow(
                                       decoration: BoxDecoration(
                                         color:
@@ -187,8 +179,6 @@ class AuthenticateState extends State<Authenticate> {
                                           TextInputType.visiblePassword,
                                       placeholder: 'Code',
                                       maxLength: 8,
-                                      onChanged: (value) =>
-                                          setState(() => password = value),
                                     ),
                                   ],
                                 ),
@@ -201,7 +191,9 @@ class AuthenticateState extends State<Authenticate> {
                             setState(() => loading = true);
                             if (isTeam) {
                               await _auth
-                                  .signInWithEmailAndPassword(email, password)
+                                  .signInWithEmailAndPassword(
+                                      emailController.text,
+                                      passwordController.text)
                                   .then((result) {
                                 if (result == null) {
                                   setState(() => loading = false);
@@ -232,7 +224,8 @@ class AuthenticateState extends State<Authenticate> {
                               });
                             } else {
                               await _auth
-                                  .signInWithEmailAndPassword(email, password)
+                                  .signInWithEmailAndPassword(
+                                      emailSpeaker, passwordController.text)
                                   .then((result) {
                                 if (result == null) {
                                   setState(() => loading = false);
@@ -339,11 +332,6 @@ class AuthenticateState extends State<Authenticate> {
                                                         placeholder: 'Name',
                                                         keyboardType:
                                                             TextInputType.name,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            name = value;
-                                                          });
-                                                        },
                                                       ),
                                                       const SizedBox(
                                                           height: 10),
@@ -367,11 +355,6 @@ class AuthenticateState extends State<Authenticate> {
                                                         placeholder: 'Surname',
                                                         keyboardType:
                                                             TextInputType.name,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            surname = value;
-                                                          });
-                                                        },
                                                       ),
                                                       const SizedBox(
                                                           height: 10),
@@ -393,11 +376,6 @@ class AuthenticateState extends State<Authenticate> {
                                                         keyboardType:
                                                             TextInputType
                                                                 .emailAddress,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            email = value;
-                                                          });
-                                                        },
                                                       ),
                                                       const SizedBox(
                                                           height: 10),
@@ -420,11 +398,6 @@ class AuthenticateState extends State<Authenticate> {
                                                         keyboardType:
                                                             TextInputType
                                                                 .visiblePassword,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            password = value;
-                                                          });
-                                                        },
                                                       ),
                                                     ],
                                                   ),
@@ -452,10 +425,14 @@ class AuthenticateState extends State<Authenticate> {
                                                               .registerWithEmailAndPassword(
                                                                   widget
                                                                       .licenseId,
-                                                                  name,
-                                                                  surname,
-                                                                  email,
-                                                                  password,
+                                                                  nameController
+                                                                      .text,
+                                                                  surnameController
+                                                                      .text,
+                                                                  emailController
+                                                                      .text,
+                                                                  passwordController
+                                                                      .text,
                                                                   context)
                                                               .then((result) {
                                                             if (result ==
