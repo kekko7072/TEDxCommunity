@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tedxcommunity/interface/screen/authenticate_license.dart';
+import 'package:tedxcommunity/interface/widget/intro_alert_dialog.dart';
 import 'package:tedxcommunity/services/imports.dart';
 
 class App extends StatefulWidget {
@@ -16,9 +17,19 @@ class _AppState extends State<App> {
 
   Future<void> get _initPrefs async {
     _prefs = await SharedPreferences.getInstance();
-    setState(() {
-      initializedLocalSettings = true;
-    });
+    setState(() => initializedLocalSettings = true);
+
+    await Future.delayed(const Duration(seconds: 1));
+    bool showIntroAlertDialog =
+        _prefs.getBool(kShowIntroAlertDialogKey) ?? true;
+
+    if (showIntroAlertDialog) {
+      await _prefs.setBool(kShowIntroAlertDialogKey, false).then((value) =>
+          showCupertinoDialog(
+              barrierDismissible: true,
+              context: context,
+              builder: (_) => const IntroAlertDialog()));
+    }
   }
 
   @override

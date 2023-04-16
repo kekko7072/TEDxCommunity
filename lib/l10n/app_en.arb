@@ -32,6 +32,7 @@
   "approve": "Approve",
   "approved": "Approved",
   "cancel": "Cancel",
+  "close": "Close",
   "save": "Save",
   "assign": "Assign",
   "assigned": "Assigned",
@@ -51,6 +52,7 @@
   "licenseId": "License ID",
   "userRegistration": "User registration",
   "editTeamRoles": "Edit team roles",
+  "developedWithLoveBy": "Developed with ♥️ by",
 
   "addBag": "Add bag",
   "insertNameTypeBag": "Insert name type bag",
@@ -58,7 +60,14 @@
   "insertProductInside": "Insert product inside",
   "nameProduct": "Name product",
   "quantity": "Quantity",
-  "products": "Products"
+  "products": "Products",
+
+  "welcomeToTEDxCommunity": "Welcome to TEDxCommunity!",
+  "whatIsTEDxCommunity": "TEDxCommunity is a free and open source app that helps you organize TEDx events.",
+  "learnMoreAboutTEDxCommunity": "Learn more about TEDxCommunity at:"
+
+
+
 
 
 

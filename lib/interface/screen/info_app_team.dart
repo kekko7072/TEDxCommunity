@@ -433,7 +433,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               () => launchUrlString(
                                   'https://github.com/kekko7072/tedxcommunity#readme')),
                           CSDescription(
-                              'Developed with ♥️ by ${AppLocalizations.of(context)!.developerName}.'),
+                              '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}.'),
                           const CSSpacer(),
                         ],
                       );

@@ -155,7 +155,7 @@ class TextPlayerHandler extends BaseAudioHandler with QueueHandler {
         id: 'tts_speaker_list',
         album: 'Vocal Assistant',
         title: 'Lista speaker',
-        artist: 'TEDxCortina',
+        artist: 'TEDxCommunity',
         duration: Duration(seconds: 1),
       )
     ]);
