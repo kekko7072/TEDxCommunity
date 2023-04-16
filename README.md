@@ -8,9 +8,9 @@ The **TEDxCommunity** app is an open-source and free-to-use tool designed to hel
 To use the TEDxCommunity app, follow these configuration steps:
 
 1. `Download the app`: You can download the TEDxCommunity app on the following platforms:
-   1. iOS: [Download from TestFlight]()
+   1. iOS: [Download from TestFlight](https://testflight.apple.com/join/wqMhQC6V)
    2. Android: [Download from Firebase App Distribution](https://appdistribution.firebase.dev/i/2fc5e2c16cf723bf)
-   3. Web: [Access the app online](https://tedxcommunity.web.app/#/)
+   3. Web: [Access the app online](https://tedxcommunity.app/#/)
 
 2. `Create an admin account`: After downloading the app, create an admin account by signing up with your email address and password.
 
