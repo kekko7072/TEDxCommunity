@@ -8,7 +8,11 @@
   "bags": "Bags",
 
   "login": "Accedi",
-  "noAccount": "Create an account.",
+  "createHere": "Crea qui." ,
+  "noAccount": "Non hai un account? ",
+  "noLicense": "Non hai una license? ",
+
+
 
   "add": "Aggiungi",
   "create": "Crea",
@@ -30,9 +34,13 @@
   "contact": "Contatta",
 
   "speaker": "Speaker",
-  "speakerAdd": "Aggiungi speaker"
+  "speakerAdd": "Aggiungi speaker",
 
+  "createAccountAdmin": "Crea account admin",
 
-
+  "software": "Programma",
+  "licenseId": "ID licenza",
+  "userRegistration": "Registrazione utenti",
+  "editTeamRoles": "Modifica ruoli team"
 
 }

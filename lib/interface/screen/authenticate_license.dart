@@ -102,7 +102,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                         await widget.onLogin(licenseIdController.text);
                       } else {
                         EasyLoading.showError(
-                            'Non esiste nessuna licenza con il licneseId inserito.');
+                            'There is no license with this licneseId.');
                       }
                     },
                   ),
@@ -117,13 +117,13 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                   CupertinoButton(
                     child: RichText(
                       text: TextSpan(
-                        text: 'Non hai una licenza? ',
+                        text: AppLocalizations.of(context)!.noLicense,
                         style: TextStyle(
                           color: Style.textColor(context),
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Crea qui.',
+                            text: AppLocalizations.of(context)!.createHere,
                             style: TextStyle(
                               color: Style.primaryColor,
                               fontWeight: FontWeight.bold,
@@ -139,7 +139,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                         barrierDismissible: true,
                         builder: (context) {
                           return CupertinoAlertDialog(
-                            title: const Text('Crea account admin'),
+                            title: Text(AppLocalizations.of(context)!
+                                .createAccountAdmin),
                             content: Column(
                               children: [
                                 CupertinoTextFormFieldRow(
@@ -225,8 +226,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                           barrierDismissible: true,
                                           builder: (context) {
                                             return CupertinoAlertDialog(
-                                              title: const Text(
-                                                  'Errore creazione'),
+                                              title:
+                                                  const Text('Error creation'),
                                               content: Text(_auth.error),
                                               actions: <Widget>[
                                                 TextButton(

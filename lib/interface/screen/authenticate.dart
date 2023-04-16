@@ -200,75 +200,76 @@ class AuthenticateState extends State<Authenticate> {
                           onPressed: () async {
                             setState(() => loading = true);
                             if (isTeam) {
-                              dynamic result = await _auth
-                                  .signInWithEmailAndPassword(email, password);
-                              if (result == null) {
-                                setState(() => loading = false);
-                                showCupertinoDialog(
-                                  context: context,
-                                  barrierDismissible: true,
-                                  builder: (context) {
-                                    return CupertinoAlertDialog(
-                                      title: Text(
-                                        'Errore login',
-                                      ),
-                                      content: Text(_auth.error),
-                                      actions: <Widget>[
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text(
-                                              'Chiudi',
-                                              style: TextStyle(
-                                                  color: CupertinoColors
-                                                      .destructiveRed),
-                                            )),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
+                              await _auth
+                                  .signInWithEmailAndPassword(email, password)
+                                  .then((result) {
+                                if (result == null) {
+                                  setState(() => loading = false);
+                                  showCupertinoDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: const Text('Error login'),
+                                        content: Text(_auth.error),
+                                        actions: <Widget>[
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel,
+                                                style: const TextStyle(
+                                                    color: CupertinoColors
+                                                        .destructiveRed),
+                                              )),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              });
                             } else {
-                              dynamic result = await _auth
-                                  .signInWithEmailAndPassword(email, password);
-                              if (result == null) {
-                                setState(() => loading = false);
-                                showCupertinoDialog(
-                                  context: context,
-                                  barrierDismissible: true,
-                                  builder: (context) {
-                                    return CupertinoAlertDialog(
-                                      title: Text(
-                                        'Errore login',
-                                      ),
-                                      content: Text(_auth.error),
-                                      actions: <Widget>[
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .cancel,
-                                              style: TextStyle(
-                                                  color: CupertinoColors
-                                                      .destructiveRed),
-                                            )),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
+                              await _auth
+                                  .signInWithEmailAndPassword(email, password)
+                                  .then((result) {
+                                if (result == null) {
+                                  setState(() => loading = false);
+                                  showCupertinoDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: const Text('Error login'),
+                                        content: Text(_auth.error),
+                                        actions: <Widget>[
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel,
+                                                style: const TextStyle(
+                                                    color: CupertinoColors
+                                                        .destructiveRed),
+                                              )),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              });
                             }
                           },
                         ),
                         const SizedBox(height: 30),
                         TextButton(
                           onPressed: widget.onLicenseRemoved,
-                          child: const Text(
-                            'Rimuovi la licenza attuale.',
-                            style: TextStyle(color: Colors.grey),
+                          child: Text(
+                            AppLocalizations.of(context)!.removeCurrentLicense,
+                            style: const TextStyle(color: Colors.grey),
                           ),
                         )
                       ],
@@ -289,13 +290,17 @@ class AuthenticateState extends State<Authenticate> {
                                       ? CupertinoButton(
                                           child: RichText(
                                             text: TextSpan(
-                                              text: 'Non hai un account? ',
+                                              text:
+                                                  AppLocalizations.of(context)!
+                                                      .noAccount,
                                               style: TextStyle(
                                                 color: Style.textColor(context),
                                               ),
                                               children: <TextSpan>[
                                                 TextSpan(
-                                                  text: 'Crea qui.',
+                                                  text: AppLocalizations.of(
+                                                          context)!
+                                                      .createHere,
                                                   style: TextStyle(
                                                     color: Style.primaryColor,
                                                     fontWeight: FontWeight.bold,
@@ -443,7 +448,7 @@ class AuthenticateState extends State<Authenticate> {
                                                               .pop();
                                                           setState(() =>
                                                               loading = true);
-                                                          dynamic result = await _auth
+                                                          await _auth
                                                               .registerWithEmailAndPassword(
                                                                   widget
                                                                       .licenseId,
@@ -451,44 +456,45 @@ class AuthenticateState extends State<Authenticate> {
                                                                   surname,
                                                                   email,
                                                                   password,
-                                                                  context);
-                                                          if (result == null) {
-                                                            setState(() =>
-                                                                loading =
-                                                                    false);
-                                                            showCupertinoDialog(
-                                                              context: context,
-                                                              barrierDismissible:
-                                                                  true,
-                                                              builder:
-                                                                  (context) {
-                                                                return CupertinoAlertDialog(
-                                                                  title: Text(
-                                                                    'Error creation',
-                                                                  ),
-                                                                  content: Text(
-                                                                      _auth
-                                                                          .error),
-                                                                  actions: <
-                                                                      Widget>[
-                                                                    TextButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
-                                                                        },
-                                                                        child:
-                                                                            Text(
-                                                                          AppLocalizations.of(context)!
-                                                                              .cancel,
-                                                                          style:
-                                                                              TextStyle(color: CupertinoColors.destructiveRed),
-                                                                        )),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                          }
+                                                                  context)
+                                                              .then((result) {
+                                                            if (result ==
+                                                                null) {
+                                                              setState(() =>
+                                                                  loading =
+                                                                      false);
+                                                              showCupertinoDialog(
+                                                                context:
+                                                                    context,
+                                                                barrierDismissible:
+                                                                    true,
+                                                                builder:
+                                                                    (context) {
+                                                                  return CupertinoAlertDialog(
+                                                                    title: const Text(
+                                                                        'Error creation'),
+                                                                    content: Text(
+                                                                        _auth
+                                                                            .error),
+                                                                    actions: <
+                                                                        Widget>[
+                                                                      TextButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                          child:
+                                                                              Text(
+                                                                            AppLocalizations.of(context)!.cancel,
+                                                                            style:
+                                                                                const TextStyle(color: CupertinoColors.destructiveRed),
+                                                                          )),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                            }
+                                                          });
                                                         },
                                                         child: Text(
                                                           AppLocalizations.of(

@@ -96,7 +96,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
 
                       return CupertinoSettings(
                         items: <Widget>[
-                          const CSHeader('SOFTWARE'),
+                          CSHeader(AppLocalizations.of(context)!.software),
                           CSControl(
                             nameWidget:
                                 Text(AppLocalizations.of(context)!.appName),
@@ -107,14 +107,15 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             addPaddingToBorder: false,
                           ),
                           CSControl(
-                            nameWidget: const Text('Id licenza'),
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.licenseId),
                             contentWidget: Text(
                               widget.license.id,
                               style: kSettingsDescriptionStyle,
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Nome'),
+                            nameWidget: const Text('Name'),
                             contentWidget: Text(
                               widget.license.licenseName,
                               style: kSettingsDescriptionStyle,
@@ -136,7 +137,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                           ),
                           if (widget.userData.role == Role.admin) ...[
                             CSControl(
-                              nameWidget: const Text('Registrazione utenti'),
+                              nameWidget: Text(AppLocalizations.of(context)!
+                                  .userRegistration),
                               contentWidget: CupertinoSwitch(
                                 value: registration,
                                 onChanged: (bool value) async {
@@ -149,7 +151,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                             CSButton(
                                 CSButtonType.DEFAULT,
-                                "Modifica ruoli team",
+                                AppLocalizations.of(context)!.editTeamRoles,
                                 () => showCupertinoModalBottomSheet(
                                       backgroundColor:
                                           Style.backgroundColor(context),
@@ -229,7 +231,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Nome'),
+                            nameWidget: const Text('Name'),
                             contentWidget: Expanded(
                               child: CupertinoTextFormFieldRow(
                                 padding: EdgeInsets.zero,
@@ -260,7 +262,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Cognome'),
+                            nameWidget: const Text('Surname'),
                             contentWidget: Expanded(
                               child: CupertinoTextFormFieldRow(
                                 controller: surnameController,
@@ -325,9 +327,10 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                           TextButton(
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),
-                                              child: const Text(
-                                                'Annulla',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .cancel,
+                                                style: const TextStyle(
                                                     color: CupertinoColors
                                                         .destructiveRed),
                                               )),
@@ -403,9 +406,10 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                                       });
                                                 });
                                               },
-                                              child: const Text(
-                                                'Crea',
-                                                style: TextStyle(
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .create,
+                                                style: const TextStyle(
                                                     color: CupertinoColors
                                                         .activeBlue),
                                               )),

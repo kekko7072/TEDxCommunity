@@ -11,7 +11,11 @@
   "bags": "Bags",
 
   "login": "Login",
-  "noAccount": "Create an account.",
+  "createHere": "Create here." ,
+  "noAccount": "You don't have an account? ",
+  "noLicense": "You don't have an license? ",
+  "removeCurrentLicense": "Remove current license.",
+  "createAccountAdmin": "Create account admin",
 
   "add": "Add",
   "create": "Create",
@@ -33,7 +37,15 @@
   "contact": "Contact",
 
   "speaker": "Speaker",
-  "speakerAdd": "Add speaker"
+  "speakerAdd": "Add speaker",
+
+  "software": "Software",
+  "licenseId": "License ID",
+  "userRegistration": "User registration",
+  "editTeamRoles": "Edit team roles"
+
+
+
 
 
 

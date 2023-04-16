@@ -1,4 +1,4 @@
-# TEDxCommunity App
+# TEDxCommunity app
 
 The **TEDxCommunity** app is an open-source and free-to-use tool designed to help organize a TEDx event. It provides various capabilities to assist the event team throughout the entire process, including speaker selection, contact tracking, coaching, and bag preparation.
 
