@@ -106,14 +106,16 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Name'),
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.name),
                             contentWidget: Text(
                               widget.license.licenseName,
                               style: kSettingsDescriptionStyle,
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Admin'),
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.admin),
                             contentWidget: StreamBuilder<UserData?>(
                                 stream: DatabaseUser(
                                         licenseId: widget.license.id,
@@ -189,7 +191,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               ),
                             ),
                             CSControl(
-                              nameWidget: const Text('Bags'),
+                              nameWidget:
+                                  Text(AppLocalizations.of(context)!.bags),
                               contentWidget: CupertinoSwitch(
                                 value: bags,
                                 onChanged: (bool value) async {
@@ -219,7 +222,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
-                            nameWidget: const Text('Name'),
+                            nameWidget:
+                                Text(AppLocalizations.of(context)!.name),
                             contentWidget: Expanded(
                               child: CupertinoTextFormFieldRow(
                                 padding: EdgeInsets.zero,
@@ -296,7 +300,6 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               AppLocalizations.of(context)!.appName,
                               style: kSettingsDescriptionStyle,
                             ),
-                            addPaddingToBorder: false,
                           ),
                           CSControl(
                             nameWidget:
@@ -305,16 +308,17 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                               version,
                               style: kSettingsDescriptionStyle,
                             ),
-                            addPaddingToBorder: false,
                           ),
                           CSLink(
                               title: AppLocalizations.of(context)!.sourceCode,
                               onPressed: () =>
                                   launchUrlString(kGitHubSourceCodeLink)),
                           CSLink(
-                              title: AppLocalizations.of(context)!.credits,
-                              onPressed: () =>
-                                  launchUrlString(kGitHubCreditsLink)),
+                            title: AppLocalizations.of(context)!.credits,
+                            onPressed: () =>
+                                launchUrlString(kGitHubCreditsLink),
+                            addPaddingToBorder: false,
+                          ),
                           CSDescription(
                               '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}.'),
                           const CSHeader(''),

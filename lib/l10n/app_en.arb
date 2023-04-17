@@ -49,7 +49,8 @@
   "publicSpeakingDescription": "Rate the speaker's public speaking from 1 to 5. The scale goes from 1 to 5 where 1 means that he is awkward in public, while 5 means that he is an excellent speaker. Use material such as interview videos to evaluate the speaker.",
 
   "settings": "Settings",
-  "licenseId": "License ID",
+  "licenseId": "License Id",
+  "admin": "Admin",
   "userRegistration": "User registration",
   "editTeamRoles": "Edit team roles",
   "software": "Software",
