@@ -134,6 +134,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   .userRegistration),
                               contentWidget: CupertinoSwitch(
                                 value: registration,
+                                activeColor: Style.primaryColor,
                                 onChanged: (bool value) async {
                                   setState(() => registration = !registration);
                                   await DatabaseLicense(widget.license.id)
@@ -195,6 +196,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   Text(AppLocalizations.of(context)!.bags),
                               contentWidget: CupertinoSwitch(
                                 value: bags,
+                                activeColor: Style.primaryColor,
                                 onChanged: (bool value) async {
                                   setState(() {
                                     bags = !bags;
@@ -441,7 +443,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                           const CSSpacer(),
                           CSButton(
                             CSButtonType.DESTRUCTIVE,
-                            "Esci",
+                            AppLocalizations.of(context)!.exit,
                             () async {
                               await AuthService().signOut().whenComplete(
                                   () => Navigator.of(context).pop());

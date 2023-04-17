@@ -4,7 +4,7 @@ description: The TEDxCommunity app is an open-source and free-to-use tool design
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+4 #Public 1.0.0+4
+version: 1.0.0+5 #Public 1.0.0+4
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
