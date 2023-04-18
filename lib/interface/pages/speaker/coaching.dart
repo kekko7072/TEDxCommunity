@@ -20,7 +20,7 @@ class CoachingState extends State<Coaching> {
   bool _loadingPath = false;
   bool _loadingDone = false;
 
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();
@@ -33,7 +33,7 @@ class CoachingState extends State<Coaching> {
     });
   }
 
-  void _openFileExplorer() async {
+  Future<void> _openFileExplorer() async {
     setState(() => _loadingPath = true);
     try {
       FilePickerResult? picked = await FilePicker.platform.pickFiles();
@@ -53,9 +53,9 @@ class CoachingState extends State<Coaching> {
         setState(() => _loadingPath = false);
       }
     } on PlatformException catch (e) {
-      debugPrint("ERROR Unsupported operation" + e.toString());
+      debugPrint('ERROR Unsupported operation$e');
     } catch (ex) {
-      debugPrint('EX ERROR' + ex.toString());
+      debugPrint('EX ERROR$ex');
     }
   }
 
@@ -169,7 +169,7 @@ class CoachingState extends State<Coaching> {
               ],
             );
           } else {
-            return CupertinoActivityIndicator();
+            return const CupertinoActivityIndicator();
           }
         });
   }
@@ -210,7 +210,7 @@ class CoachingState extends State<Coaching> {
                                         onPressed: () => _openFileExplorer(),
                                         child: Text(
                                           "Carica nuovo",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: CupertinoColors
                                                   .destructiveRed),
                                         ),
@@ -227,8 +227,8 @@ class CoachingState extends State<Coaching> {
                                             throw 'Could not launch the url';
                                           }
                                         },
-                                        child: Text(
-                                          "Scarica",
+                                        child: const Text(
+                                          'Scarica',
                                         ),
                                       ),
                                     ],
@@ -237,11 +237,11 @@ class CoachingState extends State<Coaching> {
                                     onPressed: () => _openFileExplorer(),
                                     child: CupertinoButton(
                                       onPressed: () => _openFileExplorer(),
-                                      child: Text("Carica"),
+                                      child: const Text('Carica'),
                                     ),
                                   ),
                             _paths != null
-                                ? Text('Caricamento fatto')
+                                ? const Text('Caricamento fatto')
                                 : const SizedBox(),
                           ],
                         ),

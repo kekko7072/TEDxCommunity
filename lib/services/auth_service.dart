@@ -41,7 +41,7 @@ class AuthService {
           email: email, password: password);
       User user = result.user!;
 
-      await DatabaseUser(licenseId: licenseId, uid: user.uid).updateUserData(
+      await DatabaseUser(licenseId: licenseId, uid: user.uid).createUserData(
         name,
         surname,
         email,

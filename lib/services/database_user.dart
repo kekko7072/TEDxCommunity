@@ -17,6 +17,7 @@ class DatabaseUser {
     String email,
   ) async {
     return await userCollection.doc(uid).set({
+      'active': true,
       'role': Role.admin.toString(),
       'name': name,
       'surname': surname,
@@ -24,12 +25,13 @@ class DatabaseUser {
     });
   }
 
-  Future updateUserData(
+  Future createUserData(
     String name,
     String surname,
     String email,
   ) async {
     return await userCollection.doc(uid).set({
+      'active': false,
       'role': Role.volunteer.toString(),
       'name': name,
       'surname': surname,
@@ -37,7 +39,7 @@ class DatabaseUser {
     });
   }
 
-  Future updateUserSinglePersonalData({
+  Future updateUserDataPersonal({
     required String field,
     required String value,
   }) async {
@@ -46,12 +48,29 @@ class DatabaseUser {
     });
   }
 
+  Future updateUserDataRole({required Role role}) async {
+    return await userCollection.doc(uid).update({
+      'role': role.toString(),
+    });
+  }
+
+  Future updateUserDataActive({required bool value}) async {
+    return await userCollection.doc(uid).update({
+      'active': value,
+    });
+  }
+
+  Future get delete async {
+    return await userCollection.doc(uid).delete();
+  }
+
   ///USER DATA FROM SNAPSHOT
   UserData userDataFromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> snapshot) {
     Role role = Role.volunteer;
+    bool active = snapshot.data()?['active'] ?? false;
 
-    switch (snapshot.data()!['role']) {
+    switch (snapshot.data()?['role']) {
       case 'Role.volunteer':
         {
           role = Role.volunteer;
@@ -76,11 +95,12 @@ class DatabaseUser {
         break;
     }
     return UserData(
-      uid: uid!,
+      uid: snapshot.id,
+      active: active,
       role: role,
-      name: snapshot.data()!['name'] ?? '',
-      surname: snapshot.data()!['surname'] ?? '',
-      email: snapshot.data()!['email'] ?? '',
+      name: snapshot.data()?['name'] ?? '',
+      surname: snapshot.data()?['surname'] ?? '',
+      email: snapshot.data()?['email'] ?? '',
     );
   }
 
@@ -110,45 +130,6 @@ class DatabaseUser {
   ///Coach list from snapshot
   List<UserData> userListFromSnapshot(
       QuerySnapshot<Map<String, dynamic>> snapshot) {
-    return snapshot.docs.map((snapshot) {
-      Role role = Role.volunteer;
-
-      switch (snapshot.data()['role']) {
-        case 'Role.volunteer':
-          {
-            role = Role.volunteer;
-          }
-          break;
-
-        case 'Role.master':
-          {
-            role = Role.master;
-          }
-          break;
-
-        case 'Role.coach':
-          {
-            role = Role.coach;
-          }
-          break;
-
-        case 'Role.admin':
-          {
-            role = Role.admin;
-          }
-          break;
-        default:
-          {
-            role = Role.volunteer;
-          }
-      }
-      return UserData(
-        uid: snapshot.id,
-        role: role,
-        name: snapshot.data()['name'] ?? '',
-        surname: snapshot.data()['surname'] ?? '',
-        email: snapshot.data()['email'] ?? '',
-      );
-    }).toList();
+    return snapshot.docs.map(userDataFromSnapshot).toList();
   }
 }

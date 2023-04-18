@@ -24,7 +24,7 @@ class ManagementState extends State<Management> {
   bool _loadingPath = false;
   bool _loadingDone = false;
 
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();
@@ -38,7 +38,7 @@ class ManagementState extends State<Management> {
   }
 
   ///File Picker & Uploader
-  void _openFileExplorer() async {
+  Future<void> _openFileExplorer() async {
     setState(() => _loadingPath = true);
     try {
       FilePickerResult? picked = await FilePicker.platform.pickFiles();
@@ -58,9 +58,9 @@ class ManagementState extends State<Management> {
         setState(() => _loadingPath = false);
       }
     } on PlatformException catch (e) {
-      print("ERROR Unsupported operation" + e.toString());
+      print('ERROR Unsupported operation$e');
     } catch (ex) {
-      print('EX ERROR' + ex.toString());
+      print('EX ERROR$ex');
     }
   }
 
@@ -155,10 +155,10 @@ class ManagementState extends State<Management> {
             children: [
               currentManagementStep == 1
                   ? Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Card(
                         elevation: 5,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
                         color: Style.backgroundColor(context),
@@ -283,7 +283,7 @@ class ManagementState extends State<Management> {
                               ),
                               Builder(
                                 builder: (BuildContext context) => Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
+                                  padding: const EdgeInsets.only(left: 16.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -299,7 +299,7 @@ class ManagementState extends State<Management> {
                                             ),
                                       ),
                                       _loadingPath
-                                          ? Padding(
+                                          ? const Padding(
                                               padding:
                                                   EdgeInsets.only(right: 16),
                                               child:
@@ -330,12 +330,11 @@ class ManagementState extends State<Management> {
                                                               throw 'Could not launch the url';
                                                             }
                                                           },
-                                                          child: Text(
-                                                            "Scarica",
-                                                          ),
+                                                          child: const Text(
+                                                              'Scarica'),
                                                         );
                                                       } else {
-                                                        return CupertinoActivityIndicator();
+                                                        return const CupertinoActivityIndicator();
                                                       }
                                                     }),
                                                 CupertinoButton(
@@ -343,8 +342,10 @@ class ManagementState extends State<Management> {
                                                       _openFileExplorer(),
                                                   child: _loadingDone
                                                       ? Text(
-                                                          "Modifica",
-                                                          style: TextStyle(
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .edit,
+                                                          style: const TextStyle(
                                                               color: CupertinoColors
                                                                   .destructiveRed),
                                                         )

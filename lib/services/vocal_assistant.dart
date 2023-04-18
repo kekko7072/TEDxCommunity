@@ -63,9 +63,8 @@ class VocalAssistantState extends State<VocalAssistant> {
   /// Note that there are also timeouts that each platform enforces
   /// and the SpeechToText plugin supports setting timeouts on the
   /// listen method.
-  void _stopListening() async {
+  Future<void> _stopListening() async {
     await _speechToText.stop();
-    // setState(() {});
   }
 
   /// This is the callback that the SpeechToText plugin calls when
@@ -232,7 +231,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
     String output = "Ciao ${widget.userData.name}, ecco la lista speaker.\n";
     int i = 0;
 
-    widget.speakers.forEach((element) {
+    for (var element in widget.speakers) {
       ///Name
       output = '$output.\n ${++i}.\n ${element.name}';
 
@@ -280,7 +279,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
         output =
             '$output.\n Biografia.\n ${element.description.substring(startIndexBio + TextLabels.kAddSpeaker4.length, element.description.length)}.';
       }
-    });
+    }
 
     return output;
   }

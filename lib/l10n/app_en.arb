@@ -14,6 +14,7 @@
   "bags": "Bags",
 
   "login": "Login",
+  "logout": "Logout",
   "createHere": "Create here." ,
   "noAccount": "You don't have an account? ",
   "noLicense": "You don't have an license? ",
@@ -54,12 +55,28 @@
   "admin": "Admin",
   "userRegistration": "User registration",
   "editTeamRoles": "Edit team roles",
-  "software": "Software",
+  "selectNewRoleOf": "Select new role of",
+  "editTeam": "Edit team",
+  "activate": "Activate",
+  "activated": "Activated",
+  "deactivate": "Deactivate",
+  "deactivated": "Deactivated",
+  "eventDate": "Event date",
+  "resetList": "Reset list",
+  "account": "Account",
+  "role": "Role",
   "name": "Name",
+  "surname": "Surname",
+  "email": "Email",
+  "software": "Software",
   "version": "Version",
   "sourceCode": "Source code",
   "credits": "Credits",
   "developedWithLoveBy": "Developed with ♥️ by",
+  "createNewLicense": "Create new license",
+  "createNewLicenseAlertDialog": "By creating a new license you proceed to create a new organization. Remember to write down the current licenseId to be able to access this organization again",
+  "actual": "Actual",
+  "nowYouAreInTheNewLicense": "Now you are in the new license",
 
   "addBag": "Add bag",
   "insertNameTypeBag": "Insert name type bag",
@@ -71,7 +88,11 @@
 
   "welcomeToTEDxCommunity": "Welcome to TEDxCommunity!",
   "whatIsTEDxCommunity": "TEDxCommunity is a free and open source app that helps you organize TEDx events.",
-  "learnMoreAboutTEDxCommunity": "Learn more about TEDxCommunity at:"
+  "learnMoreAboutTEDxCommunity": "Learn more about TEDxCommunity at:",
+
+  "yourAccountIsNotActive": "Your account is not active",
+  "yourLicenseeIs": "Your licensee is",
+  "askToActivateAccount": "Ask your licensee to activate your account."
 
 
 

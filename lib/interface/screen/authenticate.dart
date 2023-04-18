@@ -21,7 +21,7 @@ class AuthenticateState extends State<Authenticate> {
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
 
-  String emailSpeaker = "";
+  String emailSpeaker = '';
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +192,8 @@ class AuthenticateState extends State<Authenticate> {
                             if (isTeam) {
                               await _auth
                                   .signInWithEmailAndPassword(
-                                      emailController.text,
+                                      TextLabels.formatEmail(
+                                          emailController.text),
                                       passwordController.text)
                                   .then((result) {
                                 if (result == null) {
@@ -206,9 +207,8 @@ class AuthenticateState extends State<Authenticate> {
                                         content: Text(_auth.error),
                                         actions: <Widget>[
                                           TextButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
+                                              onPressed: () =>
+                                                  Navigator.of(context).pop(),
                                               child: Text(
                                                 AppLocalizations.of(context)!
                                                     .cancel,
@@ -225,7 +225,8 @@ class AuthenticateState extends State<Authenticate> {
                             } else {
                               await _auth
                                   .signInWithEmailAndPassword(
-                                      emailSpeaker, passwordController.text)
+                                      TextLabels.formatEmail(emailSpeaker),
+                                      passwordController.text)
                                   .then((result) {
                                 if (result == null) {
                                   setState(() => loading = false);
@@ -329,7 +330,10 @@ class AuthenticateState extends State<Authenticate> {
                                                         textCapitalization:
                                                             TextCapitalization
                                                                 .words,
-                                                        placeholder: 'Name',
+                                                        placeholder:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .name,
                                                         keyboardType:
                                                             TextInputType.name,
                                                       ),

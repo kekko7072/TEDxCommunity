@@ -14,7 +14,7 @@ class AddSpeaker extends StatefulWidget {
 }
 
 class _AddSpeakerState extends State<AddSpeaker> {
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
 
   final String id = const Uuid().v1();
 
@@ -84,7 +84,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                             onPressed: () =>
                                 Clipboard.getData(Clipboard.kTextPlain).then(
                                     (value) => setState(() => emailController
-                                        .text = value?.text ?? "")))),
+                                        .text = value?.text ?? '')))),
                   ],
                 ),
                 Row(
@@ -104,7 +104,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                             onPressed: () =>
                                 Clipboard.getData(Clipboard.kTextPlain).then(
                                     (value) => setState(() => linkController
-                                        .text = value?.text ?? "")))),
+                                        .text = value?.text ?? '')))),
                   ],
                 ),
                 Row(
@@ -240,9 +240,9 @@ class _AddSpeakerState extends State<AddSpeaker> {
                         onChanged: (val) => setState(() {
                               switchJustTEDx = !switchJustTEDx;
                               if (val) {
-                                justTEDx = "${TextLabels.kAddSpeaker3}SI";
+                                justTEDx = '${TextLabels.kAddSpeaker3}SI';
                               } else {
-                                justTEDx = "${TextLabels.kAddSpeaker3}NO";
+                                justTEDx = '${TextLabels.kAddSpeaker3}NO';
                               }
                             }))
                   ],
@@ -287,9 +287,9 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     if (snapshot.hasData &&
                             snapshot.data!
                                 .where((Speaker spk) =>
-                                    TextLabels()
-                                        .formatText(spk.name.toUpperCase()) ==
-                                    TextLabels().formatText(
+                                    TextLabels.formatText(
+                                        spk.name.toUpperCase()) ==
+                                    TextLabels.formatText(
                                         nameController.text.toUpperCase()))
                                 .isEmpty ||
                         !snapshot.hasData) {
@@ -297,8 +297,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                           .addSpeaker(
                             uidCreator: widget.uid,
                             name: nameController.text,
-                            email:
-                                TextLabels().formatEmail(emailController.text),
+                            email: TextLabels.formatEmail(emailController.text),
                             link: linkController.text,
                             description:
                                 '${TextLabels.kAddSpeaker0}${professionController.text}\n${TextLabels.kAddSpeaker1}${topicController.text}\n${TextLabels.kAddSpeaker2}$ratePublicSpeaking\n$justTEDx\n${TextLabels.kAddSpeaker4}${bioController.text}',

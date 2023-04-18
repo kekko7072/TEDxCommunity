@@ -23,7 +23,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
 
   TextEditingController controllerLink = TextEditingController();
 
-  String description = "";
+  String description = '';
   TextEditingController controllerDescription = TextEditingController();
 
   String profession = '';
@@ -41,7 +41,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
   String bio = '';
   TextEditingController controllerBio = TextEditingController();
 
-  String licenseId = "";
+  String licenseId = '';
   @override
   void initState() {
     super.initState();
@@ -241,7 +241,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         placeholder: 'Argomento-Talk',
                         keyboardType: TextInputType.text,
@@ -258,7 +259,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         placeholder: 'Valuta public speaking da 1 a 5',
                         keyboardType: TextInputType.text,
@@ -275,7 +277,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                                 darkColor: Color(0xBF1E1E1E),
                               ),
                               context),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                         ),
                         placeholder:
                             'Ha già fatto TEDx? SI/NO, se si quando e dove',
@@ -316,8 +319,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                                   licenseId: licenseId, id: widget.speaker.id)
                               .editSpeaker(
                             name: controllerName.text,
-                            email:
-                                TextLabels().formatEmail(controllerEmail.text),
+                            email: TextLabels.formatEmail(controllerEmail.text),
                             link: controllerLink.text,
                             description:
                                 '${TextLabels.kAddSpeaker0}${controllerProfession.text}${profession != '' ? '\n' : ''}${TextLabels.kAddSpeaker1}${controllerTopic.text}${topic != '' ? '\n' : ''}${TextLabels.kAddSpeaker2}${controllerRatePublicSpeaking.text}${ratePublicSpeaking != '' ? '\n' : ''}${TextLabels.kAddSpeaker3}${controllerJustTEDx.text}${justTEDx != '' ? '\n' : ''}${TextLabels.kAddSpeaker4}${controllerBio.text}',

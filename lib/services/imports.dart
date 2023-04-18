@@ -83,7 +83,7 @@ export '../interface/widget/input_field.dart';
 export '../interface/widget/confirmed_elements.dart';
 export '../interface/widget/datetimepicker_modal.dart';
 export '../interface/widget/edit_speaker.dart';
-export '../interface/widget/edit_team_role.dart';
+export '../interface/widget/edit_team.dart';
 export '../interface/widget/top_bar_speaker.dart';
 
 ///Models

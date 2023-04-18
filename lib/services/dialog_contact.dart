@@ -22,7 +22,7 @@ class SelectTypeOfContact extends StatefulWidget {
 }
 
 class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
-  String licenseId = "";
+  String licenseId = '';
   @override
   void initState() {
     super.initState();
@@ -63,7 +63,7 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
                     toastPosition: EasyLoadingToastPosition.bottom);
               });
             } else {
-              Clipboard.setData(new ClipboardData(
+              Clipboard.setData(ClipboardData(
                       text:
                           'Speaker ID: ${widget.speakerID!.substring(0, 5)} | Codice: ${widget.speakerPSSWD}'))
                   .then((_) {

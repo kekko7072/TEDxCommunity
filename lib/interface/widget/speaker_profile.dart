@@ -12,7 +12,7 @@ class SpeakerProfile extends StatefulWidget {
 
 class SpeakerProfileState extends State<SpeakerProfile> {
   bool copied = false;
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();
@@ -161,9 +161,9 @@ class SpeakerProfileState extends State<SpeakerProfile> {
           : Column(
               children: [
                 Text(
-                  '${widget.speaker.email}',
+                  widget.speaker.email,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 StreamBuilder<UserData>(
                     stream: DatabaseUser(
                             licenseId: licenseId,

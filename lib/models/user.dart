@@ -16,6 +16,7 @@ enum Role {
 class UserData {
   UserData({
     required this.uid,
+    required this.active,
     required this.role,
     required this.name,
     required this.surname,
@@ -23,6 +24,7 @@ class UserData {
   });
 
   final String uid;
+  final bool active;
   final Role role;
   final String name;
   final String surname;

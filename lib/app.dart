@@ -72,7 +72,7 @@ class _AppState extends State<App> {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.remove(kLicenseIdKey);
-                      setState(() => licenseId = "");
+                      setState(() => licenseId = '');
                     },
                   ));
             } else {
@@ -224,7 +224,7 @@ class _AppState extends State<App> {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
                                   prefs.remove(kLicenseIdKey);
-                                  setState(() => licenseId = "");
+                                  setState(() => licenseId = '');
                                 },
                               );
                             }
