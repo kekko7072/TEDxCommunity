@@ -16,10 +16,10 @@ dependencies:
     sdk: flutter
 
   #Server
-  firebase_core: ^2.9.0
-  firebase_auth: ^4.4.1
-  cloud_firestore: ^4.5.1
-  firebase_storage: ^11.1.0
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.4.2
+  cloud_firestore: ^4.5.2
+  firebase_storage: ^11.1.1
   #Basic
   provider: ^6.0.5
   intl: ^0.17.0

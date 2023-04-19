@@ -20,6 +20,8 @@
   "noLicense": "You don't have an license? ",
   "removeCurrentLicense": "Remove current license.",
   "createAccountAdmin": "Create account admin",
+  "recoverPassword": "Recover password",
+  "sendEmailToRecoverPassword": "Send an email to recover your password.",
 
   "add": "Add",
   "create": "Create",
@@ -35,6 +37,7 @@
   "approved": "Approved",
   "cancel": "Cancel",
   "close": "Close",
+  "send": "Send",
   "save": "Save",
   "assign": "Assign",
   "assigned": "Assigned",

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:tedxcommunity/services/imports.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../widget/reset_password.dart';
+
 class Authenticate extends StatefulWidget {
   final String licenseId;
   final Function() onLicenseRemoved;
@@ -118,7 +120,8 @@ class AuthenticateState extends State<Authenticate> {
                                                 Style.inputTextFieldRadius)),
                                       ),
                                       controller: emailController,
-                                      placeholder: 'Email',
+                                      placeholder:
+                                          AppLocalizations.of(context)!.email,
                                       keyboardType: TextInputType.emailAddress,
                                     ),
                                     CupertinoTextFormFieldRow(
@@ -216,6 +219,26 @@ class AuthenticateState extends State<Authenticate> {
                                                     color: CupertinoColors
                                                         .destructiveRed),
                                               )),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                                showCupertinoDialog(
+                                                  context: context,
+                                                  barrierDismissible: true,
+                                                  builder: (context) {
+                                                    return PasswordRecoveryDialog(
+                                                        email: emailController
+                                                            .text);
+                                                  },
+                                                );
+                                              },
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .recoverPassword,
+                                                style: const TextStyle(
+                                                    color: CupertinoColors
+                                                        .activeBlue),
+                                              )),
                                         ],
                                       );
                                     },
@@ -265,7 +288,24 @@ class AuthenticateState extends State<Authenticate> {
                             AppLocalizations.of(context)!.removeCurrentLicense,
                             style: const TextStyle(color: Colors.grey),
                           ),
-                        )
+                        ),
+                        if (isTeam && emailController.text.isNotEmpty) ...[
+                          const SizedBox(height: 10),
+                          TextButton(
+                            onPressed: () => showCupertinoDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) {
+                                return PasswordRecoveryDialog(
+                                    email: emailController.text);
+                              },
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.recoverPassword,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                          )
+                        ]
                       ],
                     ),
                   ),

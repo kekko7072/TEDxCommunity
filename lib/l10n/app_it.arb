@@ -15,7 +15,7 @@
   "createHere": "Crea qui." ,
   "noAccount": "Non hai un account? ",
   "noLicense": "Non hai una licenza? ",
-
+  "removeCurrentLicense": "Rimuovi licenza attuale.",
 
   "add": "Aggiungi",
   "create": "Crea",
@@ -31,6 +31,7 @@
   "approved": "Approvato",
   "cancel": "Annulla",
   "close": "Chiudi",
+  "send": "Invia",
   "save": "Salva",
   "assign": "Assegna",
   "assigned": "Assegnato",
@@ -48,6 +49,8 @@
 
 
   "createAccountAdmin": "Crea account admin",
+  "recoverPassword": "Recupera password",
+  "sendEmailToRecoverPassword": "Invia una email per recuperare la password.",
 
   "settings": "Impostazioni",
   "licenseId": "Id licenza",
