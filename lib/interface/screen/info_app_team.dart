@@ -219,7 +219,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             nameWidget:
                                 Text(AppLocalizations.of(context)!.role),
                             contentWidget: Text(
-                              TextLabels.userRoleToString(widget.userData.role),
+                              TextLabels.userRoleToString(
+                                  widget.userData.role, context),
                               style: kSettingsDescriptionStyle,
                             ),
                           ),

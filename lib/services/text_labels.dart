@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:tedxcommunity/services/imports.dart';
+
 import '../models/user.dart';
 
 class TextLabels {
@@ -19,16 +22,16 @@ class TextLabels {
     return str;
   }
 
-  static String userRoleToString(Role role) {
+  static String userRoleToString(Role role, BuildContext context) {
     switch (role) {
       case Role.volunteer:
-        return 'Volunteer';
+        return AppLocalizations.of(context)!.volunteer;
       case Role.master:
-        return 'Master';
+        return AppLocalizations.of(context)!.master;
       case Role.coach:
-        return 'Coach';
+        return AppLocalizations.of(context)!.coach;
       case Role.admin:
-        return 'Admin';
+        return AppLocalizations.of(context)!.admin;
     }
   }
 }

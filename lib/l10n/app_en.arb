@@ -160,5 +160,10 @@
   "secondMeeting": "Second meeting",
   "secondMeetingWithSpeakerCoach": "Second meeting with the speaker coach and the TEDx team",
   "review": "Review",
-  "finalReviewMeetingWithSpeakerCoach": "Final review meeting with the speaker coach and the TEDx team"
+  "finalReviewMeetingWithSpeakerCoach": "Final review meeting with the speaker coach and the TEDx team",
+  "startTalking": "Start talking...",
+  "speechNotAvailable": "Speech not available",
+  "volunteer": "Volunteer",
+  "master": "Master",
+  "coach": "Coach"
 }

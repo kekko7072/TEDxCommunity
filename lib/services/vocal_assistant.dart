@@ -80,16 +80,11 @@ class VocalAssistantState extends State<VocalAssistant> {
           Container(
             padding: const EdgeInsets.all(16),
             child: Text(
-              // If listening is active show the recognized words
               _speechToText.isListening || _lastWords.isNotEmpty
                   ? _lastWords
-                  // If listening isn't active but could be tell the user
-                  // how to start it, otherwise indicate that speech
-                  // recognition is not yet ready or not supported on
-                  // the target device
                   : _speechEnabled
-                      ? 'Inizia a parlare...'
-                      : 'Speech not available',
+                      ? AppLocalizations.of(context)!.startTalking
+                      : AppLocalizations.of(context)!.speechNotAvailable,
             ),
           ),
         ],

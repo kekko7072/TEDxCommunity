@@ -79,7 +79,7 @@ class EditTeamState extends State<EditTeam> {
                             subtitle: Text(usersList[index].email),
                             additionalInfo: Text(
                               TextLabels.userRoleToString(
-                                  usersList[index].role),
+                                  usersList[index].role, context),
                               style: TextStyle(
                                   color: changeColorBasedOnRole(
                                       usersList[index].role)),
@@ -118,16 +118,20 @@ class EditTeamState extends State<EditTeam> {
                                                             children: [
                                                               Text(TextLabels
                                                                   .userRoleToString(
-                                                                      Role.volunteer)),
+                                                                      Role.volunteer,
+                                                                      context)),
                                                               Text(TextLabels
                                                                   .userRoleToString(
-                                                                      Role.master)),
+                                                                      Role.master,
+                                                                      context)),
                                                               Text(TextLabels
                                                                   .userRoleToString(
-                                                                      Role.coach)),
+                                                                      Role.coach,
+                                                                      context)),
                                                               Text(TextLabels
                                                                   .userRoleToString(
-                                                                      Role.admin))
+                                                                      Role.admin,
+                                                                      context))
                                                             ],
                                                           ),
                                                         ),

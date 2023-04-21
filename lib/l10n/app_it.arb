@@ -160,7 +160,10 @@
   "secondMeeting": "Secondo incontro",
   "secondMeetingWithSpeakerCoach": "Secondo incontro con lo speaker coach e il team di TEDx",
   "review": "Revisione",
-  "finalReviewMeetingWithSpeakerCoach": "Incontro di revisione finale con lo speaker coach e il team di TEDx"
-
-
+  "finalReviewMeetingWithSpeakerCoach": "Incontro di revisione finale con lo speaker coach e il team di TEDx",
+  "startTalking": "Inizia a parlare...",
+  "speechNotAvailable": "Discorso non disponibile",
+  "volunteer": "Volontario",
+  "master": "Master",
+  "coach": "Coach"
 }
