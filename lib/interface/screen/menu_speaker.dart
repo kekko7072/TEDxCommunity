@@ -26,7 +26,7 @@ class MenuSpeakerState extends State<MenuSpeaker> {
           child: MacosScaffold(
               backgroundColor: Style.backgroundColor(context),
               toolBar: ToolBar(
-                title: const Text('Coaching'),
+                title: Text(AppLocalizations.of(context)!.coaching),
                 actions: [
                   ToolBarIconButton(
                     icon: const Icon(
@@ -184,8 +184,8 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                               ? Style.whiteColor
                               : Style.textColor(context),
                         ),
-                        label: Text('Coaching'),
-                        semanticLabel: 'Coaching'),
+                        label: Text(AppLocalizations.of(context)!.coaching),
+                        semanticLabel: AppLocalizations.of(context)!.coaching),
                     SidebarItem(
                       leading: MacosIcon(
                         CupertinoIcons.book,
@@ -193,8 +193,8 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                             ? Style.whiteColor
                             : Style.textColor(context),
                       ),
-                      label: Text('Gestione'),
-                      semanticLabel: 'Gestione',
+                      label: Text(AppLocalizations.of(context)!.management),
+                      semanticLabel: AppLocalizations.of(context)!.management,
                     ),
                   ],
                 );
@@ -210,13 +210,13 @@ class MenuSpeakerState extends State<MenuSpeaker> {
               inactiveColor: Style.textMenuColor(context),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.calendar),
-                    label: 'Coaching',
-                    tooltip: 'Coaching'),
+                    icon: const Icon(CupertinoIcons.calendar),
+                    label: AppLocalizations.of(context)!.coaching,
+                    tooltip: AppLocalizations.of(context)!.coaching),
                 BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.book),
-                  label: 'Gestione',
-                  tooltip: 'Gestione',
+                  icon: const Icon(CupertinoIcons.book),
+                  label: AppLocalizations.of(context)!.management,
+                  tooltip: AppLocalizations.of(context)!.management,
                 ),
               ],
             ),

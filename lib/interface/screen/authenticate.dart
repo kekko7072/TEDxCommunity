@@ -79,9 +79,10 @@ class AuthenticateState extends State<Authenticate> {
                           children: {
                             true: Container(
                               padding: const EdgeInsets.all(8),
-                              child: const Text(
-                                'TEDx Team',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              child: Text(
+                                AppLocalizations.of(context)!.tedxTeam,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             false: Text(
@@ -133,7 +134,8 @@ class AuthenticateState extends State<Authenticate> {
                                                 Style.inputTextFieldRadius)),
                                       ),
                                       controller: passwordController,
-                                      placeholder: 'Password',
+                                      placeholder: AppLocalizations.of(context)!
+                                          .password,
                                       obscureText: true,
                                       keyboardType:
                                           TextInputType.visiblePassword,
@@ -160,7 +162,9 @@ class AuthenticateState extends State<Authenticate> {
                                                   Style.inputTextFieldRadius)),
                                         ),
                                         controller: emailController,
-                                        placeholder: 'Speaker ID',
+                                        placeholder:
+                                            AppLocalizations.of(context)!
+                                                .speakerId,
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         maxLength: 5,
@@ -180,7 +184,8 @@ class AuthenticateState extends State<Authenticate> {
                                       obscureText: true,
                                       keyboardType:
                                           TextInputType.visiblePassword,
-                                      placeholder: 'Code',
+                                      placeholder:
+                                          AppLocalizations.of(context)!.code,
                                       maxLength: 8,
                                     ),
                                   ],
@@ -349,8 +354,10 @@ class AuthenticateState extends State<Authenticate> {
                                               barrierDismissible: true,
                                               builder: (context) {
                                                 return CupertinoAlertDialog(
-                                                  title: const Text(
-                                                      'Speaker Team'),
+                                                  title: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .tedxTeam),
                                                   content: Column(
                                                     children: [
                                                       CupertinoTextFormFieldRow(
@@ -396,7 +403,10 @@ class AuthenticateState extends State<Authenticate> {
                                                         textCapitalization:
                                                             TextCapitalization
                                                                 .words,
-                                                        placeholder: 'Surname',
+                                                        placeholder:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .surname,
                                                         keyboardType:
                                                             TextInputType.name,
                                                       ),
@@ -416,7 +426,10 @@ class AuthenticateState extends State<Authenticate> {
                                                         enableSuggestions: true,
                                                         controller:
                                                             emailController,
-                                                        placeholder: 'Email',
+                                                        placeholder:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .name,
                                                         keyboardType:
                                                             TextInputType
                                                                 .emailAddress,
@@ -437,7 +450,10 @@ class AuthenticateState extends State<Authenticate> {
                                                         enableSuggestions: true,
                                                         controller:
                                                             passwordController,
-                                                        placeholder: 'Password',
+                                                        placeholder:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .email,
                                                         obscureText: true,
                                                         keyboardType:
                                                             TextInputType

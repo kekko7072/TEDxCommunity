@@ -13,7 +13,7 @@ class Elaboration extends StatefulWidget {
 
 class _ElaborationState extends State<Elaboration> {
   final AuthService auth = AuthService();
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();

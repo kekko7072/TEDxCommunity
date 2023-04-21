@@ -16,6 +16,13 @@
   "noAccount": "Non hai un account? ",
   "noLicense": "Non hai una licenza? ",
   "removeCurrentLicense": "Rimuovi licenza attuale.",
+  "createAccountAdmin": "Crea account admin",
+  "recoverPassword": "Recupera password",
+  "sendEmailToRecoverPassword": "Invia una email per recuperare la password.",
+  "code": "Codice",
+  "speakerId": "Speaker id",
+  "password": "Password",
+  "tedxTeam": "TEDx team",
 
   "add": "Aggiungi",
   "create": "Crea",
@@ -48,9 +55,7 @@
   "publicSpeakingDescription": "Dai un voto da 1 a 5 al public speaking dello speaker. La scala va da 1 a 5 dove 1 significa che in pubblico è impacciato, mentre 5 vuol dire che è un ottimo oratore. Utilizza materiale come video di interviste per valutare lo speaker.",
 
 
-  "createAccountAdmin": "Crea account admin",
-  "recoverPassword": "Recupera password",
-  "sendEmailToRecoverPassword": "Invia una email per recuperare la password.",
+
 
   "settings": "Impostazioni",
   "licenseId": "Id licenza",
@@ -94,6 +99,19 @@
 
   "yourAccountIsNotActive": "Il tuo account non è attivo",
   "yourLicenseeIs": "Il tuo licensee è",
-  "askToActivateAccount": "Ask your licensee to activate your account."
+  "askToActivateAccount": "Ask your licensee to activate your account.",
+  "coaching": "Coaching",
+  "management": "Gestione",
+  "requests": "Richieste",
+  "data": "Dati",
+  "firstMeetWillTakePlaceAt": "Il primo incontro si svolgerà alle",
+  "setDateForFirstMeeting": "Imposta la data per il primo incontro.",
+  "download": "Scarica",
+  "prepareSpeech": "Allo speaker è stato affidato di preparare il discorso.",
+  "downloadSpeech": "Puoi scaricare il discorso dello speaker.",
+  "moduleOpenedTheDay": "Allo speaker è stato aperto il modulo con le informazioni principali il giorno",
+  "moduleSendTheDay": "Il modulo con le le informazioni sulla logistica è stato inviato il giorno"
+
+
 
 }

@@ -12,7 +12,7 @@ class Confirmed extends StatefulWidget {
 }
 
 class _ConfirmedState extends State<Confirmed> {
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();

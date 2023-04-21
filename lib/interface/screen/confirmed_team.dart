@@ -74,7 +74,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 ),
                 widget.userData.role == Role.coach
                     ? Text(
-                        'Coaching',
+                        AppLocalizations.of(context)!.coaching,
                         style: CupertinoTheme.of(context)
                             .textTheme
                             .navTitleTextStyle,
@@ -85,16 +85,19 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                           borderColor: Style.primaryColor,
                           selectedColor: Style.primaryColor,
                           unselectedColor: Style.backgroundColor(context),
-                          children: const {
+                          children: {
                             true: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
                                 child: Text(
-                                  'Coaching',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  AppLocalizations.of(context)!.coaching,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
                                 )),
                             false: Text(
-                              'Gestione',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              AppLocalizations.of(context)!.management,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           },
                           groupValue: selectedIndexValue,
@@ -140,16 +143,18 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                         borderColor: Style.primaryColor,
                         selectedColor: Style.primaryColor,
                         unselectedColor: Style.backgroundColor(context),
-                        children: const {
+                        children: {
                           true: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               child: Text(
-                                'Richieste',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                AppLocalizations.of(context)!.requests,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               )),
                           false: Text(
-                            'Dati',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            AppLocalizations.of(context)!.data,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         },
                         groupValue: selectedIndexValueManagement,
@@ -242,8 +247,8 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 : AppLocalizations.of(context)!.select,
             buttonAction: () => {},
             content: dateSelected
-                ? 'Il primo incontro si svolgerà alle  $coachingStepDate .'
-                : 'Imposta la data per il primo incontro.'),
+                ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  $coachingStepDate .'
+                : AppLocalizations.of(context)!.setDateForMeeting),
         buildCoachingStep(
             context: context,
             licenseId: licenseId,
@@ -259,7 +264,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 : StepState.disabled,
             dateIsSelected: false,
             showButton: widget.speaker.talkDownloadLink! == '' ? false : true,
-            buttonText: 'Scarica',
+            buttonText: AppLocalizations.of(context)!.download,
             buttonAction: () async {
               if (widget.userData.role != Role.volunteer) {
                 if (await canLaunchUrlString(
@@ -273,8 +278,8 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
               }
             },
             content: widget.speaker.talkDownloadLink! == ''
-                ? 'Allo speaker è stato affidato di preparare il discorso.'
-                : 'Puoi scaricare il discorso dello speaker.'),
+                ? AppLocalizations.of(context)!.prepareSpeech
+                : AppLocalizations.of(context)!.downloadSpeech),
         buildCoachingStep(
             licenseId: licenseId,
             context: context,
@@ -296,8 +301,8 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 : AppLocalizations.of(context)!.select,
             buttonAction: () => {},
             content: dateSelected
-                ? 'L\'incontro si svolgerà alle  $coachingStepDate .'
-                : 'Imposta la data dell\'incontro.'),
+                ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  $coachingStepDate .'
+                : AppLocalizations.of(context)!.setDateForMeeting),
         buildCoachingStep(
           licenseId: licenseId,
           context: context,
@@ -319,8 +324,8 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
               : AppLocalizations.of(context)!.select,
           buttonAction: () => {},
           content: dateSelected
-              ? 'L\'incontro di revisione si svolgerà alle  $coachingStepDate .'
-              : 'Imposta la data per l\'incontro di revisione.',
+              ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  $coachingStepDate .'
+              : AppLocalizations.of(context)!.setDateForMeeting,
         ),
       ],
     );
@@ -365,7 +370,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 ? StepState.complete
                 : StepState.disabled,
             content:
-                'Allo speaker è stato aperto il modulo con le informazioni principali il giorno ${widget.speaker.managementStepDate.substring(0, 10)} .'),
+                '${AppLocalizations.of(context)!.moduleOpenedTheDay} ${widget.speaker.managementStepDate.substring(0, 10)} .'),
         buildManagementStep(
             title: StepService.loadStepManagementText(2),
             subtitle: currentManagementStep > 1
@@ -377,7 +382,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
                 ? StepState.complete
                 : StepState.disabled,
             content:
-                'Il modulo con le le informazioni sulla logistica è stato inviato il giorno ${widget.speaker.managementStepDate.substring(0, 10)} .'),
+                '${AppLocalizations.of(context)!.moduleSendTheDay} ${widget.speaker.managementStepDate.substring(0, 10)} .'),
       ],
     );
   }

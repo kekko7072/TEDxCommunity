@@ -76,7 +76,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                               Radius.circular(Style.inputTextFieldRadius)),
                         ),
                         controller: licenseIdController,
-                        placeholder: 'LicenseId (Es. AXYA3)',
+                        placeholder:
+                            '${AppLocalizations.of(context)!.licenseId} (Es. AXYA3)',
                         keyboardType: TextInputType.text,
                         textCapitalization: TextCapitalization.characters,
                         maxLength: 5,
@@ -154,7 +155,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   enableSuggestions: true,
                                   controller: nameController,
                                   textCapitalization: TextCapitalization.words,
-                                  placeholder: 'Name',
+                                  placeholder:
+                                      AppLocalizations.of(context)!.name,
                                   keyboardType: TextInputType.name,
                                 ),
                                 const SizedBox(height: 10),
@@ -168,7 +170,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   enableSuggestions: true,
                                   controller: surnameController,
                                   textCapitalization: TextCapitalization.words,
-                                  placeholder: 'Surname',
+                                  placeholder:
+                                      AppLocalizations.of(context)!.surname,
                                   keyboardType: TextInputType.name,
                                 ),
                                 const SizedBox(height: 10),
@@ -181,7 +184,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   ),
                                   enableSuggestions: true,
                                   controller: emailController,
-                                  placeholder: 'Email',
+                                  placeholder:
+                                      AppLocalizations.of(context)!.email,
                                   keyboardType: TextInputType.emailAddress,
                                 ),
                                 const SizedBox(height: 10),
@@ -194,7 +198,8 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                   ),
                                   enableSuggestions: true,
                                   controller: passwordController,
-                                  placeholder: 'Password',
+                                  placeholder:
+                                      AppLocalizations.of(context)!.password,
                                   obscureText: true,
                                   keyboardType: TextInputType.visiblePassword,
                                 ),

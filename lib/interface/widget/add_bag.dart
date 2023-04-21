@@ -11,7 +11,7 @@ class _AddBagState extends State<AddBag> {
   String name = '';
   TextEditingController product = TextEditingController();
   List<String> products = [];
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();

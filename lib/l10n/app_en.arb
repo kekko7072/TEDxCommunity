@@ -22,6 +22,10 @@
   "createAccountAdmin": "Create account admin",
   "recoverPassword": "Recover password",
   "sendEmailToRecoverPassword": "Send an email to recover your password.",
+  "code": "Code",
+  "speakerId": "Speaker id",
+  "password": "Password",
+  "tedxTeam": "TEDx team",
 
   "add": "Add",
   "create": "Create",
@@ -95,7 +99,20 @@
 
   "yourAccountIsNotActive": "Your account is not active",
   "yourLicenseeIs": "Your licensee is",
-  "askToActivateAccount": "Ask your licensee to activate your account."
+  "askToActivateAccount": "Ask your licensee to activate your account.",
+  "coaching": "Coaching",
+  "management": "Management",
+  "requests": "Requests",
+  "data": "Data",
+  "meetWillTakePlaceAt": "The meeting will take place at",
+  "setDateForMeeting": "Set the date for the meeting.",
+  "download": "Download",
+  "prepareSpeech": "The speaker was entrusted with preparing the speech.",
+  "downloadSpeech": "You can download the speaker's speech.",
+  "moduleOpenedTheDay": "The form with the main information was opened to the speaker on the day",
+  "moduleSendTheDay": "Logistics information form was sent on the day"
+
+
 
 
 
