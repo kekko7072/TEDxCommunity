@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tedxcommunity/services/imports.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../widget/reset_password.dart';
 

@@ -11,7 +11,7 @@ class DatabaseLicense {
   late DocumentReference<Map<String, dynamic>> licenseDoc =
       FirebaseFirestore.instance.collection('licenses').doc(id);
 
-  Future create(
+  Future<void> create(
       {required String adminUid,
       required String licenseName,
       required String urlReleaseForm}) async {
@@ -26,21 +26,27 @@ class DatabaseLicense {
     });
   }
 
-  Future editRegistration({required bool registration}) async {
+  Future<void> editRegistration({required bool registration}) async {
     return await collectionReference.doc(id).update({
       'registration': registration,
     });
   }
 
-  Future editEventDate({required DateTime date}) async {
+  Future<void> editEventDate({required DateTime date}) async {
     return await collectionReference.doc(id).update({
       'eventDate': Timestamp.fromDate(date),
     });
   }
 
-  Future editBags({required bool bags}) async {
+  Future<void> editBags({required bool bags}) async {
     return await collectionReference.doc(id).update({
       'bags': bags,
+    });
+  }
+
+  Future<void> editReleaseForm({required String urlReleaseForm}) async {
+    return await collectionReference.doc(id).update({
+      'urlReleaseForm': urlReleaseForm,
     });
   }
 

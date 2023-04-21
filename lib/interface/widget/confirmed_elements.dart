@@ -309,7 +309,6 @@ Step buildCoachingStep({
   void Function()? buttonAction,
 }) {
   String linkVideoCall0 = '';
-  bool selectedIndexValue = true;
 
   return Step(
     title: Text(title),
@@ -362,24 +361,13 @@ Step buildCoachingStep({
             ),
           ] else ...[
             const SizedBox(height: 10),
-            CupertinoSegmentedControl(
-              borderColor: Style.primaryColor,
-              selectedColor: Style.primaryColor,
-              unselectedColor: Style.backgroundColor(context),
-              children: {
-                true: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      AppLocalizations.of(context)!.linkVideoCall,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    )),
-              },
-              groupValue: selectedIndexValue,
-              onValueChanged: (bool value) {
-                selectedIndexValue = value;
-              },
-            ),
-            if (selectedIndexValue) ...[
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  AppLocalizations.of(context)!.linkVideoCall,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                )),
+            if (true) ...[
               const SizedBox(height: 10),
               CupertinoTextField(
                 placeholder: 'https://meet.com/love-TEDxCortina',
@@ -423,15 +411,7 @@ Step buildCoachingStep({
                   ],
                 ),
               ),
-            ] else ...[
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: SignInButton(
-                  Buttons.Google,
-                  onPressed: buttonAction!,
-                ),
-              )
-            ],
+            ]
           ],
           if (showButton) ...[
             CupertinoButton(

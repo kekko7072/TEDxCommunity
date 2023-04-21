@@ -29,6 +29,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
   bool editingSurname = false;
   TextEditingController surnameController = TextEditingController();
 
+  bool uploading = false;
+
   @override
   void initState() {
     super.initState();
@@ -205,6 +207,30 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                       .editBags(bags: bags);
                                 },
                               ),
+                            ),
+                            CSControl(
+                              nameWidget: Text(
+                                  AppLocalizations.of(context)!.releaseForm),
+                              contentWidget: uploading
+                                  ? const CupertinoActivityIndicator()
+                                  : TextButton(
+                                      style: TextButton.styleFrom(
+                                          //backgroundColor: Colors.red,
+                                          padding: const EdgeInsets.all(0),
+                                          tapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap),
+                                      onPressed: () async {
+                                        setState(() => uploading = true);
+                                        await _openFileExplorer();
+                                        setState(() => uploading = false);
+                                      },
+                                      child: Text(
+                                        AppLocalizations.of(context)!.upload,
+                                        style: CupertinoTheme.of(context)
+                                            .textTheme
+                                            .actionTextStyle,
+                                      ),
+                                    ),
                             ),
                             CSButton(
                                 CSButtonType.DEFAULT,
@@ -408,6 +434,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                                         licenseId: newLicenseId,
                                                         adminUid:
                                                             widget.userData.uid,
+                                                        showAddReleaseForm:
+                                                            true,
                                                         onLogin: () async {
                                                           ///1. Create admin inside new license
                                                           await DatabaseUser(
@@ -477,5 +505,52 @@ class InfoAppTeamState extends State<InfoAppTeam> {
         ),
       ),
     );
+  }
+
+  Future<bool> _openFileExplorer() async {
+    try {
+      FilePickerResult? picked = await FilePicker.platform.pickFiles();
+
+      if (picked != null) {
+        if (kIsWeb) {
+          return uploadFile(
+              picked.files.first.bytes!, picked.files.first.extension!);
+        } else {
+          if (picked.files.first.path != '') {
+            return await uploadFile(
+                await File(picked.files.first.path!).readAsBytes(),
+                picked.files.first.extension!);
+          } else {
+            print('PATH FILE NULL!');
+            return false;
+          }
+        }
+      } else {
+        return false;
+      }
+    } on PlatformException catch (e) {
+      print('ERROR Unsupported operation$e');
+      return false;
+    } catch (ex) {
+      print('EX ERROR$ex');
+      return false;
+    }
+  }
+
+  Future<bool> uploadFile(Uint8List data, String extension) async {
+    Reference reference = FirebaseStorage.instance
+        .ref('${widget.license.id}/releaseForm.$extension');
+    TaskSnapshot uploadTask = await reference.putData(data);
+
+    String url = await uploadTask.ref.getDownloadURL();
+    if (uploadTask.state == TaskState.success) {
+      await DatabaseLicense(widget.license.id)
+          .editReleaseForm(urlReleaseForm: url);
+
+      return true;
+    } else {
+      print(uploadTask.state);
+      return false;
+    }
   }
 }

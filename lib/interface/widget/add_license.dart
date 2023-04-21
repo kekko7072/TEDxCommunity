@@ -5,12 +5,14 @@ class AddLicense extends StatefulWidget {
   final String licenseId;
   final String adminUid;
   final Function() onLogin;
+  final bool showAddReleaseForm;
 
   const AddLicense({
     Key? key,
     required this.licenseId,
     required this.adminUid,
     required this.onLogin,
+    required this.showAddReleaseForm,
   }) : super(key: key);
 
   @override
@@ -67,21 +69,23 @@ class _AddLicenseState extends State<AddLicense> {
             keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 10),
-          Text(AppLocalizations.of(context)!.uploadReleaseFormForSpeaker),
-          !_loadingPath
-              ? CupertinoButton(
-                  onPressed: () => _openFileExplorer(),
-                  child: _loadingDone
-                      ? Text(
-                          AppLocalizations.of(context)!.edit,
-                          style: const TextStyle(
-                              color: CupertinoColors.destructiveRed),
-                        )
-                      : Text(
-                          AppLocalizations.of(context)!.upload,
-                        ),
-                )
-              : const CupertinoActivityIndicator()
+          if (widget.showAddReleaseForm) ...[
+            Text(AppLocalizations.of(context)!.uploadReleaseFormForSpeaker),
+            !_loadingPath
+                ? CupertinoButton(
+                    onPressed: () => _openFileExplorer(),
+                    child: _loadingDone
+                        ? Text(
+                            AppLocalizations.of(context)!.edit,
+                            style: const TextStyle(
+                                color: CupertinoColors.destructiveRed),
+                          )
+                        : Text(
+                            AppLocalizations.of(context)!.upload,
+                          ),
+                  )
+                : const CupertinoActivityIndicator()
+          ]
         ],
       ),
       actions: <Widget>[

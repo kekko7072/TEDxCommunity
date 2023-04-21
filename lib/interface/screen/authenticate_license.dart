@@ -263,6 +263,7 @@ class AuthenticateLicenseState extends State<AuthenticateLicense> {
                                             return AddLicense(
                                               licenseId: newLicenseId,
                                               adminUid: adminUid,
+                                              showAddReleaseForm: false,
                                               onLogin: () =>
                                                   widget.onLogin(newLicenseId),
                                             );
