@@ -226,8 +226,9 @@ class _SpeakerItemState extends State<SpeakerItem> {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold)),
                                 TextSpan(
-                                  text: StepService.loadStepCoachingTitle(
-                                      widget.speaker.coachingStep),
+                                  text: StepService(context)
+                                      .loadStepCoachingTitle(
+                                          widget.speaker.coachingStep),
                                 ),
                                 TextSpan(
                                     text:
@@ -235,8 +236,9 @@ class _SpeakerItemState extends State<SpeakerItem> {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold)),
                                 TextSpan(
-                                  text: StepService.loadStepManagementText(
-                                      widget.speaker.managementStep),
+                                  text: StepService(context)
+                                      .loadStepManagementText(
+                                          widget.speaker.managementStep),
                                 ),
                               ],
                             ),

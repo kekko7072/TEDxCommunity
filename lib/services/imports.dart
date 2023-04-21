@@ -31,7 +31,7 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:flutter/material.dart';
 export 'package:cupertino_stepper/cupertino_stepper.dart';
 export 'package:flutter_cupertino_settings/flutter_cupertino_settings.dart';
-//export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:url_launcher/url_launcher_string.dart';
@@ -39,7 +39,6 @@ export 'package:flutter_signin_button/flutter_signin_button.dart';
 export 'package:macos_ui/macos_ui.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:siri_wave/siri_wave.dart';
-export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 export '../interface/pages/team/confirmed.dart';
 export '../interface/pages/team/elaboration.dart';

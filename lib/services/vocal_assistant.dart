@@ -33,29 +33,10 @@ class VocalAssistantState extends State<VocalAssistant> {
   }
 
   /// Each time to start a speech recognition session
-  void _startListening() async {
-    /* List<LocaleName> locales = await _speechToText.locales();
-    LocaleName selectedLocale = locales[1];
-    showCupertinoDialog(
-        context: context,
-        builder: (_) => CupertinoAlertDialog(
-              title: Text('Seleziona lingua'),
-              content: SizedBox(
-                height: 200,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: locales.length,
-                    itemBuilder: (context, index) => TextButton(
-                        onPressed: () {
-                          selectedLocale = locales[index];
-                          print(locales[index].localeId);
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(locales[index].name))),
-              ),
-            ));*/
-
-    await _speechToText.listen(onResult: _onSpeechResult, localeId: 'it-IT');
+  Future<void> _startListening() async {
+    await _speechToText.listen(
+        onResult: _onSpeechResult,
+        localeId: AppLocalizations.of(context)!.localeName);
     setState(() {});
   }
 
@@ -111,30 +92,6 @@ class VocalAssistantState extends State<VocalAssistant> {
                       : 'Speech not available',
             ),
           ),
-          /*   Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              FloatingActionButton(
-                onPressed:
-                    // If not yet listening for speech start, otherwise stop
-                    _speechToText.isNotListening
-                        ? _startListening
-                        : _stopListening,
-                tooltip: 'Listen',
-                child: Icon(_speechToText.isNotListening
-                    ? CupertinoIcons.mic_off
-                    : CupertinoIcons.mic),
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  widget.onCompleted(_lastWords);
-                  Navigator.of(context).pop();
-                },
-                tooltip: 'Salva',
-                child: Icon(CupertinoIcons.check_mark_circled_solid),
-              ),
-            ],
-          )*/
         ],
       ),
       actions: [
@@ -228,7 +185,8 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
   }
 
   String speakValue() {
-    String output = "Ciao ${widget.userData.name}, ecco la lista speaker.\n";
+    String output =
+        '${AppLocalizations.of(context)!.hello} ${widget.userData.name}, ${AppLocalizations.of(context)!.hereListOfSpeaker}.\n';
     int i = 0;
 
     for (var element in widget.speakers) {
@@ -245,7 +203,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
             startIndexProfession + TextLabels.kAddSpeaker0.length);
 
         output =
-            '$output.\n Professione.\n ${element.description.substring(startIndexProfession + TextLabels.kAddSpeaker0.length, endIndexProfession)}';
+            '$output.\n ${AppLocalizations.of(context)!.job}.\n ${element.description.substring(startIndexProfession + TextLabels.kAddSpeaker0.length, endIndexProfession)}';
       }
 
       ///TOPIC
@@ -257,7 +215,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
             startIndexTopic + TextLabels.kAddSpeaker1.length);
 
         output =
-            '$output.\n Topic.\n  ${element.description.substring(startIndexTopic + TextLabels.kAddSpeaker1.length, endIndexTopic)}';
+            '$output.\n ${AppLocalizations.of(context)!.topic}.\n  ${element.description.substring(startIndexTopic + TextLabels.kAddSpeaker1.length, endIndexTopic)}';
       }
 
       ///JustTEDx
@@ -269,7 +227,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
             TextLabels.kAddSpeaker4,
             startIndexJustTEDx + TextLabels.kAddSpeaker3.length);
         output =
-            '$output.\n Ha già fatto un ted?.\n ${element.description.substring(startIndexJustTEDx + TextLabels.kAddSpeaker3.length, endIndexJustTEDx)}';
+            '$output.\n ${AppLocalizations.of(context)!.alreadyTEDx}.\n ${element.description.substring(startIndexJustTEDx + TextLabels.kAddSpeaker3.length, endIndexJustTEDx)}';
       }
 
       ///Bio
@@ -277,7 +235,7 @@ class _VocalAssistantSpeakerState extends State<VocalAssistantSpeaker> {
         int startIndexBio =
             element.description.indexOf(TextLabels.kAddSpeaker4);
         output =
-            '$output.\n Biografia.\n ${element.description.substring(startIndexBio + TextLabels.kAddSpeaker4.length, element.description.length)}.';
+            '$output.\n ${AppLocalizations.of(context)!.biography}.\n ${element.description.substring(startIndexBio + TextLabels.kAddSpeaker4.length, element.description.length)}.';
       }
     }
 

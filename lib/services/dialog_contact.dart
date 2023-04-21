@@ -77,7 +77,8 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
           },
           child: Text(
             AppLocalizations.of(context)!.confirm,
-            style: TextStyle(color: CupertinoColors.activeGreen, fontSize: 15),
+            style: const TextStyle(
+                color: CupertinoColors.activeGreen, fontSize: 15),
           ),
         ),
       ],

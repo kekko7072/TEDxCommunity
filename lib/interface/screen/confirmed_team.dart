@@ -230,7 +230,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             context: context,
             licenseId: licenseId,
             speakerID: widget.speaker.id,
-            title: StepService.loadStepCoachingTitle(1),
+            title: StepService(context).loadStepCoachingTitle(1),
             subtitle: currentCoachingStep > 0
                 ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 0
@@ -253,7 +253,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             context: context,
             licenseId: licenseId,
             speakerID: widget.speaker.id,
-            title: StepService.loadStepCoachingTitle(2),
+            title: StepService(context).loadStepCoachingTitle(2),
             subtitle: currentCoachingStep > 1
                 ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 1
@@ -284,7 +284,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             licenseId: licenseId,
             context: context,
             speakerID: widget.speaker.id,
-            title: StepService.loadStepCoachingTitle(3),
+            title: StepService(context).loadStepCoachingTitle(3),
             subtitle: currentCoachingStep > 2
                 ? AppLocalizations.of(context)!.completed
                 : currentCoachingStep == 2
@@ -307,7 +307,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
           licenseId: licenseId,
           context: context,
           speakerID: widget.speaker.id,
-          title: StepService.loadStepCoachingTitle(4),
+          title: StepService(context).loadStepCoachingTitle(4),
           subtitle: currentCoachingStep > 3
               ? AppLocalizations.of(context)!.completed
               : currentCoachingStep == 3
@@ -360,7 +360,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
           : null,
       steps: [
         buildManagementStep(
-            title: StepService.loadStepManagementText(1),
+            title: StepService(context).loadStepManagementText(1),
             subtitle: currentManagementStep > 0
                 ? AppLocalizations.of(context)!.completed
                 : currentManagementStep == 0
@@ -372,7 +372,7 @@ class ConfirmedTeamState extends State<ConfirmedTeam> {
             content:
                 '${AppLocalizations.of(context)!.moduleOpenedTheDay} ${widget.speaker.managementStepDate.substring(0, 10)} .'),
         buildManagementStep(
-            title: StepService.loadStepManagementText(2),
+            title: StepService(context).loadStepManagementText(2),
             subtitle: currentManagementStep > 1
                 ? AppLocalizations.of(context)!.completed
                 : currentManagementStep == 1

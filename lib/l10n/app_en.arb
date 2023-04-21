@@ -125,7 +125,7 @@
   "shortBiography": "A short biography",
   "yes": "Yes",
   "no": "No",
-  "alreadyTEDx": "He has already given speech at TEDx",
+  "alreadyTEDx": "He has already given speech at TEDx?",
   "thisIsMaxValueForPublicSpeaking": "5 is the maximum value for public speaking",
   "thisIsMinValueForPublicSpeaking": "0 is the minimum value for public speaking",
   "reportedBy": "Reported by",
@@ -136,20 +136,29 @@
   "addLink": "Add link",
   "openLink": "Open link",
   "downloadReleaseForm": "Download release form",
-  "hotelAndLogistics": "Hotel e Logistica"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "hotelAndLogistics": "Hotel and logistics",
+  "coachingEnded": "Coaching ended",
+  "managementEnded": "Management ended",
+  "speakerIsReadyForEvent": "The speaker is ready for the event",
+  "managementHasBeenCompleted": "The management has been completed",
+  "start": "Start",
+  "formWithInformation":"Form with information",
+  "noOptionAvailable": "No option available",
+  "biography": "Biography",
+  "topic": "Topic",
+  "hello": "Hello",
+  "hereListOfSpeaker": "here is the list of speakers",
+  "upload": "Upload",
+  "uploadNew": "Upload new",
+  "uploadDone": "Upload done",
+  "dateToBeDecidedWithCoach": "Date to be decided with the coach.",
+  "coachWillViewTextOfYourTalk": "The coach will view the text of your talk.",
+  "uploadATextFileContainingYourTalk": "Upload a text file containing your talk.",
+  "firstMeeting": "First meeting",
+  "firstMeetingWithSpeakerCoach": "First meeting with the speaker coach and the TEDx team",
+  "speechPreparation": "Speech preparation",
+  "secondMeeting": "Second meeting",
+  "secondMeetingWithSpeakerCoach": "Second meeting with the speaker coach and the TEDx team",
+  "review": "Review",
+  "finalReviewMeetingWithSpeakerCoach": "Final review meeting with the speaker coach and the TEDx team"
 }

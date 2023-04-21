@@ -29,13 +29,15 @@ class _EndCoachingOrManagementState extends State<EndCoachingOrManagement> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          widget.isCoaching ? 'Coaching finito' : 'Gestione finita',
+          widget.isCoaching
+              ? AppLocalizations.of(context)!.coachingEnded
+              : AppLocalizations.of(context)!.managementEnded,
           style: CupertinoTheme.of(context).textTheme.navTitleTextStyle,
         ),
         Text(
           widget.isCoaching
-              ? 'Lo speaker è pronto per l\'evento.'
-              : 'La gestione di questo speaker è completa.',
+              ? AppLocalizations.of(context)!.speakerIsReadyForEvent
+              : AppLocalizations.of(context)!.managementHasBeenCompleted,
           style: kSpeakerTitleStyle.copyWith(
               color: CupertinoDynamicColor.resolve(
                   const CupertinoDynamicColor.withBrightness(
@@ -369,7 +371,7 @@ Step buildCoachingStep({
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
                       AppLocalizations.of(context)!.linkVideoCall,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     )),
               },
               groupValue: selectedIndexValue,
@@ -392,13 +394,16 @@ Step buildCoachingStep({
                             date: DateTime.now().toIso8601String());
                     await DatabaseSpeaker(licenseId: licenseId, id: speakerID)
                         .editSpeakerLinkAndEventID(
-                            link: linkVideoCall0, eventId: '');
-                    EasyLoading.showToast(
-                        AppLocalizations.of(context)!.completed,
-                        duration: const Duration(milliseconds: kDurationToast),
-                        dismissOnTap: true,
-                        toastPosition: EasyLoadingToastPosition.bottom);
-                    Navigator.of(context).pop();
+                            link: linkVideoCall0, eventId: '')
+                        .whenComplete(() {
+                      EasyLoading.showToast(
+                          AppLocalizations.of(context)!.completed,
+                          duration:
+                              const Duration(milliseconds: kDurationToast),
+                          dismissOnTap: true,
+                          toastPosition: EasyLoadingToastPosition.bottom);
+                      Navigator.of(context).pop();
+                    });
                   } else {
                     EasyLoading.showToast(AppLocalizations.of(context)!.addLink,
                         duration: const Duration(seconds: 3),

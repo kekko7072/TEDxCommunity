@@ -1,48 +1,52 @@
+import 'package:tedxcommunity/services/imports.dart';
+
 class StepService {
-  static String loadStepManagementText(int step) {
+  BuildContext context;
+  StepService(this.context);
+  String loadStepManagementText(int step) {
     switch (step) {
       case 0:
-        return 'Inzio';
+        return AppLocalizations.of(context)!.start;
       case 1:
-        return 'Modulo con informazioni';
+        return AppLocalizations.of(context)!.formWithInformation;
       case 2:
-        return 'Hotel e logistica';
+        return AppLocalizations.of(context)!.hotelAndLogistics;
       case 3:
-        return 'Completato';
+        return AppLocalizations.of(context)!.completed;
     }
-    return 'Nessuna operazione esistente';
+    return AppLocalizations.of(context)!.noOptionAvailable;
   }
 
-  static String loadStepCoachingTitle(int step) {
+  String loadStepCoachingTitle(int step) {
     switch (step) {
       case 0:
-        return 'Inizio';
+        return AppLocalizations.of(context)!.start;
       case 1:
-        return 'Primo incontro';
+        return AppLocalizations.of(context)!.firstMeeting;
 
       case 2:
-        return 'Preparazione discorso';
+        return AppLocalizations.of(context)!.prepareSpeech;
       case 3:
-        return 'Secondo incontro';
+        return AppLocalizations.of(context)!.secondMeeting;
       case 4:
-        return 'Revisione';
+        return AppLocalizations.of(context)!.review;
       case 5:
-        return 'Completato';
+        return AppLocalizations.of(context)!.completed;
     }
-    return 'Nessuna operazione esistente';
+    return AppLocalizations.of(context)!.noOptionAvailable;
   }
 
-  static String loadStepCoachingDescription(int step) {
+  String loadStepCoachingDescription(int step) {
     switch (step) {
       case 0:
-        return 'Inizio';
+        return AppLocalizations.of(context)!.start;
       case 1:
-        return 'Primo incontro con lo speaker coach e il team di TEDx';
+        return AppLocalizations.of(context)!.firstMeetingWithSpeakerCoach;
       case 2:
-        return 'Secondo Incontro con lo speaker coach e il team di TEDx';
+        return AppLocalizations.of(context)!.secondMeetingWithSpeakerCoach;
       case 3:
-        return 'Incontro di revisione finale con lo speaker coach e il team di TEDx';
+        return AppLocalizations.of(context)!.finalReviewMeetingWithSpeakerCoach;
     }
-    return 'Nessuna operazione esistente';
+    return AppLocalizations.of(context)!.noOptionAvailable;
   }
 }

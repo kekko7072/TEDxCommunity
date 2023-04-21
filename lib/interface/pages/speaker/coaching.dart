@@ -59,11 +59,11 @@ class CoachingState extends State<Coaching> {
     }
   }
 
-  Future<void> uploadFile(Uint8List _data, String extension) async {
+  Future<void> uploadFile(Uint8List data, String extension) async {
     firebase_storage.Reference reference = firebase_storage
         .FirebaseStorage.instance
-        .ref('talks/${widget.speakerData.id}.$extension');
-    firebase_storage.TaskSnapshot uploadTask = await reference.putData(_data);
+        .ref('$licenseId/talks/${widget.speakerData.id}.$extension');
+    firebase_storage.TaskSnapshot uploadTask = await reference.putData(data);
 
     String url = await uploadTask.ref.getDownloadURL();
 
@@ -98,61 +98,66 @@ class CoachingState extends State<Coaching> {
                 currentStep: currentCoachingStep,
                 steps: [
                   buildCoachingStep(
-                      title: StepService.loadStepCoachingTitle(1),
+                      title: StepService(context).loadStepCoachingTitle(1),
                       subtitle: currentCoachingStep > 0
-                          ? 'Completato'
+                          ? AppLocalizations.of(context)!.completed
                           : currentCoachingStep == 0
-                              ? 'In corso'
-                              : 'Da fare',
+                              ? AppLocalizations.of(context)!.inProgress
+                              : AppLocalizations.of(context)!.toDo,
                       state: currentCoachingStep >= 0
                           ? StepState.complete
                           : StepState.disabled,
                       showButtonUpload: false,
                       content: speakerStreamData.coachingStepDate.isNotEmpty
-                          ? 'L\'incontro si svolgerà alle  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
-                          : 'Data da decidere con il coach.'),
+                          ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
+                          : AppLocalizations.of(context)!
+                              .dateToBeDecidedWithCoach),
                   buildCoachingStep(
-                      title: StepService.loadStepCoachingTitle(2),
+                      title: StepService(context).loadStepCoachingTitle(2),
                       subtitle: currentCoachingStep > 1 || _loadingDone
-                          ? 'Completato'
+                          ? AppLocalizations.of(context)!.completed
                           : currentCoachingStep == 1
-                              ? 'In corso'
-                              : 'Da fare',
+                              ? AppLocalizations.of(context)!.inProgress
+                              : AppLocalizations.of(context)!.toDo,
                       state: currentCoachingStep >= 1
                           ? StepState.complete
                           : StepState.disabled,
                       showButtonUpload: true,
                       content: _loadingDone
-                          ? 'Il coach visionerà il testo del tuo talk.'
-                          : 'Carica un file di testo contentente il tuo talk.'),
+                          ? AppLocalizations.of(context)!
+                              .coachWillViewTextOfYourTalk
+                          : AppLocalizations.of(context)!
+                              .uploadATextFileContainingYourTalk),
                   buildCoachingStep(
-                      title: StepService.loadStepCoachingTitle(3),
+                      title: StepService(context).loadStepCoachingTitle(3),
                       subtitle: currentCoachingStep > 2
-                          ? 'Completato'
+                          ? AppLocalizations.of(context)!.completed
                           : currentCoachingStep == 2
-                              ? 'In corso'
-                              : 'Da fare',
+                              ? AppLocalizations.of(context)!.inProgress
+                              : AppLocalizations.of(context)!.toDo,
                       state: currentCoachingStep >= 2
                           ? StepState.complete
                           : StepState.disabled,
                       showButtonUpload: false,
                       content: speakerStreamData.coachingStepDate.isNotEmpty
-                          ? 'L\'incontro si svolgerà alle  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
-                          : 'Data da decidere con il coach.'),
+                          ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
+                          : AppLocalizations.of(context)!
+                              .dateToBeDecidedWithCoach),
                   buildCoachingStep(
-                      title: StepService.loadStepCoachingTitle(4),
+                      title: StepService(context).loadStepCoachingTitle(4),
                       subtitle: currentCoachingStep > 3
-                          ? 'Completato'
+                          ? AppLocalizations.of(context)!.completed
                           : currentCoachingStep == 3
-                              ? 'In corso'
-                              : 'Da fare',
+                              ? AppLocalizations.of(context)!.inProgress
+                              : AppLocalizations.of(context)!.toDo,
                       state: currentCoachingStep >= 3
                           ? StepState.complete
                           : StepState.disabled,
                       showButtonUpload: false,
                       content: speakerStreamData.coachingStepDate.isNotEmpty
-                          ? 'L\'incontro si svolgerà alle  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
-                          : 'Data da decidere con il coach.'),
+                          ? '${AppLocalizations.of(context)!.meetWillTakePlaceAt}  ${DateFormat('kk:mm  dd-MM-yyyy').format(DateTime.parse(speakerStreamData.coachingStepDate))} .'
+                          : AppLocalizations.of(context)!
+                              .dateToBeDecidedWithCoach),
                 ],
               );
             }
@@ -161,7 +166,8 @@ class CoachingState extends State<Coaching> {
               slivers: <Widget>[
                 if (widget.showMobileTitle) ...[
                   TopBarSpeaker(
-                      speakerData: speakerStreamData, title: 'Account'),
+                      speakerData: speakerStreamData,
+                      title: AppLocalizations.of(context)!.account),
                 ],
                 SliverFillRemaining(
                   child: buildCoachingStepper(StepperType.vertical),
@@ -209,7 +215,8 @@ class CoachingState extends State<Coaching> {
                                       CupertinoButton(
                                         onPressed: () => _openFileExplorer(),
                                         child: Text(
-                                          "Carica nuovo",
+                                          AppLocalizations.of(context)!
+                                              .uploadNew,
                                           style: const TextStyle(
                                               color: CupertinoColors
                                                   .destructiveRed),
@@ -227,9 +234,9 @@ class CoachingState extends State<Coaching> {
                                             throw 'Could not launch the url';
                                           }
                                         },
-                                        child: const Text(
-                                          'Scarica',
-                                        ),
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .download),
                                       ),
                                     ],
                                   )
@@ -237,11 +244,12 @@ class CoachingState extends State<Coaching> {
                                     onPressed: () => _openFileExplorer(),
                                     child: CupertinoButton(
                                       onPressed: () => _openFileExplorer(),
-                                      child: const Text('Carica'),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.upload),
                                     ),
                                   ),
                             _paths != null
-                                ? const Text('Caricamento fatto')
+                                ? Text(AppLocalizations.of(context)!.uploadDone)
                                 : const SizedBox(),
                           ],
                         ),
