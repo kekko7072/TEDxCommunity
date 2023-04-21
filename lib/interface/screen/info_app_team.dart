@@ -113,6 +113,8 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                             ),
                           ),
                           CSControl(
+                            addPaddingToBorder:
+                                widget.userData.role != Role.admin,
                             nameWidget:
                                 Text(AppLocalizations.of(context)!.admin),
                             contentWidget: StreamBuilder<UserData?>(
