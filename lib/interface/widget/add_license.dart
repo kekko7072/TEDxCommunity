@@ -6,12 +6,12 @@ class AddLicense extends StatefulWidget {
   final String adminUid;
   final Function() onLogin;
 
-  const AddLicense(
-      {Key? key,
-      required this.licenseId,
-      required this.adminUid,
-      required this.onLogin})
-      : super(key: key);
+  const AddLicense({
+    Key? key,
+    required this.licenseId,
+    required this.adminUid,
+    required this.onLogin,
+  }) : super(key: key);
 
   @override
   State<AddLicense> createState() => _AddLicenseState();
@@ -68,21 +68,29 @@ class _AddLicenseState extends State<AddLicense> {
           ),
           const SizedBox(height: 10),
           Text(AppLocalizations.of(context)!.uploadReleaseFormForSpeaker),
-          CupertinoButton(
-            onPressed: () => _openFileExplorer(),
-            child: _loadingDone
-                ? Text(
-                    AppLocalizations.of(context)!.edit,
-                    style:
-                        const TextStyle(color: CupertinoColors.destructiveRed),
-                  )
-                : Text(
-                    AppLocalizations.of(context)!.download,
-                  ),
-          )
+          !_loadingPath
+              ? CupertinoButton(
+                  onPressed: () => _openFileExplorer(),
+                  child: _loadingDone
+                      ? Text(
+                          AppLocalizations.of(context)!.edit,
+                          style: const TextStyle(
+                              color: CupertinoColors.destructiveRed),
+                        )
+                      : Text(
+                          AppLocalizations.of(context)!.upload,
+                        ),
+                )
+              : const CupertinoActivityIndicator()
         ],
       ),
       actions: <Widget>[
+        TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(
+              AppLocalizations.of(context)!.cancel,
+              style: const TextStyle(color: CupertinoColors.destructiveRed),
+            )),
         TextButton(
             onPressed: () async {
               EasyLoading.show();

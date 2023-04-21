@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:intl/intl.dart';
 import 'package:tedxcommunity/services/imports.dart';
 
@@ -60,25 +59,21 @@ class CoachingState extends State<Coaching> {
   }
 
   Future<void> uploadFile(Uint8List data, String extension) async {
-    firebase_storage.Reference reference = firebase_storage
-        .FirebaseStorage.instance
+    Reference reference = FirebaseStorage.instance
         .ref('$licenseId/talks/${widget.speakerData.id}.$extension');
-    firebase_storage.TaskSnapshot uploadTask = await reference.putData(data);
+    TaskSnapshot uploadTask = await reference.putData(data);
 
     String url = await uploadTask.ref.getDownloadURL();
 
     await DatabaseSpeaker(licenseId: licenseId, id: widget.speakerData.id)
         .editTalkDownloadLink(link: url);
-    if (uploadTask.state == firebase_storage.TaskState.success) {
+    if (uploadTask.state == TaskState.success) {
       setState(() {
         _loadingPath = false;
         _loadingDone = true;
       });
     } else {
-      print(uploadTask.state);
-      setState(() {
-        _loadingPath = false;
-      });
+      setState(() => _loadingPath = false);
     }
   }
 

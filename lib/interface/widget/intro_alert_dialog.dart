@@ -12,7 +12,7 @@ class IntroAlertDialog extends StatelessWidget {
         children: [
           Text(AppLocalizations.of(context)!.whatIsTEDxCommunity),
           const SizedBox(height: 16.0),
-          Text(AppLocalizations.of(context)!.learnMoreAboutTEDxCommunity),
+          /* Text(AppLocalizations.of(context)!.learnMoreAboutTEDxCommunity),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SelectableText(
@@ -21,7 +21,7 @@ class IntroAlertDialog extends StatelessWidget {
               onTap: () => launchUrlString(kGitHubReadmeLink),
             ),
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),*/
           Text(
               '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}')
         ],

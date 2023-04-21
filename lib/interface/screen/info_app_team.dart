@@ -433,16 +433,13 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                                                 kLicenseIdKey,
                                                                 newLicenseId);
 
-                                                            //3. Logout
+                                                            ///3. Close all modals
                                                             Navigator.of(
                                                                     context)
                                                                 .pop();
-
-                                                            ///4. Show success
-                                                            EasyLoading.showSuccess(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .nowYouAreInTheNewLicense);
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
                                                           });
                                                         },
                                                       );
