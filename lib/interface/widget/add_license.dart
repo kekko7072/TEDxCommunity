@@ -21,6 +21,10 @@ class _AddLicenseState extends State<AddLicense> {
   TextEditingController licenseNameController =
       TextEditingController(text: 'TEDx');
 
+  bool _loadingPath = false;
+  bool _loadingDone = false;
+  String url = '';
+
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
@@ -63,6 +67,19 @@ class _AddLicenseState extends State<AddLicense> {
             keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 10),
+          Text(AppLocalizations.of(context)!.uploadReleaseFormForSpeaker),
+          CupertinoButton(
+            onPressed: () => _openFileExplorer(),
+            child: _loadingDone
+                ? Text(
+                    AppLocalizations.of(context)!.edit,
+                    style:
+                        const TextStyle(color: CupertinoColors.destructiveRed),
+                  )
+                : Text(
+                    AppLocalizations.of(context)!.download,
+                  ),
+          )
         ],
       ),
       actions: <Widget>[
@@ -72,7 +89,8 @@ class _AddLicenseState extends State<AddLicense> {
               await DatabaseLicense(widget.licenseId)
                   .create(
                       adminUid: widget.adminUid,
-                      licenseName: licenseNameController.text)
+                      licenseName: licenseNameController.text,
+                      urlReleaseForm: url)
                   .whenComplete(() {
                 EasyLoading.dismiss();
 
@@ -88,5 +106,51 @@ class _AddLicenseState extends State<AddLicense> {
             )),
       ],
     );
+  }
+
+  Future<void> _openFileExplorer() async {
+    setState(() => _loadingPath = true);
+    try {
+      FilePickerResult? picked = await FilePicker.platform.pickFiles();
+
+      if (picked != null) {
+        if (kIsWeb) {
+          uploadFile(picked.files.first.bytes!, picked.files.first.extension!);
+        } else {
+          if (picked.files.first.path != '') {
+            uploadFile(await File(picked.files.first.path!).readAsBytes(),
+                picked.files.first.extension!);
+          } else {
+            print('PATH FILE NULL!');
+          }
+        }
+      } else {
+        setState(() => _loadingPath = false);
+      }
+    } on PlatformException catch (e) {
+      print('ERROR Unsupported operation$e');
+    } catch (ex) {
+      print('EX ERROR$ex');
+    }
+  }
+
+  Future<void> uploadFile(Uint8List data, String extension) async {
+    Reference reference = FirebaseStorage.instance
+        .ref('${widget.licenseId}/releaseForm.$extension');
+    TaskSnapshot uploadTask = await reference.putData(data);
+
+    url = await uploadTask.ref.getDownloadURL();
+
+    if (uploadTask.state == TaskState.success) {
+      setState(() {
+        _loadingPath = false;
+        _loadingDone = true;
+      });
+    } else {
+      print(uploadTask.state);
+      setState(() {
+        _loadingPath = false;
+      });
+    }
   }
 }

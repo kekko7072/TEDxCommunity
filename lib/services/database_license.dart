@@ -11,7 +11,10 @@ class DatabaseLicense {
   late DocumentReference<Map<String, dynamic>> licenseDoc =
       FirebaseFirestore.instance.collection('licenses').doc(id);
 
-  Future create({required String adminUid, required String licenseName}) async {
+  Future create(
+      {required String adminUid,
+      required String licenseName,
+      required String urlReleaseForm}) async {
     return await collectionReference.doc(id).set({
       'active': true,
       'adminUid': adminUid,
@@ -19,7 +22,7 @@ class DatabaseLicense {
       'registration': true,
       'eventDate': DateTime.now(),
       'bags': true,
-      'urlReleaseForm': '',
+      'urlReleaseForm': urlReleaseForm,
     });
   }
 

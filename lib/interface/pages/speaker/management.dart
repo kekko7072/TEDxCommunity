@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:tedxcommunity/services/imports.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class Management extends StatefulWidget {
   final Speaker speakerData;
@@ -64,17 +62,16 @@ class ManagementState extends State<Management> {
     }
   }
 
-  Future<void> uploadFile(Uint8List _data, String extension) async {
-    firebase_storage.Reference reference = firebase_storage
-        .FirebaseStorage.instance
-        .ref('releaseForm/${widget.speakerData.id}.$extension');
-    firebase_storage.TaskSnapshot uploadTask = await reference.putData(_data);
+  Future<void> uploadFile(Uint8List data, String extension) async {
+    Reference reference = FirebaseStorage.instance
+        .ref('$licenseId/releaseForms/${widget.speakerData.id}.$extension');
+    TaskSnapshot uploadTask = await reference.putData(data);
 
     String url = await uploadTask.ref.getDownloadURL();
 
     await DatabaseSpeaker(licenseId: licenseId, id: widget.speakerData.id)
         .editReleaseDownloadLink(link: url);
-    if (uploadTask.state == firebase_storage.TaskState.success) {
+    if (uploadTask.state == TaskState.success) {
       setState(() {
         _loadingPath = false;
         _loadingDone = true;
@@ -122,10 +119,10 @@ class ManagementState extends State<Management> {
 
     ///Hotel and Logistics
     late String checkInDate = widget.speakerData.checkInDate!.isEmpty
-        ? 'Seleziona'
+        ? AppLocalizations.of(context)!.select
         : widget.speakerData.checkInDate!;
     late String departureDate = widget.speakerData.departureDate!.isEmpty
-        ? 'Seleziona'
+        ? AppLocalizations.of(context)!.select
         : widget.speakerData.departureDate!;
 
     TextEditingController roomTypeController =
@@ -145,7 +142,9 @@ class ManagementState extends State<Management> {
         slivers: <Widget>[
           if (widget.showMobileTitle) ...[
             if (widget.showMobileTitle) ...[
-              TopBarSpeaker(speakerData: widget.speakerData, title: 'Account'),
+              TopBarSpeaker(
+                  speakerData: widget.speakerData,
+                  title: AppLocalizations.of(context)!.account),
             ],
           ],
 
@@ -163,12 +162,12 @@ class ManagementState extends State<Management> {
                         ),
                         color: Style.backgroundColor(context),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.0),
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Informazioni personali',
+                                AppLocalizations.of(context)!.data,
                                 style: CupertinoTheme.of(context)
                                     .textTheme
                                     .navTitleTextStyle,
@@ -181,11 +180,9 @@ class ManagementState extends State<Management> {
                                           Style.inputTextFieldRadius)),
                                 ),
                                 controller: nameController,
-                                placeholder: 'Nome',
+                                placeholder: AppLocalizations.of(context)!.name,
                                 keyboardType: TextInputType.name,
-                                onChanged: (value) {
-                                  name = value;
-                                },
+                                onChanged: (value) => name = value,
                               ),
                               CupertinoTextFormFieldRow(
                                 decoration: BoxDecoration(
@@ -195,11 +192,10 @@ class ManagementState extends State<Management> {
                                           Style.inputTextFieldRadius)),
                                 ),
                                 controller: emailController,
-                                placeholder: 'Email',
+                                placeholder:
+                                    AppLocalizations.of(context)!.email,
                                 keyboardType: TextInputType.emailAddress,
-                                onChanged: (value) {
-                                  email = value;
-                                },
+                                onChanged: (value) => email = value,
                               ),
                               CupertinoTextFormFieldRow(
                                 decoration: BoxDecoration(
@@ -223,7 +219,7 @@ class ManagementState extends State<Management> {
                                           Style.inputTextFieldRadius)),
                                 ),
                                 controller: jobController,
-                                placeholder: 'Lavoro',
+                                placeholder: AppLocalizations.of(context)!.job,
                                 keyboardType: TextInputType.text,
                                 onChanged: (value) {
                                   job = value;
@@ -276,10 +272,9 @@ class ManagementState extends State<Management> {
                                           Style.inputTextFieldRadius)),
                                 ),
                                 keyboardType: TextInputType.text,
-                                placeholder: 'Taglia vestiti',
-                                onChanged: (value) {
-                                  dressSize = value;
-                                },
+                                placeholder:
+                                    AppLocalizations.of(context)!.sizeClothes,
+                                onChanged: (value) => dressSize = value,
                               ),
                               Builder(
                                 builder: (BuildContext context) => Padding(
@@ -289,7 +284,8 @@ class ManagementState extends State<Management> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Liberatoria',
+                                        AppLocalizations.of(context)!
+                                            .releaseForm,
                                         style: CupertinoTheme.of(context)
                                             .textTheme
                                             .actionTextStyle
@@ -307,10 +303,9 @@ class ManagementState extends State<Management> {
                                             )
                                           : Row(
                                               children: [
-                                                //TODO ADD LICENSE ID
                                                 StreamBuilder<License>(
                                                     stream: DatabaseLicense(
-                                                            'ADD_LICENSE_ID')
+                                                            licenseId)
                                                         .stream,
                                                     builder:
                                                         (context, snapshot) {
@@ -330,8 +325,10 @@ class ManagementState extends State<Management> {
                                                               throw 'Could not launch the url';
                                                             }
                                                           },
-                                                          child: const Text(
-                                                              'Scarica'),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .download),
                                                         );
                                                       } else {
                                                         return const CupertinoActivityIndicator();
@@ -350,7 +347,9 @@ class ManagementState extends State<Management> {
                                                                   .destructiveRed),
                                                         )
                                                       : Text(
-                                                          "Carica",
+                                                          AppLocalizations.of(
+                                                                  context)!
+                                                              .download,
                                                         ),
                                                 )
                                               ],
@@ -362,7 +361,8 @@ class ManagementState extends State<Management> {
                               _loadingDone
                                   ? Container()
                                   : Text(
-                                      'La liberatoria va compilata e ricaricata qui sopra.',
+                                      AppLocalizations.of(context)!
+                                          .releaseFormMustBeCompletedAndSendHere,
                                       style: CupertinoTheme.of(context)
                                           .textTheme
                                           .navActionTextStyle
@@ -384,9 +384,7 @@ class ManagementState extends State<Management> {
                                 maxLines: 5,
                                 placeholder: AppLocalizations.of(context)!
                                     .shortBiography,
-                                onChanged: (value) {
-                                  description = value;
-                                },
+                                onChanged: (value) => description = value,
                               ),
                               CupertinoButton.filled(
                                   child:
@@ -438,7 +436,7 @@ class ManagementState extends State<Management> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      'Informazioni personali',
+                                      AppLocalizations.of(context)!.data,
                                       style: CupertinoTheme.of(context)
                                           .textTheme
                                           .navTitleTextStyle,
@@ -449,11 +447,8 @@ class ManagementState extends State<Management> {
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .navActionTextStyle),
-                                      onPressed: () async {
-                                        setState(() {
-                                          currentManagementStep = 1;
-                                        });
-                                      },
+                                      onPressed: () => setState(
+                                          () => currentManagementStep = 1),
                                     ),
                                   ],
                                 ),
@@ -490,19 +485,21 @@ class ManagementState extends State<Management> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'Hotel e Logistica',
+                                    AppLocalizations.of(context)!
+                                        .hotelAndLogistics,
                                     style: CupertinoTheme.of(context)
                                         .textTheme
                                         .navTitleTextStyle,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
+                                    padding: const EdgeInsets.only(left: 16.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Data di arrivo',
+                                          AppLocalizations.of(context)!
+                                              .checkInDate,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .actionTextStyle
@@ -513,7 +510,8 @@ class ManagementState extends State<Management> {
                                         ),
                                         CupertinoButton(
                                             child: Text(checkInDate.isEmpty
-                                                ? 'Seleziona'
+                                                ? AppLocalizations.of(context)!
+                                                    .select
                                                 : checkInDate),
                                             onPressed: () {
                                               showCupertinoModalBottomSheet(
@@ -534,9 +532,9 @@ class ManagementState extends State<Management> {
                                                           .substring(0, 10);
                                                     });
                                                   },
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop(),
                                                 ),
                                               );
                                             }),
@@ -544,13 +542,14 @@ class ManagementState extends State<Management> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
+                                    padding: const EdgeInsets.only(left: 16.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Data di partenza',
+                                          AppLocalizations.of(context)!
+                                              .checkOutDate,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .actionTextStyle
@@ -573,16 +572,15 @@ class ManagementState extends State<Management> {
                                                   pickerType:
                                                       CupertinoDatePickerMode
                                                           .date,
-                                                  onDateTimeChanged: (val) {
-                                                    settingState(() {
-                                                      departureDate = val
-                                                          .toIso8601String()
-                                                          .substring(0, 10);
-                                                    });
-                                                  },
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
+                                                  onDateTimeChanged: (val) =>
+                                                      settingState(() =>
+                                                          departureDate = val
+                                                              .toIso8601String()
+                                                              .substring(
+                                                                  0, 10)),
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop(),
                                                 ),
                                               );
                                             }),
@@ -590,13 +588,14 @@ class ManagementState extends State<Management> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
+                                    padding: const EdgeInsets.only(left: 16.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Stanza',
+                                          AppLocalizations.of(context)!
+                                              .roomType,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .actionTextStyle
@@ -607,7 +606,8 @@ class ManagementState extends State<Management> {
                                         ),
                                         CupertinoButton(
                                             child: Text(roomType.isEmpty
-                                                ? 'Seleziona'
+                                                ? AppLocalizations.of(context)!
+                                                    .select
                                                 : roomType),
                                             onPressed: () {
                                               showCupertinoModalBottomSheet(
@@ -621,7 +621,7 @@ class ManagementState extends State<Management> {
                                                           mainAxisSize:
                                                               MainAxisSize.min,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               height: 200,
                                                               child:
                                                                   CupertinoPicker(
@@ -632,47 +632,60 @@ class ManagementState extends State<Management> {
                                                                     case 0:
                                                                       settingState(() =>
                                                                           roomType =
-                                                                              'Seleziona');
+                                                                              AppLocalizations.of(context)!.select);
                                                                       break;
                                                                     case 1:
                                                                       settingState(() =>
                                                                           roomType =
-                                                                              'Singola');
+                                                                              AppLocalizations.of(context)!.roomSingle);
                                                                       break;
                                                                     case 2:
                                                                       settingState(() =>
                                                                           roomType =
-                                                                              'Doppia');
+                                                                              AppLocalizations.of(context)!.roomDouble);
                                                                       break;
                                                                     case 3:
                                                                       settingState(() =>
                                                                           roomType =
-                                                                              'Matrimoniale');
+                                                                              AppLocalizations.of(context)!.roomTriple);
+                                                                      break;
+                                                                    case 4:
+                                                                      settingState(() =>
+                                                                          roomType =
+                                                                              AppLocalizations.of(context)!.roomQuadruple);
                                                                       break;
                                                                   }
                                                                 },
                                                                 itemExtent:
                                                                     32.0,
                                                                 children: [
-                                                                  Text(
-                                                                      'Seleziona'),
-                                                                  Text(
-                                                                      'Singola'),
-                                                                  Text(
-                                                                      'Doppia'),
-                                                                  Text(
-                                                                      'Matrimoniale'),
+                                                                  Text(AppLocalizations.of(
+                                                                          context)!
+                                                                      .select),
+                                                                  Text(AppLocalizations.of(
+                                                                          context)!
+                                                                      .roomSingle),
+                                                                  Text(AppLocalizations.of(
+                                                                          context)!
+                                                                      .roomDouble),
+                                                                  Text(AppLocalizations.of(
+                                                                          context)!
+                                                                      .roomTriple),
+                                                                  Text(AppLocalizations.of(
+                                                                          context)!
+                                                                      .roomQuadruple),
                                                                 ],
                                                               ),
                                                             ),
                                                             CupertinoButton(
-                                                              child:
-                                                                  Text('Salva'),
-                                                              onPressed: () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
+                                                              child: Text(
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .save),
+                                                              onPressed: () =>
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop(),
                                                             )
                                                           ],
                                                         ),
@@ -682,13 +695,14 @@ class ManagementState extends State<Management> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
+                                    padding: const EdgeInsets.only(left: 16.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Accompagnatori',
+                                          AppLocalizations.of(context)!
+                                              .companions,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .actionTextStyle
@@ -698,10 +712,12 @@ class ManagementState extends State<Management> {
                                               ),
                                         ),
                                         CupertinoButton(
-                                            child: Text(
-                                                companions.toString().isEmpty
-                                                    ? 'Seleziona'
-                                                    : companions.toString()),
+                                            child: Text(companions
+                                                    .toString()
+                                                    .isEmpty
+                                                ? AppLocalizations.of(context)!
+                                                    .select
+                                                : companions.toString()),
                                             onPressed: () {
                                               showCupertinoModalBottomSheet(
                                                   backgroundColor:
@@ -714,7 +730,7 @@ class ManagementState extends State<Management> {
                                                           mainAxisSize:
                                                               MainAxisSize.min,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               height: 200,
                                                               child:
                                                                   CupertinoPicker(
@@ -726,7 +742,7 @@ class ManagementState extends State<Management> {
                                                                 },
                                                                 itemExtent:
                                                                     32.0,
-                                                                children: [
+                                                                children: const [
                                                                   Text('0'),
                                                                   Text('1'),
                                                                   Text('2'),
@@ -739,11 +755,10 @@ class ManagementState extends State<Management> {
                                                                   AppLocalizations.of(
                                                                           context)!
                                                                       .save),
-                                                              onPressed: () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
+                                                              onPressed: () =>
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop(),
                                                             )
                                                           ],
                                                         ),
@@ -753,7 +768,8 @@ class ManagementState extends State<Management> {
                                     ),
                                   ),
                                   CupertinoButton.filled(
-                                      child: const Text('Invia'),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.send),
                                       onPressed: () async {
                                         setState(() {
                                           currentManagementStep = 3;
@@ -777,17 +793,17 @@ class ManagementState extends State<Management> {
                           ),
                         )
                       : Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 16.0, right: 16.0, bottom: 16.0),
                           child: Card(
                             elevation: 5,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                             ),
                             color: Style.backgroundColor(context),
                             child: Padding(
-                              padding: EdgeInsets.only(top: 10.0),
+                              padding: const EdgeInsets.only(top: 10.0),
                               child: Row(
                                 children: [
                                   Expanded(
@@ -796,13 +812,16 @@ class ManagementState extends State<Management> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          'Hotel e Logistica',
+                                          AppLocalizations.of(context)!
+                                              .hotelAndLogistics,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .navTitleTextStyle,
                                         ),
                                         TextButton(
-                                          child: Text('Modifica',
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .edit,
                                               style: CupertinoTheme.of(context)
                                                   .textTheme
                                                   .navActionTextStyle),
@@ -815,7 +834,7 @@ class ManagementState extends State<Management> {
                                       ],
                                     ),
                                   ),
-                                  Expanded(
+                                  const Expanded(
                                     flex: 1,
                                     child: Icon(
                                       CupertinoIcons.check_mark_circled,

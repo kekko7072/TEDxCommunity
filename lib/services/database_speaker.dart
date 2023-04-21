@@ -180,7 +180,7 @@ class DatabaseSpeaker {
     });
   }
 
-  Future editReleaseDownloadLink({
+  Future<void> editReleaseDownloadLink({
     required String link,
   }) async {
     return await speakersCollection.doc(id).update({

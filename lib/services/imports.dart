@@ -13,6 +13,7 @@ export 'package:flutter_localizations/flutter_localizations.dart';
 export 'firebase_options.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_auth/firebase_auth.dart';
+export 'package:firebase_storage/firebase_storage.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 
 ///Basic

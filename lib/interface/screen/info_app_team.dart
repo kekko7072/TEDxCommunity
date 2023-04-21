@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:tedxcommunity/services/imports.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class InfoAppTeam extends StatefulWidget {
   final License license;
@@ -114,7 +113,7 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                           ),
                           CSControl(
                             addPaddingToBorder:
-                                widget.userData.role != Role.admin,
+                                widget.userData.role == Role.admin,
                             nameWidget:
                                 Text(AppLocalizations.of(context)!.admin),
                             contentWidget: StreamBuilder<UserData?>(
@@ -322,8 +321,25 @@ class InfoAppTeamState extends State<InfoAppTeam> {
                                   launchUrlString(kGitHubSourceCodeLink)),
                           CSLink(
                             title: AppLocalizations.of(context)!.credits,
-                            onPressed: () =>
-                                launchUrlString(kGitHubCreditsLink),
+                            onPressed: () => showCupertinoDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (_) => CupertinoAlertDialog(
+                                      title: Text(AppLocalizations.of(context)!
+                                          .credits),
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .creditsDescription),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .close),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                        ),
+                                      ],
+                                    )),
                             addPaddingToBorder: false,
                           ),
                           CSDescription(
