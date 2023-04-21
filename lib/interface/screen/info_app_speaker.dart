@@ -11,6 +11,21 @@ class InfoAppSpeaker extends StatefulWidget {
 }
 
 class InfoAppSpeakerState extends State<InfoAppSpeaker> {
+  ///Software version
+  String version = '';
+
+  Future<void> loadVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(
+        () => version = '${packageInfo.version}+${packageInfo.buildNumber}');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadVersion();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,6 +68,42 @@ class InfoAppSpeakerState extends State<InfoAppSpeaker> {
                     });
                   });
                 }),
+                CSHeader(AppLocalizations.of(context)!.software),
+                CSControl(
+                  nameWidget: Text(AppLocalizations.of(context)!.name),
+                  contentWidget: Text(
+                    AppLocalizations.of(context)!.appName,
+                    style: kSettingsDescriptionStyle,
+                  ),
+                ),
+                CSControl(
+                  nameWidget: Text(AppLocalizations.of(context)!.version),
+                  contentWidget: Text(
+                    version,
+                    style: kSettingsDescriptionStyle,
+                  ),
+                ),
+                CSLink(
+                  title: AppLocalizations.of(context)!.credits,
+                  onPressed: () => showCupertinoDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (_) => CupertinoAlertDialog(
+                            title: Text(AppLocalizations.of(context)!.credits),
+                            content: Text(AppLocalizations.of(context)!
+                                .creditsDescription),
+                            actions: [
+                              CupertinoDialogAction(
+                                child:
+                                    Text(AppLocalizations.of(context)!.close),
+                                onPressed: () => Navigator.of(context).pop(),
+                              ),
+                            ],
+                          )),
+                  addPaddingToBorder: false,
+                ),
+                CSDescription(
+                    '${AppLocalizations.of(context)!.developedWithLoveBy} ${AppLocalizations.of(context)!.developerName}.'),
                 const CSHeader(''),
                 CSButton(
                   CSButtonType.DESTRUCTIVE,
@@ -63,6 +114,7 @@ class InfoAppSpeakerState extends State<InfoAppSpeaker> {
                         .whenComplete(() => Navigator.of(context).pop());
                   },
                 ),
+                const CSSpacer(),
               ],
             ),
           ),

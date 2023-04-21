@@ -159,11 +159,10 @@ class _AppState extends State<App> {
                       );
                     } else {
                       return StreamBuilder<Speaker>(
-                        stream:
-                            DatabaseSpeaker(licenseId: licenseId, id: user?.uid)
-                                .speakerData,
-                        builder: (context, snapshot) {
-                          {
+                          stream: DatabaseSpeaker(
+                                  licenseId: licenseId, id: user?.uid)
+                              .speakerData,
+                          builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               Speaker speakerData = snapshot.data!;
 
@@ -228,9 +227,7 @@ class _AppState extends State<App> {
                                 },
                               );
                             }
-                          }
-                        },
-                      );
+                          });
                     }
                   });
             }
