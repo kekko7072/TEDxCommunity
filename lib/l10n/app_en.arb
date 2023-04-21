@@ -5,9 +5,11 @@
   "list": "List",
   "elaboration": "Elaboration",
   "select": "Select",
+  "selectDate":"Select date",
   "selectTeam": "Select team",
   "selectCoach": "Select coach",
   "selected": "Selected",
+  "confirm": "Confirm",
   "confirmed": "Confirmed",
   "contacted": "Contacted",
   "rejected": "Rejected",
@@ -110,7 +112,34 @@
   "prepareSpeech": "The speaker was entrusted with preparing the speech.",
   "downloadSpeech": "You can download the speaker's speech.",
   "moduleOpenedTheDay": "The form with the main information was opened to the speaker on the day",
-  "moduleSendTheDay": "Logistics information form was sent on the day"
+  "moduleSendTheDay": "Logistics information form was sent on the day",
+  "copied": "Copied",
+  "copyCredential": "Copy credentials",
+  "openingLinkVideoCall": "Opening link video call",
+  "addSpeaker": "Add speaker",
+  "insertSpeakerData": "Insert speaker data",
+  "link": "Link",
+  "job": "Job",
+  "possibleTopicOfTalk": "Possible topic of the talk",
+  "speakerAlreadyAdded": "Speaker already added",
+  "shortBiography": "A short biography",
+  "yes": "Yes",
+  "no": "No",
+  "alreadyTEDx": "He has already given speech at TEDx",
+  "thisIsMaxValueForPublicSpeaking": "5 is the maximum value for public speaking",
+  "thisIsMinValueForPublicSpeaking": "0 is the minimum value for public speaking",
+  "reportedBy": "Reported by",
+  "assignedTo": "Assigned to",
+  "contactedBy": "Contacted by",
+  "linkVideoCall": "Link video call",
+  "doYouWantToMoveSpeakerToContacted": "Do you want to move the speaker to contacted?",
+  "addLink": "Add link",
+  "openLink": "Open link",
+  "downloadReleaseForm": "Download release form",
+  "hotelAndLogistics": "Hotel e Logistica"
+
+
+
 
 
 

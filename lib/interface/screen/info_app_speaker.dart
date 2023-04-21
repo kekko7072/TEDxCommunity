@@ -23,28 +23,30 @@ class InfoAppSpeakerState extends State<InfoAppSpeaker> {
           child: CupertinoPageScaffold(
             child: CupertinoSettings(
               items: <Widget>[
-                const CSHeader('Account'),
+                CSHeader(AppLocalizations.of(context)!.account),
                 CSControl(
-                  nameWidget: Text('Speaker ID'),
+                  nameWidget: Text(AppLocalizations.of(context)!.speakerId),
                   contentWidget: Text(
                     widget.speakerData.accessID!.substring(0, 5),
                     style: kSettingsDescriptionStyle,
                   ),
                 ),
                 CSControl(
-                  nameWidget: Text('Codice'),
+                  nameWidget: Text(AppLocalizations.of(context)!.code),
                   contentWidget: Text(
                     widget.speakerData.accessPassword ?? '',
                     style: kSettingsDescriptionStyle,
                   ),
                 ),
-                CSButton(CSButtonType.DEFAULT_CENTER, "Copia credenziali", () {
+                CSButton(CSButtonType.DEFAULT_CENTER,
+                    AppLocalizations.of(context)!.copyCredential, () {
                   setState(() {
                     Clipboard.setData(ClipboardData(
                             text:
-                                'Speaker ID: ${widget.speakerData.accessID!.substring(0, 5)} | Codice: ${widget.speakerData.accessPassword}'))
+                                '${AppLocalizations.of(context)!.speakerId}: ${widget.speakerData.accessID!.substring(0, 5)} | ${AppLocalizations.of(context)!.code}: ${widget.speakerData.accessPassword}'))
                         .then((_) {
-                      EasyLoading.showToast('Copiato',
+                      EasyLoading.showToast(
+                          AppLocalizations.of(context)!.copied,
                           duration: const Duration(seconds: 2),
                           dismissOnTap: true,
                           toastPosition: EasyLoadingToastPosition.bottom);
@@ -54,7 +56,7 @@ class InfoAppSpeakerState extends State<InfoAppSpeaker> {
                 const CSHeader(''),
                 CSButton(
                   CSButtonType.DESTRUCTIVE,
-                  "Disconnetti",
+                  AppLocalizations.of(context)!.exit,
                   () async {
                     await AuthService()
                         .signOut()

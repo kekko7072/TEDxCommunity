@@ -62,7 +62,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                       child: Column(
                         children: [
                           Text(
-                            'Speaker ID: ${widget.speaker.accessID!.substring(0, 5)}',
+                            '${AppLocalizations.of(context)!.speakerId}: ${widget.speaker.accessID!.substring(0, 5)}',
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
                                     const CupertinoDynamicColor.withBrightness(
@@ -73,7 +73,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                                     context)),
                           ),
                           Text(
-                            'Codice: ${widget.speaker.accessPassword}',
+                            '${AppLocalizations.of(context)!.code}: ${widget.speaker.accessPassword}',
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
                                     const CupertinoDynamicColor.withBrightness(
@@ -98,9 +98,10 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                             });
                             Clipboard.setData(ClipboardData(
                                     text:
-                                        'Speaker ID: ${widget.speaker.accessID!.substring(0, 5)} | Codice: ${widget.speaker.accessPassword}'))
+                                        '${AppLocalizations.of(context)!.speakerId}: ${widget.speaker.accessID!.substring(0, 5)} | ${AppLocalizations.of(context)!.code}: ${widget.speaker.accessPassword}'))
                                 .then((_) {
-                              EasyLoading.showToast('Copiato',
+                              EasyLoading.showToast(
+                                  AppLocalizations.of(context)!.copied,
                                   duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:
@@ -118,7 +119,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                       child: Column(
                         children: [
                           Text(
-                            'Link videcohiamata',
+                            AppLocalizations.of(context)!.linkVideoCall,
                             style: kSpeakerTitleStyle.copyWith(
                                 color: CupertinoDynamicColor.resolve(
                                     const CupertinoDynamicColor.withBrightness(
@@ -137,7 +138,9 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                           child: const Icon(CupertinoIcons.videocam_circle),
                           onPressed: () async {
                             if (await canLaunchUrlString(widget.speaker.link)) {
-                              EasyLoading.showToast('Apro videochiamata',
+                              EasyLoading.showToast(
+                                  AppLocalizations.of(context)!
+                                      .openingLinkVideoCall,
                                   duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:
@@ -146,7 +149,7 @@ class SpeakerProfileState extends State<SpeakerProfile> {
                                 widget.speaker.link,
                               );
                             } else {
-                              EasyLoading.showToast('Errore',
+                              EasyLoading.showToast('Error',
                                   duration: const Duration(seconds: 2),
                                   dismissOnTap: true,
                                   toastPosition:

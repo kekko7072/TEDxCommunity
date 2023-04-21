@@ -41,17 +41,18 @@ class _AddSpeakerState extends State<AddSpeaker> {
         stream: DatabaseSpeaker(licenseId: licenseId).allQuery,
         builder: (context, snapshot) {
           return CupertinoAlertDialog(
-            title: const Text('Aggiungi speaker'),
+            title: Text(AppLocalizations.of(context)!.addSpeaker),
             content: Column(
               children: [
-                const Text('Inserisci dati dello speaker'),
+                Text(AppLocalizations.of(context)!.insertSpeakerData),
                 Row(
                   children: [
                     Expanded(
                       flex: 4,
                       child: InputFieldWithController(
                         controller: nameController,
-                        placeholder: 'Nome cognome',
+                        placeholder:
+                            '${AppLocalizations.of(context)!.name} ${AppLocalizations.of(context)!.surname}',
                         keyboardType: TextInputType.emailAddress,
                       ),
                     ),
@@ -72,7 +73,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                       flex: 4,
                       child: InputFieldWithController(
-                        placeholder: 'Email',
+                        placeholder: AppLocalizations.of(context)!.email,
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                       ),
@@ -92,7 +93,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                       flex: 4,
                       child: InputFieldWithController(
-                        placeholder: 'Link',
+                        placeholder: AppLocalizations.of(context)!.link,
                         keyboardType: TextInputType.url,
                         controller: linkController,
                       ),
@@ -112,7 +113,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                       flex: 4,
                       child: InputFieldWithController(
-                        placeholder: 'Professione',
+                        placeholder: AppLocalizations.of(context)!.job,
                         keyboardType: TextInputType.text,
                         controller: professionController,
                       ),
@@ -134,7 +135,8 @@ class _AddSpeakerState extends State<AddSpeaker> {
                     Expanded(
                       flex: 4,
                       child: InputFieldWithController(
-                        placeholder: 'Possibile argomento del talk',
+                        placeholder:
+                            AppLocalizations.of(context)!.possibleTopicOfTalk,
                         keyboardType: TextInputType.text,
                         controller: topicController,
                       ),
@@ -198,7 +200,8 @@ class _AddSpeakerState extends State<AddSpeaker> {
                                 setState(() => --ratePublicSpeaking);
                               } else {
                                 await EasyLoading.showToast(
-                                    '0 è il valore minimo per il public speaking',
+                                    AppLocalizations.of(context)!
+                                        .thisIsMinValueForPublicSpeaking,
                                     duration: const Duration(seconds: 2),
                                     dismissOnTap: true,
                                     toastPosition:
@@ -219,7 +222,8 @@ class _AddSpeakerState extends State<AddSpeaker> {
                                 setState(() => ++ratePublicSpeaking);
                               } else {
                                 await EasyLoading.showToast(
-                                    '5 è il valore massimo per il public speaking',
+                                    AppLocalizations.of(context)!
+                                        .thisIsMaxValueForPublicSpeaking,
                                     duration: const Duration(seconds: 2),
                                     dismissOnTap: true,
                                     toastPosition:
@@ -233,16 +237,18 @@ class _AddSpeakerState extends State<AddSpeaker> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Ha già fatto speech a TEDx'),
+                    Text(AppLocalizations.of(context)!.alreadyTEDx),
                     CupertinoSwitch(
                         value: switchJustTEDx,
                         activeColor: Style.primaryColor,
                         onChanged: (val) => setState(() {
                               switchJustTEDx = !switchJustTEDx;
                               if (val) {
-                                justTEDx = '${TextLabels.kAddSpeaker3}SI';
+                                justTEDx =
+                                    '${TextLabels.kAddSpeaker3}${AppLocalizations.of(context)!.yes}';
                               } else {
-                                justTEDx = '${TextLabels.kAddSpeaker3}NO';
+                                justTEDx =
+                                    '${TextLabels.kAddSpeaker3}${AppLocalizations.of(context)!.no}';
                               }
                             }))
                   ],
@@ -267,7 +273,7 @@ class _AddSpeakerState extends State<AddSpeaker> {
                   minLines: 2,
                   maxLines: 5,
                   maxLength: 200,
-                  placeholder: 'Una breve biografia',
+                  placeholder: AppLocalizations.of(context)!.shortBiography,
                   keyboardType: TextInputType.text,
                 ),
               ],
@@ -304,7 +310,8 @@ class _AddSpeakerState extends State<AddSpeaker> {
                           )
                           .whenComplete(() => Navigator.of(context).pop());
                     } else {
-                      await EasyLoading.showToast('Speaker già presente',
+                      await EasyLoading.showToast(
+                          AppLocalizations.of(context)!.speakerAlreadyAdded,
                           duration: const Duration(seconds: 2),
                           dismissOnTap: true,
                           toastPosition: EasyLoadingToastPosition.bottom);

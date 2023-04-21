@@ -190,7 +190,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
-                        placeholder: 'Email',
+                        placeholder: AppLocalizations.of(context)!.email,
                         keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 10),
@@ -209,7 +209,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(10)),
                               ),
-                              placeholder: 'Link',
+                              placeholder: AppLocalizations.of(context)!.link,
                               keyboardType: TextInputType.url,
                             ),
                       const SizedBox(height: 10),
@@ -226,7 +226,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
-                        placeholder: 'Professione',
+                        placeholder: AppLocalizations.of(context)!.job,
                         keyboardType: TextInputType.text,
                         onChanged: (val) => profession = val,
                       ),
@@ -244,7 +244,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
-                        placeholder: 'Argomento-Talk',
+                        placeholder:
+                            AppLocalizations.of(context)!.possibleTopicOfTalk,
                         keyboardType: TextInputType.text,
                         onChanged: (val) => topic = val,
                       ),
@@ -262,7 +263,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
-                        placeholder: 'Valuta public speaking da 1 a 5',
+                        placeholder:
+                            AppLocalizations.of(context)!.publicSpeaking,
                         keyboardType: TextInputType.text,
                         onChanged: (val) => ratePublicSpeaking = val,
                       ),
@@ -280,8 +282,7 @@ class _EditSpeakerState extends State<EditSpeaker> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
-                        placeholder:
-                            'Ha già fatto TEDx? SI/NO, se si quando e dove',
+                        placeholder: AppLocalizations.of(context)!.alreadyTEDx,
                         keyboardType: TextInputType.text,
                         onChanged: (val) => justTEDx = val,
                       ),
@@ -296,7 +297,8 @@ class _EditSpeakerState extends State<EditSpeaker> {
                         controller: controllerBio,
                         minLines: 2,
                         maxLines: 5,
-                        placeholder: 'Una breve biografia',
+                        placeholder:
+                            AppLocalizations.of(context)!.shortBiography,
                         keyboardType: TextInputType.text,
                         onChanged: (value) => bio = value,
                       ),

@@ -24,14 +24,15 @@ class _AddLicenseState extends State<AddLicense> {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: const Text('Crea licenza'),
+      title: Text(AppLocalizations.of(context)!.createNewLicense),
       content: Column(
         children: [
           Row(
             children: [
               Expanded(
                 flex: 4,
-                child: Text('LicenseId: ${widget.licenseId}'),
+                child: Text(
+                    '${AppLocalizations.of(context)!.licenseId}: ${widget.licenseId}'),
               ),
               Expanded(
                   flex: 1,
@@ -41,7 +42,8 @@ class _AddLicenseState extends State<AddLicense> {
                       color: Colors.black,
                     ),
                     onPressed: () {
-                      EasyLoading.showToast('Copiato');
+                      EasyLoading.showToast(
+                          AppLocalizations.of(context)!.copied);
                       Clipboard.setData(ClipboardData(text: widget.licenseId));
                     },
                   ))
@@ -56,7 +58,8 @@ class _AddLicenseState extends State<AddLicense> {
             enableSuggestions: true,
             controller: licenseNameController,
             textCapitalization: TextCapitalization.words,
-            placeholder: 'Name (es. TEDxCortina)',
+            placeholder:
+                '${AppLocalizations.of(context)!.name} (ex. TEDxCortina)',
             keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 10),
@@ -75,12 +78,13 @@ class _AddLicenseState extends State<AddLicense> {
 
                 widget.onLogin();
                 Navigator.of(context).pop();
-                EasyLoading.showSuccess('Licenza attivata con successo!');
+                EasyLoading.showSuccess(
+                    AppLocalizations.of(context)!.activated);
               });
             },
-            child: const Text(
-              'Attiva',
-              style: TextStyle(color: CupertinoColors.activeBlue),
+            child: Text(
+              AppLocalizations.of(context)!.activate,
+              style: const TextStyle(color: CupertinoColors.activeBlue),
             )),
       ],
     );

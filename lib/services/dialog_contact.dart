@@ -33,7 +33,7 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
       title: Text(
-        'Vuoi spostare lo spekaer in contattati?',
+        AppLocalizations.of(context)!.doYouWantToMoveSpeakerToContacted,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: Style.textColor(context),
@@ -57,18 +57,18 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
               await DatabaseSpeaker(id: widget.speaker.id, licenseId: licenseId)
                   .updateProgress(progress: Progress.contacted)
                   .then((_) {
-                EasyLoading.showToast('Speaker segnato com contattato',
-                    duration: Duration(milliseconds: kDurationToast),
+                EasyLoading.showToast(AppLocalizations.of(context)!.contacted,
+                    duration: const Duration(milliseconds: kDurationToast),
                     dismissOnTap: true,
                     toastPosition: EasyLoadingToastPosition.bottom);
               });
             } else {
               Clipboard.setData(ClipboardData(
                       text:
-                          'Speaker ID: ${widget.speakerID!.substring(0, 5)} | Codice: ${widget.speakerPSSWD}'))
+                          '${AppLocalizations.of(context)!.speakerId}: ${widget.speakerID!.substring(0, 5)} | ${AppLocalizations.of(context)!.code}: ${widget.speakerPSSWD}'))
                   .then((_) {
-                EasyLoading.showToast('Credenziali copiate',
-                    duration: Duration(seconds: 2),
+                EasyLoading.showToast(AppLocalizations.of(context)!.copied,
+                    duration: const Duration(seconds: 2),
                     dismissOnTap: true,
                     toastPosition: EasyLoadingToastPosition.bottom);
               });
@@ -76,7 +76,7 @@ class _SelectTypeOfContactState extends State<SelectTypeOfContact> {
             Navigator.of(context).pop();
           },
           child: Text(
-            'Conferma',
+            AppLocalizations.of(context)!.confirm,
             style: TextStyle(color: CupertinoColors.activeGreen, fontSize: 15),
           ),
         ),

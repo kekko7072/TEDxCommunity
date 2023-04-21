@@ -382,13 +382,15 @@ class ManagementState extends State<Management> {
                                 keyboardType: TextInputType.text,
                                 minLines: 2,
                                 maxLines: 5,
-                                placeholder: 'Biografia',
+                                placeholder: AppLocalizations.of(context)!
+                                    .shortBiography,
                                 onChanged: (value) {
                                   description = value;
                                 },
                               ),
                               CupertinoButton.filled(
-                                  child: Text('Invia'),
+                                  child:
+                                      Text(AppLocalizations.of(context)!.send),
                                   onPressed: () async {
                                     setState(() {
                                       currentManagementStep = 2;
@@ -419,15 +421,15 @@ class ManagementState extends State<Management> {
                       ),
                     )
                   : Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Card(
                         elevation: 5,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
                         color: Style.backgroundColor(context),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10.0),
+                          padding: const EdgeInsets.only(top: 10.0),
                           child: Row(
                             children: [
                               Expanded(
@@ -442,7 +444,8 @@ class ManagementState extends State<Management> {
                                           .navTitleTextStyle,
                                     ),
                                     TextButton(
-                                      child: Text('Modifica',
+                                      child: Text(
+                                          AppLocalizations.of(context)!.edit,
                                           style: CupertinoTheme.of(context)
                                               .textTheme
                                               .navActionTextStyle),
@@ -455,7 +458,7 @@ class ManagementState extends State<Management> {
                                   ],
                                 ),
                               ),
-                              Expanded(
+                              const Expanded(
                                 flex: 1,
                                 child: Icon(
                                   CupertinoIcons.check_mark_circled,
@@ -471,17 +474,18 @@ class ManagementState extends State<Management> {
               showSecondCard
                   ? currentManagementStep == 2
                       ? Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 16.0, right: 16.0, bottom: 16.0),
                           child: Card(
                             elevation: 5,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                             ),
                             color: Style.backgroundColor(context),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -731,8 +735,10 @@ class ManagementState extends State<Management> {
                                                               ),
                                                             ),
                                                             CupertinoButton(
-                                                              child:
-                                                                  Text('Salva'),
+                                                              child: Text(
+                                                                  AppLocalizations.of(
+                                                                          context)!
+                                                                      .save),
                                                               onPressed: () {
                                                                 Navigator.of(
                                                                         context)

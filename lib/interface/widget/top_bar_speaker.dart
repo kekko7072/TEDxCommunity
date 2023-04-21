@@ -12,9 +12,9 @@ class TopBarSpeaker extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoSliverNavigationBar(
       leading: GestureDetector(
-        child: const Center(
+        child: Center(
             child: Text(
-          'Account',
+          AppLocalizations.of(context)!.account,
           style: kPageSubtitleStyle,
         )),
         onTap: () {
@@ -27,12 +27,13 @@ class TopBarSpeaker extends StatelessWidget {
           );
         },
       ),
-      largeTitle: Text('Coaching'),
+      largeTitle: Text(AppLocalizations.of(context)!.coaching),
       trailing: GestureDetector(
         child: const Icon(CupertinoIcons.videocam_circle),
         onTap: () async {
           if (await canLaunchUrlString(speakerData.link)) {
-            EasyLoading.showToast('Apro videochiamata',
+            EasyLoading.showToast(
+                AppLocalizations.of(context)!.openingLinkVideoCall,
                 duration: const Duration(seconds: 2),
                 dismissOnTap: true,
                 toastPosition: EasyLoadingToastPosition.bottom);
@@ -40,7 +41,7 @@ class TopBarSpeaker extends StatelessWidget {
               speakerData.link,
             );
           } else {
-            EasyLoading.showToast('Errore link non valido',
+            EasyLoading.showToast('Error opening link',
                 duration: const Duration(seconds: 2),
                 dismissOnTap: true,
                 toastPosition: EasyLoadingToastPosition.bottom);

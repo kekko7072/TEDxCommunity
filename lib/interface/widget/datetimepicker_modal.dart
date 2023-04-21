@@ -25,7 +25,7 @@ class DateTimePickerModalState extends State<DateTimePickerModal> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 10),
-          Text('Seleziona data',
+          Text(AppLocalizations.of(context)!.selectDate,
               style: CupertinoTheme.of(context).textTheme.navTitleTextStyle),
           SizedBox(
             height: 250,

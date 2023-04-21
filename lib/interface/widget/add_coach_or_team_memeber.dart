@@ -17,7 +17,7 @@ class AddCoachOrTeamMember extends StatefulWidget {
 
 class AddCoachOrTeamMemberState extends State<AddCoachOrTeamMember> {
   int selectedValue = 0;
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();

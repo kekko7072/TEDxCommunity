@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tedxcommunity/services/imports.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SpeakerItem extends StatefulWidget {
   const SpeakerItem({
@@ -32,7 +31,7 @@ class _SpeakerItemState extends State<SpeakerItem> {
 
   String bio = '';
 
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
   @override
   void initState() {
     super.initState();
@@ -181,23 +180,26 @@ class _SpeakerItemState extends State<SpeakerItem> {
                                     children: <TextSpan>[
                                       if (widget.currentProgress ==
                                           Progress.backlog) ...[
-                                        const TextSpan(
-                                            text: 'Segnalato da: ',
-                                            style: TextStyle(
+                                        TextSpan(
+                                            text:
+                                                '${AppLocalizations.of(context)!.reportedBy}: ',
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                       ] else if (widget.currentProgress ==
                                               Progress.selected ||
                                           widget.currentProgress ==
                                               Progress.confirmed) ...[
-                                        const TextSpan(
-                                            text: 'Affidato a: ',
-                                            style: TextStyle(
+                                        TextSpan(
+                                            text:
+                                                '${AppLocalizations.of(context)!.assignedTo}: ',
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                       ] else if (widget.currentProgress ==
                                           Progress.contacted) ...[
-                                        const TextSpan(
-                                            text: 'Contattato da: ',
-                                            style: TextStyle(
+                                        TextSpan(
+                                            text:
+                                                '${AppLocalizations.of(context)!.contactedBy}: ',
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                       ],
                                       TextSpan(
@@ -218,18 +220,20 @@ class _SpeakerItemState extends State<SpeakerItem> {
                               style: kSpeakerDescriptionStyle.copyWith(
                                   color: const Color(0xFF8E8E93)),
                               children: <TextSpan>[
-                                const TextSpan(
-                                    text: 'Coaching: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text:
+                                        '${AppLocalizations.of(context)!.coaching}: ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
                                 TextSpan(
                                   text: StepService.loadStepCoachingTitle(
                                       widget.speaker.coachingStep),
                                 ),
-                                const TextSpan(
-                                    text: '\nGestione: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text:
+                                        '\n${AppLocalizations.of(context)!.management}: ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
                                 TextSpan(
                                   text: StepService.loadStepManagementText(
                                       widget.speaker.managementStep),
@@ -244,10 +248,11 @@ class _SpeakerItemState extends State<SpeakerItem> {
                               style: kSpeakerDescriptionStyle.copyWith(
                                   color: const Color(0xFF8E8E93)),
                               children: <TextSpan>[
-                                const TextSpan(
-                                    text: 'Contattato: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text:
+                                        '${AppLocalizations.of(context)!.contacted}: ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
                                 TextSpan(
                                   text: widget.speaker.managementStepDate
                                       .substring(0, 10),

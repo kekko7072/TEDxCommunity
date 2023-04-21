@@ -14,7 +14,7 @@ class EndCoachingOrManagement extends StatefulWidget {
 }
 
 class _EndCoachingOrManagementState extends State<EndCoachingOrManagement> {
-  String licenseId = "NO_ID";
+  String licenseId = 'NO_ID';
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _EndCoachingOrManagementState extends State<EndCoachingOrManagement> {
         ),
         CupertinoButton(
           child: Text(
-            'Modifica',
+            AppLocalizations.of(context)!.edit,
             style: CupertinoTheme.of(context)
                 .textTheme
                 .actionTextStyle
@@ -110,7 +110,7 @@ class ManagementData extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Informazioni personali',
+                    AppLocalizations.of(context)!.data,
                     style: CupertinoTheme.of(context)
                         .textTheme
                         .navTitleTextStyle
@@ -209,7 +209,8 @@ class ManagementData extends StatelessWidget {
                         throw 'Could not launch the url';
                       }
                     },
-                    child: Text("Scarica liberatoria"),
+                    child:
+                        Text(AppLocalizations.of(context)!.downloadReleaseForm),
                   )
                 ],
               ),
@@ -233,7 +234,7 @@ class ManagementData extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Hotel e Logistica',
+                    AppLocalizations.of(context)!.hotelAndLogistics,
                     style: CupertinoTheme.of(context)
                         .textTheme
                         .navTitleTextStyle
@@ -305,7 +306,7 @@ Step buildCoachingStep({
   String? buttonText,
   void Function()? buttonAction,
 }) {
-  String linkVideoCall0 = "";
+  String linkVideoCall0 = '';
   bool selectedIndexValue = true;
 
   return Step(
@@ -329,7 +330,8 @@ Step buildCoachingStep({
               onPressed: () async {
                 if (linkVideoCall != null) {
                   if (await canLaunchUrlString(linkVideoCall)) {
-                    EasyLoading.showToast('Apro videochiamata',
+                    EasyLoading.showToast(
+                        AppLocalizations.of(context)!.openingLinkVideoCall,
                         duration: const Duration(seconds: 2),
                         dismissOnTap: true,
                         toastPosition: EasyLoadingToastPosition.bottom);
@@ -348,12 +350,10 @@ Step buildCoachingStep({
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    CupertinoIcons.video_camera_solid,
-                  ),
-                  SizedBox(width: 10),
+                  const Icon(CupertinoIcons.video_camera_solid),
+                  const SizedBox(width: 10),
                   Text(
-                    'Partecipa',
+                    AppLocalizations.of(context)!.openLink,
                   ),
                 ],
               ),
@@ -368,17 +368,9 @@ Step buildCoachingStep({
                 true: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      'Link manuale',
+                      AppLocalizations.of(context)!.linkVideoCall,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
-                false: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    'Calendar',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
               },
               groupValue: selectedIndexValue,
               onValueChanged: (bool value) {
@@ -386,7 +378,7 @@ Step buildCoachingStep({
               },
             ),
             if (selectedIndexValue) ...[
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               CupertinoTextField(
                 placeholder: 'https://meet.com/love-TEDxCortina',
                 onChanged: (value) => linkVideoCall0 = value,
@@ -401,13 +393,14 @@ Step buildCoachingStep({
                     await DatabaseSpeaker(licenseId: licenseId, id: speakerID)
                         .editSpeakerLinkAndEventID(
                             link: linkVideoCall0, eventId: '');
-                    EasyLoading.showToast('Link aggiunto correttamente',
-                        duration: Duration(milliseconds: kDurationToast),
+                    EasyLoading.showToast(
+                        AppLocalizations.of(context)!.completed,
+                        duration: const Duration(milliseconds: kDurationToast),
                         dismissOnTap: true,
                         toastPosition: EasyLoadingToastPosition.bottom);
                     Navigator.of(context).pop();
                   } else {
-                    EasyLoading.showToast('Aggiungi un link per procedere',
+                    EasyLoading.showToast(AppLocalizations.of(context)!.addLink,
                         duration: const Duration(seconds: 3),
                         dismissOnTap: true,
                         toastPosition: EasyLoadingToastPosition.bottom);
@@ -420,7 +413,7 @@ Step buildCoachingStep({
                     const Icon(CupertinoIcons.video_camera_solid),
                     const SizedBox(width: 10),
                     Text(
-                      'Aggiungi link',
+                      AppLocalizations.of(context)!.addLink,
                     ),
                   ],
                 ),

@@ -2,9 +2,11 @@
   "list": "Lista",
   "elaboration": "Elaborazione",
   "select": "Seleziona",
+  "selectDate":"Seleziona data",
   "selectTeam": "Seleziona team",
   "selectCoach": "Seleziona coach",
   "selected": "Selezionati",
+  "confirm": "Conferma",
   "confirmed": "Confermati",
   "contacted": "Contattati",
   "rejected": "Rifiutati",
@@ -110,7 +112,42 @@
   "prepareSpeech": "Allo speaker è stato affidato di preparare il discorso.",
   "downloadSpeech": "Puoi scaricare il discorso dello speaker.",
   "moduleOpenedTheDay": "Allo speaker è stato aperto il modulo con le informazioni principali il giorno",
-  "moduleSendTheDay": "Il modulo con le le informazioni sulla logistica è stato inviato il giorno"
+  "moduleSendTheDay": "Il modulo con le le informazioni sulla logistica è stato inviato il giorno",
+  "copied": "Copiato",
+  "copyCredential": "Copia credenziali",
+  "openingLinkVideoCall": "Apro link videochiamata",
+  "addSpeaker": "Aggiungi speaker",
+  "insertSpeakerData": "Inserisci dati dello speaker",
+  "link": "Link",
+  "job": "Professione",
+  "possibleTopicOfTalk": "Possible argomento del talk",
+  "speakerAlreadyAdded": "Speaker già presente",
+  "shortBiography": "Una breve biografia",
+  "yes": "Si",
+  "no": "No",
+  "alreadyTEDx": "Ha già fatto speech al TEDx",
+  "thisIsMaxValueForPublicSpeaking": "5 è il valore massimo per il public speaking",
+  "thisIsMinValueForPublicSpeaking": "0 è il valore minimo per il public speaking",
+  "reportedBy": "Riportato da",
+  "assignedTo": "Affidato a",
+  "contactedBy": "Contattato da",
+  "linkVideoCall": "Link videochiamata",
+  "doYouWantToMoveSpeakerToContacted": "Vuoi spostare lo spekaer in contattati?",
+  "addLink": "Aggiungi link",
+  "openLink": "Apri link",
+  "downloadReleaseForm": "Scarica liberatoria",
+  "hotelAndLogistics": "Hotel and Logistics"
+
+
+
+
+
+
+
+
+
+
+
 
 
 

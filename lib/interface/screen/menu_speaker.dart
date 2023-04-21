@@ -35,7 +35,8 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                     ),
                     onPressed: () async {
                       if (await canLaunchUrlString(widget.speakerData.link)) {
-                        EasyLoading.showToast('Apro videochiamata',
+                        EasyLoading.showToast(
+                            AppLocalizations.of(context)!.openingLinkVideoCall,
                             duration: const Duration(seconds: 2),
                             dismissOnTap: true,
                             toastPosition: EasyLoadingToastPosition.bottom);
@@ -43,7 +44,7 @@ class MenuSpeakerState extends State<MenuSpeaker> {
                           widget.speakerData.link,
                         );
                       } else {
-                        EasyLoading.showToast('Errore link non valido',
+                        EasyLoading.showToast('Error link not valid',
                             duration: const Duration(seconds: 2),
                             dismissOnTap: true,
                             toastPosition: EasyLoadingToastPosition.bottom);
