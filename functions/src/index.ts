@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import { Telegram } from "telegraf";
 const telegram: Telegram = new Telegram(process.env.BOT_TOKEN as string);
-const chatId = process.env.CHAT_ID as string;
+const chatId = process.env.CHAT_ID as string; //TO GET CHATID: https://telegram.me/get_id_bot
 
 export const SendTelegramMessageLicensecreated = functions
   .region("europe-west3")
