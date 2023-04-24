@@ -50,3 +50,17 @@ app.*.map.json
 /lib/services/firebase_options.dart
 /deploy_android.sh
 /.firebase/
+
+
+# Compiled JavaScript files
+functions/lib/**/*.js
+functions/lib/**/*.js.map
+
+# TypeScript v1 declaration files
+functions/typings/
+
+# Node.js dependency directory
+functions/node_modules/
+
+# Secret
+functions/.env
