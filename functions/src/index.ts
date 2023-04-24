@@ -5,7 +5,7 @@ const chatId = "@kekko7072";
 
 export const SendTelegramMessageLicensecreated = functions
   .region("europe-west3")
-  .firestore.document("license/{licenseId}")
+  .firestore.document("licenses/{licenseId}")
   .onCreate(async (snap, context) => {
     await telegram.sendMessage(
       chatId,
