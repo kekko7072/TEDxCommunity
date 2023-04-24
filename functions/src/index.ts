@@ -1,12 +1,14 @@
 import * as functions from "firebase-functions";
-import {initializeApp, cert} from "firebase-admin/app";
-import {getFirestore} from "firebase-admin/firestore";
+import { initializeApp, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
 import * as dotenv from "dotenv";
 
-dotenv.config({path: ".env"});
+dotenv.config({ path: ".env" });
 
-import {Telegram} from "telegraf";
-const telegram: Telegram = new Telegram(process.env.BOT_TOKEN as string);
+import { Telegram } from "telegraf";
+const telegram: Telegram = new Telegram(
+  process.env.TELEGRAM_BOT_TOKEN as string
+);
 
 export const params = {
   type: "service_account",
@@ -34,7 +36,7 @@ export const SendTelegramMessageLicensecreated = functions
         .collection("licenses")
         .count()
         .get();
-      const chatId = process.env.CHAT_ID as string; // TO GET CHATID: https://telegram.me/get_id_bot
+      const chatId = process.env.TELEGRAM_CHAT_ID as string; // TO GET CHATID: https://telegram.me/get_id_bot
 
       await telegram.sendMessage(
         chatId,
