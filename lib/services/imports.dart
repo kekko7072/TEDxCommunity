@@ -27,6 +27,7 @@ export 'package:speech_to_text/speech_recognition_result.dart';
 export 'package:audio_service/audio_service.dart';
 export 'package:audio_session/audio_session.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+export 'package:video_player/video_player.dart';
 
 ///Design
 export 'package:flutter/material.dart';
