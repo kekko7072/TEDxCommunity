@@ -1,11 +1,11 @@
 import * as functions from "firebase-functions";
-import { initializeApp, cert } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import {initializeApp, cert} from "firebase-admin/app";
+import {getFirestore} from "firebase-admin/firestore";
 import * as dotenv from "dotenv";
 
-dotenv.config({ path: ".env" });
+dotenv.config({path: ".env"});
 
-import { Telegram } from "telegraf";
+import {Telegram} from "telegraf";
 const telegram: Telegram = new Telegram(
   process.env.TELEGRAM_BOT_TOKEN as string
 );
